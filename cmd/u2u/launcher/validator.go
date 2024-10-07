@@ -4,11 +4,11 @@ import (
 	"github.com/pkg/errors"
 	cli "gopkg.in/urfave/cli.v1"
 
-	"github.com/unicornultrafoundation/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/native/idx"
 
-	"github.com/unicornultrafoundation/go-u2u/gossip/emitter"
-	"github.com/unicornultrafoundation/go-u2u/integration/makefakegenesis"
-	"github.com/unicornultrafoundation/go-u2u/native/validatorpk"
+	"github.com/sesanetwork/go-sesa/gossip/emitter"
+	"github.com/sesanetwork/go-sesa/integration/makefakegenesis"
+	"github.com/sesanetwork/go-sesa/native/validatorpk"
 )
 
 var validatorIDFlag = cli.UintFlag{

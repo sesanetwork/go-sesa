@@ -6,18 +6,18 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/table"
-	"github.com/unicornultrafoundation/go-helios/utils/simplewlru"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/rawdb"
-	"github.com/unicornultrafoundation/go-u2u/core/state"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-helios/sesadb/table"
+	"github.com/sesanetwork/go-helios/utils/simplewlru"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/rawdb"
+	"github.com/sesanetwork/go-sesa/core/state"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/rlp"
 
-	"github.com/unicornultrafoundation/go-u2u/utils/iodb"
+	"github.com/sesanetwork/go-sesa/utils/iodb"
 )
 
 var (
@@ -177,7 +177,7 @@ func (s *Store) ImportEvm(r io.Reader) error {
 		if err != nil {
 			return err
 		}
-		if batch.ValueSize() > u2udb.IdealBatchSize {
+		if batch.ValueSize() > sesadb.IdealBatchSize {
 			err := batch.Write()
 			if err != nil {
 				return err
@@ -189,7 +189,7 @@ func (s *Store) ImportEvm(r io.Reader) error {
 }
 
 type restrictedEvmBatch struct {
-	u2udb.Batch
+	sesadb.Batch
 }
 
 func IsMptKey(key []byte) bool {

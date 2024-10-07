@@ -1,17 +1,17 @@
-package u2u
+package sesa
 
 import (
 	"encoding/json"
 	"math/big"
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/vm"
-	ethparams "github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/vm"
+	ethparams "github.com/sesanetwork/go-sesa/params"
 
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/u2u/contracts/evmwriter"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/sesa/contracts/evmwriter"
 )
 
 const (
@@ -49,7 +49,7 @@ type RulesRLP struct {
 	Upgrades Upgrades `rlp:"-"`
 }
 
-// Rules describes u2u net.
+// Rules describes sesa net.
 // Note keep track of all the non-copiable variables in Copy()
 type Rules RulesRLP
 

@@ -3,16 +3,16 @@ package gossip
 import (
 	"sync/atomic"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/core/state"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/core/state"
+	"github.com/sesanetwork/go-sesa/core/types"
 
-	"github.com/unicornultrafoundation/go-u2u/gossip/emitter"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/utils/wgmutex"
-	"github.com/unicornultrafoundation/go-u2u/valkeystore"
-	"github.com/unicornultrafoundation/go-u2u/vecmt"
+	"github.com/sesanetwork/go-sesa/gossip/emitter"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/utils/wgmutex"
+	"github.com/sesanetwork/go-sesa/valkeystore"
+	"github.com/sesanetwork/go-sesa/vecmt"
 )
 
 type emitterWorldProc struct {

@@ -19,7 +19,7 @@ package evmcore
 import (
 	"errors"
 
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-sesa/core/types"
 )
 
 var (

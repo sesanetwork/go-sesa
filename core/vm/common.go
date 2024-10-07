@@ -18,8 +18,8 @@ package vm
 
 import (
 	"github.com/holiman/uint256"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/common/math"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/common/math"
 )
 
 // calcMemSize64 calculates the required memory size, and returns

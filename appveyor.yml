@@ -3,7 +3,7 @@ image: Visual Studio 2017
 
 build: off
 
-clone_folder: c:\gopath\src\github.com\unicornultrafoundation\go-u2u
+clone_folder: c:\gopath\src\github.com\sesanetwork\go-sesa
 
 environment:
   PATH: C:\gopath\bin;C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin;C:\PROGRA~1\Git\bin;C:\PROGRA~1\Git\usr\bin\;C:\ProgramData\chocolatey\bin;$(PATH)

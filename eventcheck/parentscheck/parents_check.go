@@ -3,9 +3,9 @@ package parentscheck
 import (
 	"errors"
 
-	base "github.com/unicornultrafoundation/go-helios/eventcheck/parentscheck"
+	base "github.com/sesanetwork/go-helios/eventcheck/parentscheck"
 
-	"github.com/unicornultrafoundation/go-u2u/native"
+	"github.com/sesanetwork/go-sesa/native"
 )
 
 var (

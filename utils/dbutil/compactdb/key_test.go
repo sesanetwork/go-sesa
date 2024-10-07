@@ -7,10 +7,10 @@ import (
 
 	"github.com/stretchr/testify/require"
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/leveldb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/memorydb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/pebble"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-helios/sesadb/leveldb"
+	"github.com/sesanetwork/go-helios/sesadb/memorydb"
+	"github.com/sesanetwork/go-helios/sesadb/pebble"
 )
 
 func tmpDir(name string) string {
@@ -34,7 +34,7 @@ func TestLastKey(t *testing.T) {
 	testLastKey(t, pbl)
 }
 
-func testLastKey(t *testing.T, db u2udb.Store) {
+func testLastKey(t *testing.T, db sesadb.Store) {
 	require.Nil(t, lastKey(db))
 
 	db.Put([]byte{0}, []byte{0})

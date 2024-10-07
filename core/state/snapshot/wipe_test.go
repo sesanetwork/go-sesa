@@ -20,9 +20,9 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/rawdb"
-	"github.com/unicornultrafoundation/go-u2u/ethdb/memorydb"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/rawdb"
+	"github.com/sesanetwork/go-sesa/ethdb/memorydb"
 )
 
 // Tests that given a database with random data content, all parts of a snapshot

@@ -22,13 +22,13 @@ import (
 	"math/big"
 	"sort"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/ethdb"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/params"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/ethdb"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/params"
+	"github.com/sesanetwork/go-sesa/rlp"
 )
 
 // ReadCanonicalHash retrieves the hash assigned to a canonical block number.

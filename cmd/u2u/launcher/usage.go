@@ -24,9 +24,9 @@ import (
 
 	cli "gopkg.in/urfave/cli.v1"
 
-	"github.com/unicornultrafoundation/go-u2u/cmd/utils"
-	"github.com/unicornultrafoundation/go-u2u/debug"
-	"github.com/unicornultrafoundation/go-u2u/flags"
+	"github.com/sesanetwork/go-sesa/cmd/utils"
+	"github.com/sesanetwork/go-sesa/debug"
+	"github.com/sesanetwork/go-sesa/flags"
 )
 
 // AppHelpFlagGroups is the application flags, grouped by functionality.
@@ -39,8 +39,8 @@ func calcAppHelpFlagGroups() []flags.FlagGroup {
 	initFlags()
 	return []flags.FlagGroup{
 		{
-			Name:  "U2U",
-			Flags: u2uFlags,
+			Name:  "sesa",
+			Flags: sesaFlags,
 		},
 		{
 			Name:  "TRANSACTION POOL",

@@ -27,12 +27,12 @@ import (
 
 	"github.com/karalabe/usb"
 
-	u2u "github.com/unicornultrafoundation/go-u2u"
-	"github.com/unicornultrafoundation/go-u2u/accounts"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/log"
+	sesa "github.com/sesanetwork/go-sesa"
+	"github.com/sesanetwork/go-sesa/accounts"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/log"
 )
 
 // Maximum time between wallet health checks to detect USB unplugs.
@@ -88,7 +88,7 @@ type wallet struct {
 
 	deriveNextPaths []accounts.DerivationPath // Next derivation paths for account auto-discovery (multiple bases supported)
 	deriveNextAddrs []common.Address          // Next derived account addresses for auto-discovery (multiple bases supported)
-	deriveChain     u2u.ChainStateReader      // Blockchain state reader to discover used account with
+	deriveChain     sesa.ChainStateReader      // Blockchain state reader to discover used account with
 	deriveReq       chan chan struct{}        // Channel to request a self-derivation on
 	deriveQuit      chan chan error           // Channel to terminate the self-deriver with
 
@@ -506,7 +506,7 @@ func (w *wallet) Derive(path accounts.DerivationPath, pin bool) (accounts.Accoun
 //
 // You can disable automatic account discovery by calling SelfDerive with a nil
 // chain state reader.
-func (w *wallet) SelfDerive(bases []accounts.DerivationPath, chain u2u.ChainStateReader) {
+func (w *wallet) SelfDerive(bases []accounts.DerivationPath, chain sesa.ChainStateReader) {
 	w.stateLock.Lock()
 	defer w.stateLock.Unlock()
 

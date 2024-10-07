@@ -24,16 +24,16 @@ import (
 
 	lru "github.com/hashicorp/golang-lru"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/common/math"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/common/math"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/params"
 
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/utils/piecefunc"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/utils/piecefunc"
 
-	"github.com/unicornultrafoundation/go-u2u/u2u"
+	"github.com/sesanetwork/go-sesa/sesa"
 )
 
 var (
@@ -57,8 +57,8 @@ type Config struct {
 type Reader interface {
 	GetLatestBlockIndex() idx.Block
 	TotalGasPowerLeft() uint64
-	GetRules() u2u.Rules
-	GetPendingRules() u2u.Rules
+	GetRules() sesa.Rules
+	GetPendingRules() sesa.Rules
 	PendingTxs() map[common.Address]types.Transactions
 }
 

@@ -12,7 +12,7 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/require"
-	"github.com/unicornultrafoundation/go-u2u/evmcore/txtracer"
+	"github.com/sesanetwork/go-sesa/evmcore/txtracer"
 )
 
 func TestTxTracing(t *testing.T) {
@@ -42,17 +42,17 @@ func TestTxTracing(t *testing.T) {
 	// Initialize test contract for interaction
 	cliConsole.InputLine("var abi=" + abi)
 	cliConsoleOutput = *cliConsole.GetOutDataTillCursor()
-	cliConsole.InputLine(`var testContract = u2u.contract(abi)`)
+	cliConsole.InputLine(`var testContract = sesa.contract(abi)`)
 	cliConsoleOutput = *cliConsole.GetOutDataTillCursor()
 	cliConsole.InputLine("testContract = testContract.at('" + contractAddress + "')")
 	cliConsoleOutput = *cliConsole.GetOutDataTillCursor()
 
 	// Call simple contract call to check created trace
-	cliConsole.InputLine("testContract.setA.sendTransaction(24, {from:u2u.accounts[1]})")
+	cliConsole.InputLine("testContract.setA.sendTransaction(24, {from:sesa.accounts[1]})")
 	cliConsoleOutput = *cliConsole.GetOutDataTillCursor()
 	txHashCall := cliConsoleOutput[strings.Index(cliConsoleOutput, "0x") : len(cliConsoleOutput)-3]
 
-	cliConsole.InputLine("testContract.deploy.sendTransaction({from:u2u.accounts[1]})")
+	cliConsole.InputLine("testContract.deploy.sendTransaction({from:sesa.accounts[1]})")
 	cliConsoleOutput = *cliConsole.GetOutDataTillCursor()
 	txHashDeploy := cliConsoleOutput[strings.Index(cliConsoleOutput, "0x") : len(cliConsoleOutput)-3]
 	time.Sleep(5000 * time.Millisecond)

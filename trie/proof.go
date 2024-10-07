@@ -21,11 +21,11 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/ethdb"
-	"github.com/unicornultrafoundation/go-u2u/ethdb/memorydb"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/ethdb"
+	"github.com/sesanetwork/go-sesa/ethdb/memorydb"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/rlp"
 )
 
 // Prove constructs a merkle proof for key. The result contains all encoded nodes

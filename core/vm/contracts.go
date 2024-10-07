@@ -22,13 +22,13 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/common/math"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/crypto/blake2b"
-	"github.com/unicornultrafoundation/go-u2u/crypto/bls12381"
-	"github.com/unicornultrafoundation/go-u2u/crypto/bn256"
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/common/math"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/crypto/blake2b"
+	"github.com/sesanetwork/go-sesa/crypto/bls12381"
+	"github.com/sesanetwork/go-sesa/crypto/bn256"
+	"github.com/sesanetwork/go-sesa/params"
 
 	//lint:ignore SA1019 Needed for precompile
 	"golang.org/x/crypto/ripemd160"

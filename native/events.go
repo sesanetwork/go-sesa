@@ -3,8 +3,8 @@ package native
 import (
 	"bytes"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/dag"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/dag"
 )
 
 // Events is a ordered slice of events.

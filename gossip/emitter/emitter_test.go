@@ -8,21 +8,21 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/native/pos"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/native/pos"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/gossip/emitter/mock"
-	"github.com/unicornultrafoundation/go-u2u/integration/makefakegenesis"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
-	"github.com/unicornultrafoundation/go-u2u/utils/txtime"
-	"github.com/unicornultrafoundation/go-u2u/vecmt"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/gossip/emitter/mock"
+	"github.com/sesanetwork/go-sesa/integration/makefakegenesis"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/sesa"
+	"github.com/sesanetwork/go-sesa/utils/txtime"
+	"github.com/sesanetwork/go-sesa/vecmt"
 )
 
-//go:generate go run github.com/golang/mock/mockgen -package=mock -destination=mock/world.go github.com/unicornultrafoundation/go-u2u/gossip/emitter External,TxPool,TxSigner,Signer
+//go:generate go run github.com/golang/mock/mockgen -package=mock -destination=mock/world.go github.com/sesanetwork/go-sesa/gossip/emitter External,TxPool,TxSigner,Signer
 
 func TestEmitter(t *testing.T) {
 	cfg := DefaultConfig()
@@ -66,7 +66,7 @@ func TestEmitter(t *testing.T) {
 
 	t.Run("init", func(t *testing.T) {
 		external.EXPECT().GetRules().
-			Return(u2u.FakeNetRules()).
+			Return(sesa.FakeNetRules()).
 			AnyTimes()
 
 		external.EXPECT().GetEpochValidators().

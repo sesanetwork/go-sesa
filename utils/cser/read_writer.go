@@ -4,8 +4,8 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/unicornultrafoundation/go-u2u/utils/bits"
-	"github.com/unicornultrafoundation/go-u2u/utils/fast"
+	"github.com/sesanetwork/go-sesa/utils/bits"
+	"github.com/sesanetwork/go-sesa/utils/fast"
 )
 
 var (

@@ -5,14 +5,14 @@ import (
 
 	"github.com/status-im/keycard-go/hexutils"
 
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-sesa/log"
 
-	"github.com/unicornultrafoundation/go-helios/u2udb"
+	"github.com/sesanetwork/go-helios/sesadb"
 )
 
 // Store implements automatic compacting of recently inserted/erased data according to provided strategy
 type Store struct {
-	u2udb.Store
+	sesadb.Store
 	limit   uint64
 	cont    ContainerI
 	newCont func() ContainerI
@@ -21,12 +21,12 @@ type Store struct {
 }
 
 type Batch struct {
-	u2udb.Batch
+	sesadb.Batch
 	store *Store
 	cont  ContainerI
 }
 
-func Wrap(s u2udb.Store, limit uint64, strategy func() ContainerI, name string) *Store {
+func Wrap(s sesadb.Store, limit uint64, strategy func() ContainerI, name string) *Store {
 	return &Store{
 		Store:   s,
 		limit:   limit,
@@ -36,11 +36,11 @@ func Wrap(s u2udb.Store, limit uint64, strategy func() ContainerI, name string) 
 	}
 }
 
-func Wrap2(s u2udb.Store, limit1 uint64, limit2 uint64, strategy func() ContainerI, name string) *Store {
+func Wrap2(s sesadb.Store, limit1 uint64, limit2 uint64, strategy func() ContainerI, name string) *Store {
 	return Wrap(Wrap(s, limit1, strategy, name), limit2, strategy, name)
 }
 
-func Wrap2M(s u2udb.Store, limit1 uint64, limit2 uint64, forward bool, name string) *Store {
+func Wrap2M(s sesadb.Store, limit1 uint64, limit2 uint64, forward bool, name string) *Store {
 	strategy := NewBackwardsCont
 	if forward {
 		strategy = NewForwardCont
@@ -112,7 +112,7 @@ func (s *Store) Close() error {
 	return s.Store.Close()
 }
 
-func (s *Store) NewBatch() u2udb.Batch {
+func (s *Store) NewBatch() sesadb.Batch {
 	batch := s.Store.NewBatch()
 	if batch == nil {
 		return nil

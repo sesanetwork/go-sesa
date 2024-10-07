@@ -1,11 +1,11 @@
 package launcher
 
 import (
-	"github.com/unicornultrafoundation/go-helios/hash"
+	"github.com/sesanetwork/go-helios/hash"
 
-	"github.com/unicornultrafoundation/go-u2u/u2u"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesis"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesisstore"
+	"github.com/sesanetwork/go-sesa/sesa"
+	"github.com/sesanetwork/go-sesa/sesa/genesis"
+	"github.com/sesanetwork/go-sesa/sesa/genesisstore"
 )
 
 var (
@@ -19,17 +19,17 @@ var (
 
 	mainnetHeader = genesis.Header{
 		GenesisID:   hash.HexToHash("0x54e033c612a9b1a8ac8c6cb131f513202648f19b3a2756f8e2e40877d280606c"),
-		NetworkID:   u2u.MainNetworkID,
+		NetworkID:   sesa.MainNetworkID,
 		NetworkName: "main",
 	}
 
 	testnetHeader = genesis.Header{
 		GenesisID:   hash.HexToHash("0xe633041cd774e07fce1910e99d16372af38875b16f8ce4d7131180c414ecd9a1"),
-		NetworkID:   u2u.TestNetworkID,
+		NetworkID:   sesa.TestNetworkID,
 		NetworkName: "testnet",
 	}
 
-	AllowedU2UGenesis = []GenesisTemplate{
+	AllowedsesaGenesis = []GenesisTemplate{
 		{
 			Name:   "Mainnet",
 			Header: mainnetHeader,

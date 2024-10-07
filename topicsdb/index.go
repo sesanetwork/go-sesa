@@ -3,25 +3,25 @@ package topicsdb
 import (
 	"context"
 
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/batched"
-	"github.com/unicornultrafoundation/go-helios/u2udb/table"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-helios/sesadb/batched"
+	"github.com/sesanetwork/go-helios/sesadb/table"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
 )
 
 // index is a specialized indexes for log records storing and fetching.
 type index struct {
 	table struct {
 		// topic+topicN+(blockN+TxHash+logIndex) -> topic_count (where topicN=0 is for address)
-		Topic u2udb.Store `table:"t"`
+		Topic sesadb.Store `table:"t"`
 		// (blockN+TxHash+logIndex) -> ordered topic_count topics, blockHash, address, data
-		Logrec u2udb.Store `table:"r"`
+		Logrec sesadb.Store `table:"r"`
 	}
 }
 
-func newIndex(dbs u2udb.DBProducer) *index {
+func newIndex(dbs sesadb.DBProducer) *index {
 	tt := &index{}
 
 	err := table.OpenTables(&tt.table, dbs, "evm-logs")

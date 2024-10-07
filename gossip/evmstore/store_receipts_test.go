@@ -4,11 +4,11 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
 
-	"github.com/unicornultrafoundation/go-u2u/logger"
+	"github.com/sesanetwork/go-sesa/logger"
 )
 
 func equalStorageReceipts(t *testing.T, expect, got []*types.ReceiptForStorage) {

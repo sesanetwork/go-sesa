@@ -23,7 +23,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/unicornultrafoundation/go-u2u/p2p/simulations/pipes"
+	"github.com/sesanetwork/go-sesa/p2p/simulations/pipes"
 )
 
 func TestTCPPipe(t *testing.T) {

@@ -25,9 +25,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/ethdb/memorydb"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/ethdb/memorydb"
 )
 
 func init() {

@@ -6,10 +6,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/unicornultrafoundation/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/native/idx"
 	cli "gopkg.in/urfave/cli.v1"
 
-	"github.com/unicornultrafoundation/go-u2u/integration/makefakegenesis"
+	"github.com/sesanetwork/go-sesa/integration/makefakegenesis"
 )
 
 // FakeNetFlag enables special testnet, where validators are automatically created

@@ -19,7 +19,7 @@ package types
 import (
 	"math/big"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-sesa/common"
 )
 
 // LegacyTx is the transaction data of regular Ethereum transactions.

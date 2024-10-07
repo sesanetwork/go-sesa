@@ -27,7 +27,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/unicornultrafoundation/go-u2u/common/math"
+	"github.com/sesanetwork/go-sesa/common/math"
 )
 
 func TestStreamKind(t *testing.T) {

@@ -4,11 +4,11 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/params"
 
-	"github.com/unicornultrafoundation/go-u2u/native/validatorpk"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
+	"github.com/sesanetwork/go-sesa/native/validatorpk"
+	"github.com/sesanetwork/go-sesa/sesa"
 )
 
 // EmitIntervals is the configuration of emit intervals.
@@ -71,9 +71,9 @@ func DefaultConfig() Config {
 
 		MaxParents: 0,
 
-		LimitedTpsThreshold: u2u.DefaultEventGas * 120,
-		NoTxsThreshold:      u2u.DefaultEventGas * 30,
-		EmergencyThreshold:  u2u.DefaultEventGas * 5,
+		LimitedTpsThreshold: sesa.DefaultEventGas * 120,
+		NoTxsThreshold:      sesa.DefaultEventGas * 30,
+		EmergencyThreshold:  sesa.DefaultEventGas * 5,
 
 		TxsCacheInvalidation: 200 * time.Millisecond,
 	}

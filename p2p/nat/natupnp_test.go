@@ -166,7 +166,7 @@ func TestUPNP_DDWRT(t *testing.T) {
 		if os.Getenv("CI") != "" {
 			t.Fatalf("not discovered")
 		} else {
-			t.Skipf("UPnP not discovered (known issue, see https://github.com/unicornultrafoundation/go-u2u/libs/issues/21476)")
+			t.Skipf("UPnP not discovered (known issue, see https://github.com/sesanetwork/go-sesa/libs/issues/21476)")
 		}
 	}
 	upnp, _ := discovered.(*upnp)

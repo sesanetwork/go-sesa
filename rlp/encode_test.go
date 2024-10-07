@@ -27,7 +27,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/unicornultrafoundation/go-u2u/common/math"
+	"github.com/sesanetwork/go-sesa/common/math"
 )
 
 type testEncoder struct {

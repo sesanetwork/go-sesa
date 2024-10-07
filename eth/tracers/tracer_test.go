@@ -23,10 +23,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/state"
-	"github.com/unicornultrafoundation/go-u2u/core/vm"
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/state"
+	"github.com/sesanetwork/go-sesa/core/vm"
+	"github.com/sesanetwork/go-sesa/params"
 )
 
 type account struct{}

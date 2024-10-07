@@ -6,21 +6,21 @@ import (
 
 	"gopkg.in/urfave/cli.v1"
 
-	"github.com/unicornultrafoundation/go-u2u/cmd/utils"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-sesa/cmd/utils"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/rlp"
 
-	"github.com/unicornultrafoundation/go-helios/common/bigendian"
-	"github.com/unicornultrafoundation/go-helios/consensus"
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/batched"
-	"github.com/unicornultrafoundation/go-helios/u2udb/flushable"
+	"github.com/sesanetwork/go-helios/common/bigendian"
+	"github.com/sesanetwork/go-helios/consensus"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-helios/sesadb/batched"
+	"github.com/sesanetwork/go-helios/sesadb/flushable"
 
-	"github.com/unicornultrafoundation/go-u2u/gossip"
-	"github.com/unicornultrafoundation/go-u2u/integration"
-	"github.com/unicornultrafoundation/go-u2u/native/iblockproc"
+	"github.com/sesanetwork/go-sesa/gossip"
+	"github.com/sesanetwork/go-sesa/integration"
+	"github.com/sesanetwork/go-sesa/native/iblockproc"
 )
 
 // maxEpochsToTry represents amount of last closed epochs to try (in case that the last one has the state unavailable)
@@ -59,7 +59,7 @@ func healDirty(ctx *cli.Context) error {
 	// prepare consensus database from epochState
 	log.Info("Recreating hashgraph DB")
 	cMainDb := mustOpenDB(multiProducer, "hashgraph")
-	cGetEpochDB := func(epoch idx.Epoch) u2udb.Store {
+	cGetEpochDB := func(epoch idx.Epoch) sesadb.Store {
 		return mustOpenDB(multiProducer, fmt.Sprintf("hashgraph-%d", epoch))
 	}
 	cdb := consensus.NewStore(cMainDb, cGetEpochDB, panics("hashgraph store"), cfg.HashgraphStore)
@@ -86,7 +86,7 @@ func healDirty(ctx *cli.Context) error {
 }
 
 // fixDirtyGossipDb reverts the gossip database into state, when was one of last epochs sealed
-func fixDirtyGossipDb(producer u2udb.FlushableDBProducer, cfg *config) (
+func fixDirtyGossipDb(producer sesadb.FlushableDBProducer, cfg *config) (
 	epochState *iblockproc.EpochState, topEpoch idx.Epoch, err error) {
 	gdb := makeGossipStore(producer, cfg) // requires FlushIDKey present (not clean) in all dbs
 	defer gdb.Close()
@@ -142,7 +142,7 @@ func getLastEpochWithState(gdb *gossip.Store, epochsToTry idx.Epoch) (epochIdx i
 	return 0, nil, nil
 }
 
-func eraseTable(name string, producer u2udb.IterableDBProducer) error {
+func eraseTable(name string, producer sesadb.IterableDBProducer) error {
 	log.Info("Cleaning table", "name", name)
 	db, err := producer.OpenDB(name)
 	if err != nil {
@@ -162,7 +162,7 @@ func eraseTable(name string, producer u2udb.IterableDBProducer) error {
 }
 
 // clearDirtyFlags - writes the CleanPrefix into all databases
-func clearDirtyFlags(id []byte, rawProducer u2udb.IterableDBProducer) error {
+func clearDirtyFlags(id []byte, rawProducer sesadb.IterableDBProducer) error {
 	names := rawProducer.Names()
 	for _, name := range names {
 		db, err := rawProducer.OpenDB(name)
@@ -181,7 +181,7 @@ func clearDirtyFlags(id []byte, rawProducer u2udb.IterableDBProducer) error {
 	return nil
 }
 
-func mustOpenDB(producer u2udb.DBProducer, name string) u2udb.Store {
+func mustOpenDB(producer sesadb.DBProducer, name string) sesadb.Store {
 	db, err := producer.OpenDB(name)
 	if err != nil {
 		utils.Fatalf("Failed to open '%s' database: %v", name, err)

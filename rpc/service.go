@@ -26,7 +26,7 @@ import (
 	"sync"
 	"unicode"
 
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-sesa/log"
 )
 
 var (

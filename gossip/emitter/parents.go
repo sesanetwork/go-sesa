@@ -3,9 +3,9 @@ package emitter
 import (
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/emitter/ancestor"
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/emitter/ancestor"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
 )
 
 // buildSearchStrategies returns a strategy for each parent search

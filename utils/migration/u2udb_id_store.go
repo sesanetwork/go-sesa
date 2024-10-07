@@ -1,26 +1,26 @@
 package migration
 
 import (
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-sesa/log"
 )
 
-// U2UdbIDStore stores id
-type U2UdbIDStore struct {
-	table u2udb.Store
+// sesadbIDStore stores id
+type sesadbIDStore struct {
+	table sesadb.Store
 	key   []byte
 }
 
-// NewU2UdbIDStore constructor
-func NewU2UdbIDStore(table u2udb.Store) *U2UdbIDStore {
-	return &U2UdbIDStore{
+// NewsesadbIDStore constructor
+func NewsesadbIDStore(table sesadb.Store) *sesadbIDStore {
+	return &sesadbIDStore{
 		table: table,
 		key:   []byte("id"),
 	}
 }
 
 // GetID is a getter
-func (p *U2UdbIDStore) GetID() string {
+func (p *sesadbIDStore) GetID() string {
 	id, err := p.table.Get(p.key)
 	if err != nil {
 		log.Crit("Failed to get key-value", "err", err)
@@ -33,7 +33,7 @@ func (p *U2UdbIDStore) GetID() string {
 }
 
 // SetID is a setter
-func (p *U2UdbIDStore) SetID(id string) {
+func (p *sesadbIDStore) SetID(id string) {
 	err := p.table.Put(p.key, []byte(id))
 	if err != nil {
 		log.Crit("Failed to put key-value", "err", err)

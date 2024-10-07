@@ -8,9 +8,9 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/metrics"
-	"github.com/unicornultrafoundation/go-u2u/metrics/prometheus"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/metrics"
+	"github.com/sesanetwork/go-sesa/metrics/prometheus"
 )
 
 type exp struct {

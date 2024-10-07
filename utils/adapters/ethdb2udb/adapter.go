@@ -1,15 +1,15 @@
 package ethdb2udb
 
 import (
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-u2u/ethdb"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-sesa/ethdb"
 )
 
 type Adapter struct {
 	ethdb.KeyValueStore
 }
 
-var _ u2udb.Store = (*Adapter)(nil)
+var _ sesadb.Store = (*Adapter)(nil)
 
 func Wrap(v ethdb.KeyValueStore) *Adapter {
 	return &Adapter{v}
@@ -26,17 +26,17 @@ type batch struct {
 }
 
 // Replay replays the batch contents.
-func (b *batch) Replay(w u2udb.Writer) error {
+func (b *batch) Replay(w sesadb.Writer) error {
 	return b.Batch.Replay(w)
 }
 
 // NewBatch creates a write-only key-value store that buffers changes to its host
 // database until a final write is called.
-func (db *Adapter) NewBatch() u2udb.Batch {
+func (db *Adapter) NewBatch() sesadb.Batch {
 	return &batch{db.KeyValueStore.NewBatch()}
 }
 
-func (db *Adapter) GetSnapshot() (u2udb.Snapshot, error) {
+func (db *Adapter) GetSnapshot() (sesadb.Snapshot, error) {
 	panic("called GetSnapshot on ethdb")
 	return nil, nil
 }
@@ -44,6 +44,6 @@ func (db *Adapter) GetSnapshot() (u2udb.Snapshot, error) {
 // NewIterator creates a binary-alphabetical iterator over a subset
 // of database content with a particular key prefix, starting at a particular
 // initial key (or after, if it does not exist).
-func (db *Adapter) NewIterator(prefix []byte, start []byte) u2udb.Iterator {
+func (db *Adapter) NewIterator(prefix []byte, start []byte) sesadb.Iterator {
 	return db.KeyValueStore.NewIterator(prefix, start)
 }

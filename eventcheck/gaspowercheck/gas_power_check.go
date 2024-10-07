@@ -5,13 +5,13 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/eventcheck/epochcheck"
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/native/pos"
+	"github.com/sesanetwork/go-helios/eventcheck/epochcheck"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/native/pos"
 
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/native/iblockproc"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/native/iblockproc"
 )
 
 var (

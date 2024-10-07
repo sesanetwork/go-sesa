@@ -6,13 +6,13 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/suite"
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/core/types"
 
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/epochcheck"
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/heavycheck"
-	"github.com/unicornultrafoundation/go-u2u/native"
+	"github.com/sesanetwork/go-sesa/eventcheck/epochcheck"
+	"github.com/sesanetwork/go-sesa/eventcheck/heavycheck"
+	"github.com/sesanetwork/go-sesa/native"
 )
 
 type LLRHeavyCheckTestSuite struct {

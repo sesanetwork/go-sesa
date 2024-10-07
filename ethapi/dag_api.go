@@ -6,11 +6,11 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/unicornultrafoundation/go-u2u/common/hexutil"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/rpc"
+	"github.com/sesanetwork/go-sesa/common/hexutil"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/rpc"
 
-	"github.com/unicornultrafoundation/go-u2u/native"
+	"github.com/sesanetwork/go-sesa/native"
 )
 
 // PublicDAGChainAPI provides an API to access the directed acyclic graph chain.

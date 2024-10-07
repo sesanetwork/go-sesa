@@ -5,34 +5,34 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/native/pos"
-	utypes "github.com/unicornultrafoundation/go-helios/types"
-	"github.com/unicornultrafoundation/go-helios/u2udb/memorydb"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/native/pos"
+	utypes "github.com/sesanetwork/go-helios/types"
+	"github.com/sesanetwork/go-helios/sesadb/memorydb"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/crypto"
 
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
-	"github.com/unicornultrafoundation/go-u2u/integration/makegenesis"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/native/drivertype"
-	"github.com/unicornultrafoundation/go-u2u/native/iblockproc"
-	"github.com/unicornultrafoundation/go-u2u/native/ier"
-	"github.com/unicornultrafoundation/go-u2u/native/validatorpk"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
-	"github.com/unicornultrafoundation/go-u2u/u2u/contracts/driver"
-	"github.com/unicornultrafoundation/go-u2u/u2u/contracts/driver/drivercall"
-	"github.com/unicornultrafoundation/go-u2u/u2u/contracts/driverauth"
-	"github.com/unicornultrafoundation/go-u2u/u2u/contracts/evmwriter"
-	"github.com/unicornultrafoundation/go-u2u/u2u/contracts/netinit"
-	netinitcall "github.com/unicornultrafoundation/go-u2u/u2u/contracts/netinit/netinitcalls"
-	"github.com/unicornultrafoundation/go-u2u/u2u/contracts/sfc"
-	"github.com/unicornultrafoundation/go-u2u/u2u/contracts/sfclib"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesis"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesis/gpos"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesisstore"
+	"github.com/sesanetwork/go-sesa/evmcore"
+	"github.com/sesanetwork/go-sesa/integration/makegenesis"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/native/drivertype"
+	"github.com/sesanetwork/go-sesa/native/iblockproc"
+	"github.com/sesanetwork/go-sesa/native/ier"
+	"github.com/sesanetwork/go-sesa/native/validatorpk"
+	"github.com/sesanetwork/go-sesa/sesa"
+	"github.com/sesanetwork/go-sesa/sesa/contracts/driver"
+	"github.com/sesanetwork/go-sesa/sesa/contracts/driver/drivercall"
+	"github.com/sesanetwork/go-sesa/sesa/contracts/driverauth"
+	"github.com/sesanetwork/go-sesa/sesa/contracts/evmwriter"
+	"github.com/sesanetwork/go-sesa/sesa/contracts/netinit"
+	netinitcall "github.com/sesanetwork/go-sesa/sesa/contracts/netinit/netinitcalls"
+	"github.com/sesanetwork/go-sesa/sesa/contracts/sfc"
+	"github.com/sesanetwork/go-sesa/sesa/contracts/sfclib"
+	"github.com/sesanetwork/go-sesa/sesa/genesis"
+	"github.com/sesanetwork/go-sesa/sesa/genesis/gpos"
+	"github.com/sesanetwork/go-sesa/sesa/genesisstore"
 )
 
 var (
@@ -45,14 +45,14 @@ func FakeKey(n idx.ValidatorID) *ecdsa.PrivateKey {
 }
 
 func FakeGenesisStore(num idx.Validator, balance, stake *big.Int) *genesisstore.Store {
-	return FakeGenesisStoreWithRules(num, balance, stake, u2u.FakeNetRules())
+	return FakeGenesisStoreWithRules(num, balance, stake, sesa.FakeNetRules())
 }
 
-func FakeGenesisStoreWithRules(num idx.Validator, balance, stake *big.Int, rules u2u.Rules) *genesisstore.Store {
+func FakeGenesisStoreWithRules(num idx.Validator, balance, stake *big.Int, rules sesa.Rules) *genesisstore.Store {
 	return FakeGenesisStoreWithRulesAndStart(num, balance, stake, rules, 2, 1)
 }
 
-func FakeGenesisStoreWithRulesAndStart(num idx.Validator, balance, stake *big.Int, rules u2u.Rules, epoch idx.Epoch, block idx.Block) *genesisstore.Store {
+func FakeGenesisStoreWithRulesAndStart(num idx.Validator, balance, stake *big.Int, rules sesa.Rules, epoch idx.Epoch, block idx.Block) *genesisstore.Store {
 	builder := makegenesis.NewGenesisBuilder(memorydb.NewProducer(""))
 
 	validators := GetFakeValidators(num)

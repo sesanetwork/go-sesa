@@ -8,23 +8,23 @@ import (
 
 	"github.com/status-im/keycard-go/hexutils"
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/unicornultrafoundation/go-helios/consensus"
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/multidb"
-	"github.com/unicornultrafoundation/go-u2u/accounts"
-	"github.com/unicornultrafoundation/go-u2u/accounts/keystore"
-	"github.com/unicornultrafoundation/go-u2u/cmd/utils"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-helios/consensus"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-helios/sesadb/multidb"
+	"github.com/sesanetwork/go-sesa/accounts"
+	"github.com/sesanetwork/go-sesa/accounts/keystore"
+	"github.com/sesanetwork/go-sesa/cmd/utils"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/log"
 
-	"github.com/unicornultrafoundation/go-u2u/gossip"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesis"
-	"github.com/unicornultrafoundation/go-u2u/utils/adapters/vecmt2dagidx"
-	"github.com/unicornultrafoundation/go-u2u/utils/dbutil/compactdb"
-	"github.com/unicornultrafoundation/go-u2u/vecmt"
+	"github.com/sesanetwork/go-sesa/gossip"
+	"github.com/sesanetwork/go-sesa/sesa/genesis"
+	"github.com/sesanetwork/go-sesa/utils/adapters/vecmt2dagidx"
+	"github.com/sesanetwork/go-sesa/utils/dbutil/compactdb"
+	"github.com/sesanetwork/go-sesa/vecmt"
 )
 
 var (
@@ -45,8 +45,8 @@ func (e *GenesisMismatchError) Error() string {
 }
 
 type Configs struct {
-	U2U            gossip.Config
-	U2UStore       gossip.StoreConfig
+	sesa            gossip.Config
+	sesaStore       gossip.StoreConfig
 	Hashgraph      consensus.Config
 	HashgraphStore consensus.StoreConfig
 	VectorClock    vecmt.IndexConfig
@@ -59,7 +59,7 @@ func panics(name string) func(error) {
 	}
 }
 
-func mustOpenDB(producer u2udb.DBProducer, name string) u2udb.Store {
+func mustOpenDB(producer sesadb.DBProducer, name string) sesadb.Store {
 	db, err := producer.OpenDB(name)
 	if err != nil {
 		utils.Fatalf("Failed to open '%s' database: %v", name, err)
@@ -67,19 +67,19 @@ func mustOpenDB(producer u2udb.DBProducer, name string) u2udb.Store {
 	return db
 }
 
-func getStores(producer u2udb.FlushableDBProducer, cfg Configs) (*gossip.Store, *consensus.Store) {
-	gdb := gossip.NewStore(producer, cfg.U2UStore)
+func getStores(producer sesadb.FlushableDBProducer, cfg Configs) (*gossip.Store, *consensus.Store) {
+	gdb := gossip.NewStore(producer, cfg.sesaStore)
 
 	cMainDb := mustOpenDB(producer, "hashgraph")
-	cGetEpochDB := func(epoch idx.Epoch) u2udb.Store {
+	cGetEpochDB := func(epoch idx.Epoch) sesadb.Store {
 		return mustOpenDB(producer, fmt.Sprintf("hashgraph-%d", epoch))
 	}
 	cdb := consensus.NewStore(cMainDb, cGetEpochDB, panics("Hashgraph store"), cfg.HashgraphStore)
 	return gdb, cdb
 }
 
-func getEpoch(producer u2udb.FlushableDBProducer, cfg Configs) idx.Epoch {
-	gdb := gossip.NewStore(producer, cfg.U2UStore)
+func getEpoch(producer sesadb.FlushableDBProducer, cfg Configs) idx.Epoch {
+	gdb := gossip.NewStore(producer, cfg.sesaStore)
 	defer gdb.Close()
 	return gdb.GetEpoch()
 }
@@ -113,7 +113,7 @@ func rawMakeEngine(gdb *gossip.Store, cdb *consensus.Store, g *genesis.Genesis, 
 	return engine, vecClock, blockProc, nil
 }
 
-func applyGenesis(dbs u2udb.FlushableDBProducer, g genesis.Genesis, cfg Configs) error {
+func applyGenesis(dbs sesadb.FlushableDBProducer, g genesis.Genesis, cfg Configs) error {
 	gdb, cdb := getStores(dbs, cfg)
 	defer gdb.Close()
 	defer cdb.Close()
@@ -129,7 +129,7 @@ func applyGenesis(dbs u2udb.FlushableDBProducer, g genesis.Genesis, cfg Configs)
 	return nil
 }
 
-func migrate(dbs u2udb.FlushableDBProducer, cfg Configs) error {
+func migrate(dbs sesadb.FlushableDBProducer, cfg Configs) error {
 	gdb, cdb := getStores(dbs, cfg)
 	defer gdb.Close()
 	defer cdb.Close()
@@ -152,7 +152,7 @@ func CheckStateInitialized(chaindataDir string, cfg DBsConfig) error {
 	return dbs.Close()
 }
 
-func compactDB(typ multidb.TypeName, name string, producer u2udb.DBProducer) error {
+func compactDB(typ multidb.TypeName, name string, producer sesadb.DBProducer) error {
 	humanName := path.Join(string(typ), name)
 	db, err := producer.OpenDB(name)
 	defer db.Close()

@@ -20,7 +20,7 @@ package utils
 import (
 	"fmt"
 
-	"github.com/unicornultrafoundation/go-u2u/console/prompt"
+	"github.com/sesanetwork/go-sesa/console/prompt"
 )
 
 // GetPassPhrase displays the given text(prompt) to the user and requests some textual

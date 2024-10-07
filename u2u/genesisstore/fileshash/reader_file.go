@@ -7,10 +7,10 @@ import (
 	"io"
 	"math"
 
-	"github.com/unicornultrafoundation/go-helios/common/bigendian"
-	"github.com/unicornultrafoundation/go-helios/hash"
+	"github.com/sesanetwork/go-helios/common/bigendian"
+	"github.com/sesanetwork/go-helios/hash"
 
-	"github.com/unicornultrafoundation/go-u2u/utils/ioread"
+	"github.com/sesanetwork/go-sesa/utils/ioread"
 )
 
 var (

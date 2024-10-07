@@ -1,15 +1,15 @@
 package blockproc
 
 import (
-	"github.com/unicornultrafoundation/go-u2u/core/state"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-sesa/core/state"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/params"
 
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/native/iblockproc"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/evmcore"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/native/iblockproc"
+	"github.com/sesanetwork/go-sesa/sesa"
 )
 
 type TxListener interface {
@@ -52,5 +52,5 @@ type EVMProcessor interface {
 }
 
 type EVM interface {
-	Start(block iblockproc.BlockCtx, statedb *state.StateDB, reader evmcore.DummyChain, onNewLog func(*types.Log), net u2u.Rules, evmCfg *params.ChainConfig) EVMProcessor
+	Start(block iblockproc.BlockCtx, statedb *state.StateDB, reader evmcore.DummyChain, onNewLog func(*types.Log), net sesa.Rules, evmCfg *params.ChainConfig) EVMProcessor
 }

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/unicornultrafoundation/go-u2u/cmd/u2u/launcher"
+	"github.com/sesanetwork/go-sesa/cmd/sesa/launcher"
 )
 
 func main() {

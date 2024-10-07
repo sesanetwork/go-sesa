@@ -21,7 +21,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-sesa/log"
 )
 
 // Handler returns a log handler which logs to the unit test log of t.

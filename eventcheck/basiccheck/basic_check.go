@@ -4,13 +4,13 @@ import (
 	"errors"
 	"math"
 
-	base "github.com/unicornultrafoundation/go-helios/eventcheck/basiccheck"
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	base "github.com/sesanetwork/go-helios/eventcheck/basiccheck"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/core/types"
 
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
-	"github.com/unicornultrafoundation/go-u2u/native"
+	"github.com/sesanetwork/go-sesa/evmcore"
+	"github.com/sesanetwork/go-sesa/native"
 )
 
 var (

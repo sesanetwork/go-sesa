@@ -3,14 +3,14 @@ package verwatcher
 import (
 	"sync/atomic"
 
-	"github.com/unicornultrafoundation/go-helios/u2udb"
+	"github.com/sesanetwork/go-helios/sesadb"
 
-	"github.com/unicornultrafoundation/go-u2u/logger"
+	"github.com/sesanetwork/go-sesa/logger"
 )
 
 // Store is a node persistent storage working over physical key-value database.
 type Store struct {
-	mainDB u2udb.Store
+	mainDB sesadb.Store
 
 	cache struct {
 		networkVersion atomic.Value
@@ -21,7 +21,7 @@ type Store struct {
 }
 
 // NewStore creates store over key-value db.
-func NewStore(mainDB u2udb.Store) *Store {
+func NewStore(mainDB sesadb.Store) *Store {
 	s := &Store{
 		mainDB:   mainDB,
 		Instance: logger.New("verwatcher-store"),

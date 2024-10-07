@@ -3,10 +3,10 @@ package ethapi
 import (
 	"context"
 
-	"github.com/unicornultrafoundation/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/native/idx"
 
-	"github.com/unicornultrafoundation/go-u2u/common/hexutil"
-	"github.com/unicornultrafoundation/go-u2u/rpc"
+	"github.com/sesanetwork/go-sesa/common/hexutil"
+	"github.com/sesanetwork/go-sesa/rpc"
 )
 
 // PublicAbftAPI provides an API to access consensus related information.

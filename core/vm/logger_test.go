@@ -21,9 +21,9 @@ import (
 	"testing"
 
 	"github.com/holiman/uint256"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/state"
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/state"
+	"github.com/sesanetwork/go-sesa/params"
 )
 
 type dummyContractRef struct {

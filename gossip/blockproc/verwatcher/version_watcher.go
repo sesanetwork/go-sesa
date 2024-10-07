@@ -6,12 +6,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-sesa/core/types"
 
-	"github.com/unicornultrafoundation/go-u2u/logger"
-	"github.com/unicornultrafoundation/go-u2u/u2u/contracts/driver"
-	"github.com/unicornultrafoundation/go-u2u/u2u/contracts/driver/driverpos"
-	"github.com/unicornultrafoundation/go-u2u/version"
+	"github.com/sesanetwork/go-sesa/logger"
+	"github.com/sesanetwork/go-sesa/sesa/contracts/driver"
+	"github.com/sesanetwork/go-sesa/sesa/contracts/driver/driverpos"
+	"github.com/sesanetwork/go-sesa/version"
 )
 
 type VerWarcher struct {

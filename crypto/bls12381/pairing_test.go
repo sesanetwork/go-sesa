@@ -4,7 +4,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-sesa/common"
 )
 
 func TestPairingExpected(t *testing.T) {

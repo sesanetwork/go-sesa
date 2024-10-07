@@ -7,9 +7,9 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"github.com/unicornultrafoundation/go-u2u/accounts/keystore"
+	"github.com/sesanetwork/go-sesa/accounts/keystore"
 
-	"github.com/unicornultrafoundation/go-u2u/valkeystore/encryption"
+	"github.com/sesanetwork/go-sesa/valkeystore/encryption"
 )
 
 func TestFileKeystoreAdd(t *testing.T) {

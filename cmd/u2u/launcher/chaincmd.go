@@ -3,7 +3,7 @@ package launcher
 import (
 	"gopkg.in/urfave/cli.v1"
 
-	"github.com/unicornultrafoundation/go-u2u/cmd/utils"
+	"github.com/sesanetwork/go-sesa/cmd/utils"
 )
 
 var (
@@ -27,7 +27,7 @@ var (
 		ArgsUsage: "<filename> (<filename 2> ... <filename N>) [check=false]",
 		Category:  "MISCELLANEOUS COMMANDS",
 		Description: `
-    u2u import events
+    sesa import events
 
 The import command imports events from an RLP-encoded files.
 Events are fully verified by default, unless overridden by check=false flag.`,
@@ -54,7 +54,7 @@ Events are fully verified by default, unless overridden by --check=false flag.`,
 					DataDirFlag,
 				},
 				Description: `
-    u2u import evm
+    sesa import evm
 
 The import command imports EVM storage (trie nodes, code, preimages) from files.`,
 			},
@@ -67,7 +67,7 @@ The import command imports EVM storage (trie nodes, code, preimages) from files.
 					DataDirFlag,
 				},
 				Description: `
-			U2U import txtracer
+			sesa import txtracer
 
 			The import command imports transaction traces and replaces the old ones 
 			with traces from a file.
@@ -90,7 +90,7 @@ The import command imports EVM storage (trie nodes, code, preimages) from files.
 					DataDirFlag,
 				},
 				Description: `
-    u2u export events
+    sesa export events
 
 Requires a first argument of the file to write to.
 Optional second and third arguments control the first and
@@ -110,7 +110,7 @@ be gzipped
 					GenesisExportSections,
 				},
 				Description: `
-    u2u export genesis
+    sesa export genesis
 
 Export current state into a genesis file.
 Requires a first argument of the file to write to.
@@ -129,7 +129,7 @@ EVM export mode is configured with --export.evm.mode.
 					DataDirFlag,
 				},
 				Description: `
-    u2u export evm-keys
+    sesa export evm-keys
 
 Requires a first argument of the DB directory to write to.
 `,
@@ -191,7 +191,7 @@ be gzipped
 					DataDirFlag,
 				},
 				Description: `
-    u2u check evm
+    sesa check evm
 
 Checks EVM storage roots and code hashes
 `,

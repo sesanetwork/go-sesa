@@ -5,12 +5,12 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/unicornultrafoundation/go-u2u/accounts/abi"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/vm"
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-sesa/accounts/abi"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/vm"
+	"github.com/sesanetwork/go-sesa/params"
 
-	"github.com/unicornultrafoundation/go-u2u/u2u/contracts/driver"
+	"github.com/sesanetwork/go-sesa/sesa/contracts/driver"
 )
 
 var (

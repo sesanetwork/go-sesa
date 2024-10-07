@@ -20,7 +20,7 @@ import (
 	"net"
 	"strings"
 
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-sesa/log"
 )
 
 // StartIPCEndpoint starts an IPC endpoint.

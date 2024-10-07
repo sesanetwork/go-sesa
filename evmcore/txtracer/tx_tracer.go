@@ -8,12 +8,12 @@ import (
 
 	"github.com/holiman/uint256"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/common/hexutil"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/core/vm"
-	txtracer "github.com/unicornultrafoundation/go-u2u/gossip/txtracer"
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/common/hexutil"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/core/vm"
+	txtracer "github.com/sesanetwork/go-sesa/gossip/txtracer"
+	"github.com/sesanetwork/go-sesa/log"
 )
 
 // TraceStructLogger is a transaction trace creator

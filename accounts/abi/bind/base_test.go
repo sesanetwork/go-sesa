@@ -23,15 +23,15 @@ import (
 	"strings"
 	"testing"
 
-	go_u2u "github.com/unicornultrafoundation/go-u2u"
-	u2u "github.com/unicornultrafoundation/go-u2u"
-	"github.com/unicornultrafoundation/go-u2u/accounts/abi"
-	"github.com/unicornultrafoundation/go-u2u/accounts/abi/bind"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/common/hexutil"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	go_sesa "github.com/sesanetwork/go-sesa"
+	sesa "github.com/sesanetwork/go-sesa"
+	"github.com/sesanetwork/go-sesa/accounts/abi"
+	"github.com/sesanetwork/go-sesa/accounts/abi/bind"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/common/hexutil"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/rlp"
 )
 
 type mockCaller struct {
@@ -46,7 +46,7 @@ func (mc *mockCaller) CodeAt(ctx context.Context, contract common.Address, block
 	return []byte{1, 2, 3}, nil
 }
 
-func (mc *mockCaller) CallContract(ctx context.Context, call go_u2u.CallMsg, blockNumber *big.Int) ([]byte, error) {
+func (mc *mockCaller) CallContract(ctx context.Context, call go_sesa.CallMsg, blockNumber *big.Int) ([]byte, error) {
 	mc.callContractBlockNumber = blockNumber
 	return nil, nil
 }
@@ -56,7 +56,7 @@ func (mc *mockCaller) PendingCodeAt(ctx context.Context, contract common.Address
 	return nil, nil
 }
 
-func (mc *mockCaller) PendingCallContract(ctx context.Context, call u2u.CallMsg) ([]byte, error) {
+func (mc *mockCaller) PendingCallContract(ctx context.Context, call sesa.CallMsg) ([]byte, error) {
 	mc.pendingCallContractCalled = true
 	return nil, nil
 }

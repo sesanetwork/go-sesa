@@ -19,7 +19,7 @@ package netutil
 import (
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/common/mclock"
+	"github.com/sesanetwork/go-sesa/common/mclock"
 )
 
 // IPTracker predicts the external endpoint, i.e. IP address and port, of the local host

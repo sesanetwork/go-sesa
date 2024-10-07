@@ -3,46 +3,46 @@ package sealmodule
 import (
 	"math/big"
 
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/native/pos"
-	"github.com/unicornultrafoundation/go-helios/types"
-	"github.com/unicornultrafoundation/go-u2u/gossip/blockproc"
-	"github.com/unicornultrafoundation/go-u2u/native/iblockproc"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/native/pos"
+	"github.com/sesanetwork/go-helios/types"
+	"github.com/sesanetwork/go-sesa/gossip/blockproc"
+	"github.com/sesanetwork/go-sesa/native/iblockproc"
 )
 
-type U2UEpochsSealerModule struct{}
+type sesaEpochsSealerModule struct{}
 
-func New() *U2UEpochsSealerModule {
-	return &U2UEpochsSealerModule{}
+func New() *sesaEpochsSealerModule {
+	return &sesaEpochsSealerModule{}
 }
 
-func (m *U2UEpochsSealerModule) Start(block iblockproc.BlockCtx, bs iblockproc.BlockState, es iblockproc.EpochState) blockproc.SealerProcessor {
-	return &U2UEpochsSealer{
+func (m *sesaEpochsSealerModule) Start(block iblockproc.BlockCtx, bs iblockproc.BlockState, es iblockproc.EpochState) blockproc.SealerProcessor {
+	return &sesaEpochsSealer{
 		block: block,
 		es:    es,
 		bs:    bs,
 	}
 }
 
-type U2UEpochsSealer struct {
+type sesaEpochsSealer struct {
 	block iblockproc.BlockCtx
 	es    iblockproc.EpochState
 	bs    iblockproc.BlockState
 }
 
-func (s *U2UEpochsSealer) EpochSealing() bool {
+func (s *sesaEpochsSealer) EpochSealing() bool {
 	sealEpoch := s.bs.EpochGas >= s.es.Rules.Epochs.MaxEpochGas
 	sealEpoch = sealEpoch || (s.block.Time-s.es.EpochStart) >= s.es.Rules.Epochs.MaxEpochDuration
 	sealEpoch = sealEpoch || s.bs.AdvanceEpochs > 0
 	return sealEpoch || s.bs.EpochCheaters.Len() != 0
 }
 
-func (p *U2UEpochsSealer) Update(bs iblockproc.BlockState, es iblockproc.EpochState) {
+func (p *sesaEpochsSealer) Update(bs iblockproc.BlockState, es iblockproc.EpochState) {
 	p.bs, p.es = bs, es
 }
 
 // SealEpoch is called after pre-internal transactions are executed
-func (s *U2UEpochsSealer) SealEpoch() (iblockproc.BlockState, iblockproc.EpochState) {
+func (s *sesaEpochsSealer) SealEpoch() (iblockproc.BlockState, iblockproc.EpochState) {
 	// Select new validators
 	oldValidators := s.es.Validators
 	builder := pos.NewBigBuilder()

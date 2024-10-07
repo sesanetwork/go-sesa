@@ -21,11 +21,11 @@ import (
 	"sync"
 
 	"github.com/VictoriaMetrics/fastcache"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/rawdb"
-	"github.com/unicornultrafoundation/go-u2u/ethdb"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
-	"github.com/unicornultrafoundation/go-u2u/trie"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/rawdb"
+	"github.com/sesanetwork/go-sesa/ethdb"
+	"github.com/sesanetwork/go-sesa/rlp"
+	"github.com/sesanetwork/go-sesa/trie"
 )
 
 // diskLayer is a low level persistent snapshot built on top of a key-value store.

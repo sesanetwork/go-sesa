@@ -28,12 +28,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/internal/testlog"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/p2p/discover/v5wire"
-	"github.com/unicornultrafoundation/go-u2u/p2p/enode"
-	"github.com/unicornultrafoundation/go-u2u/p2p/enr"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-sesa/internal/testlog"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/p2p/discover/v5wire"
+	"github.com/sesanetwork/go-sesa/p2p/enode"
+	"github.com/sesanetwork/go-sesa/p2p/enr"
+	"github.com/sesanetwork/go-sesa/rlp"
 )
 
 // Real sockets, real crypto: this test checks end-to-end connectivity for UDPv5.

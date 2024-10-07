@@ -19,7 +19,7 @@ package state
 import (
 	"math/big"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-sesa/common"
 )
 
 // journalEntry is a modification entry in the state change journal that can be

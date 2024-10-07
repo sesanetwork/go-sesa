@@ -21,8 +21,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/rpc"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/rpc"
 )
 
 // StartHTTPEndpoint starts the HTTP RPC endpoint.

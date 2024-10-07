@@ -18,9 +18,9 @@ package vm
 
 import (
 	"github.com/holiman/uint256"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/params"
 	"golang.org/x/crypto/sha3"
 )
 

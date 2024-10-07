@@ -4,14 +4,14 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/emitter/ancestor"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/native/pos"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-helios/emitter/ancestor"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/native/pos"
+	"github.com/sesanetwork/go-sesa/core/types"
 
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/utils/adapters/vecmt2dagidx"
-	"github.com/unicornultrafoundation/go-u2u/version"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/utils/adapters/vecmt2dagidx"
+	"github.com/sesanetwork/go-sesa/version"
 )
 
 var (

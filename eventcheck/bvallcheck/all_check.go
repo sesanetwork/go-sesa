@@ -1,7 +1,7 @@
 package bvallcheck
 
 import (
-	"github.com/unicornultrafoundation/go-u2u/native"
+	"github.com/sesanetwork/go-sesa/native"
 )
 
 type Checker struct {

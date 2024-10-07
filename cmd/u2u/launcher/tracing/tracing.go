@@ -7,7 +7,7 @@ import (
 	"github.com/uber/jaeger-lib/metrics"
 	"gopkg.in/urfave/cli.v1"
 
-	"github.com/unicornultrafoundation/go-u2u/tracing"
+	"github.com/sesanetwork/go-sesa/tracing"
 )
 
 var EnableFlag = cli.BoolFlag{
@@ -28,7 +28,7 @@ func Start(ctx *cli.Context) (stop func(), err error) {
 		return
 	}
 
-	cfg.ServiceName = "u2u"
+	cfg.ServiceName = "sesa"
 
 	tracer, closer, err := cfg.NewTracer(
 		jaegercfg.Logger(jaegerlog.StdLogger),

@@ -6,8 +6,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/utils/piecefunc"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-helios/utils/piecefunc"
+	"github.com/sesanetwork/go-sesa/core/types"
 )
 
 const (

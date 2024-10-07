@@ -7,19 +7,19 @@ Install docker compose
 * [Docker compose](https://docs.docker.com/compose/install/)
 
 Build dependencies
-* [Network](https://docs.u2u.xyz/network/build-dependencies)
-* [Create validator wallet](https://docs.u2u.xyz/network/run-validator-node/testnet-validator-node#create-a-validator-wallet)
+* [Network](https://docs.sesa.network/network/build-dependencies)
+* [Create validator wallet](https://docs.sesa.network/network/run-validator-node/testnet-validator-node#create-a-validator-wallet)
 
 ### Buiding image
 ```
-cd <path>/go-u2u
-make NET=testnet u2u-image
+cd <path>/go-sesa
+make NET=testnet sesa-image
 ```
 
 ### Configuration
 ```
 Update password wallet in "/etc/password"
-Go to <path>/go-u2u/deployment/testnet
+Go to <path>/go-sesa/deployment/testnet
 Update config in docker-compose.yml:
     validator.id <id>
     validator.pubkey <pubkey>
@@ -33,4 +33,4 @@ docker compose up -d
 
 ### Logging
 ````
-docker logs -f --tail 10 u2u
+docker logs -f --tail 10 sesa

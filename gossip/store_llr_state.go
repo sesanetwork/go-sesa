@@ -1,8 +1,8 @@
 package gossip
 
 import (
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/log"
 )
 
 type LlrState struct {

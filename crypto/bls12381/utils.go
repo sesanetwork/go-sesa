@@ -20,7 +20,7 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-sesa/common"
 )
 
 func bigFromHex(hex string) *big.Int {

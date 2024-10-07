@@ -21,7 +21,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/common/mclock"
+	"github.com/sesanetwork/go-sesa/common/mclock"
 )
 
 // Subscription represents a stream of events. The carrier of the events is typically a

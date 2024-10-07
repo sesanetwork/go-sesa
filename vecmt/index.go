@@ -2,17 +2,17 @@ package vecmt
 
 import (
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/dag"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/native/pos"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/table"
-	"github.com/unicornultrafoundation/go-helios/utils/cachescale"
-	"github.com/unicornultrafoundation/go-helios/utils/wlru"
-	"github.com/unicornultrafoundation/go-helios/vecengine"
-	"github.com/unicornultrafoundation/go-helios/vecengine/vecflushable"
-	"github.com/unicornultrafoundation/go-helios/vecfc"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/dag"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/native/pos"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-helios/sesadb/table"
+	"github.com/sesanetwork/go-helios/utils/cachescale"
+	"github.com/sesanetwork/go-helios/utils/wlru"
+	"github.com/sesanetwork/go-helios/vecengine"
+	"github.com/sesanetwork/go-helios/vecengine/vecflushable"
+	"github.com/sesanetwork/go-helios/vecfc"
 )
 
 // IndexCacheConfig - config for cache sizes of Engine
@@ -39,9 +39,9 @@ type Index struct {
 
 	getEvent func(hash.Event) dag.Event
 
-	vecDb u2udb.Store
+	vecDb sesadb.Store
 	table struct {
-		HighestBeforeTime u2udb.Store `table:"T"`
+		HighestBeforeTime sesadb.Store `table:"T"`
 	}
 
 	cache struct {
@@ -106,7 +106,7 @@ func (vi *Index) initCaches() {
 }
 
 // Reset resets buffers.
-func (vi *Index) Reset(validators *pos.Validators, db u2udb.Store, getEvent func(hash.Event) dag.Event) {
+func (vi *Index) Reset(validators *pos.Validators, db sesadb.Store, getEvent func(hash.Event) dag.Event) {
 	fdb := vecflushable.Wrap(db, vi.cfg.Caches.DBCache)
 	vi.vecDb = fdb
 	vi.Base.Reset(validators, fdb, getEvent)

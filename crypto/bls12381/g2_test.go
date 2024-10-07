@@ -6,7 +6,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-sesa/common"
 )
 
 func (g *G2) one() *PointG2 {

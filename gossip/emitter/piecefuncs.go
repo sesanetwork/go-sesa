@@ -1,9 +1,9 @@
 package emitter
 
 import (
-	"github.com/unicornultrafoundation/go-helios/emitter/ancestor"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/utils/piecefunc"
+	"github.com/sesanetwork/go-helios/emitter/ancestor"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/utils/piecefunc"
 )
 
 var (

@@ -1,4 +1,4 @@
-module github.com/unicornultrafoundation/go-u2u
+module github.com/sesanetwork/go-sesa
 
 go 1.20
 
@@ -32,7 +32,7 @@ require (
 	github.com/tyler-smith/go-bip39 v1.1.0
 	github.com/uber/jaeger-client-go v2.30.0+incompatible
 	github.com/uber/jaeger-lib v2.4.1+incompatible
-	github.com/unicornultrafoundation/go-helios v0.0.0-20240117032343-43d91eb58369
+	github.com/sesanetwork/go-helios v0.0.0-20240117032343-43d91eb58369
 	golang.org/x/crypto v0.6.0
 	golang.org/x/sys v0.7.0
 	gopkg.in/urfave/cli.v1 v1.20.0

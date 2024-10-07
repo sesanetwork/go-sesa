@@ -27,9 +27,9 @@ import (
 	"github.com/fjl/memsize/memsizeui"
 	"github.com/mattn/go-colorable"
 	"github.com/mattn/go-isatty"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/metrics"
-	"github.com/unicornultrafoundation/go-u2u/metrics/exp"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/metrics"
+	"github.com/sesanetwork/go-sesa/metrics/exp"
 	"gopkg.in/urfave/cli.v1"
 )
 

@@ -32,11 +32,11 @@ import (
 	"github.com/dop251/goja"
 	"github.com/mattn/go-colorable"
 	"github.com/peterh/liner"
-	"github.com/unicornultrafoundation/go-u2u/console/prompt"
-	"github.com/unicornultrafoundation/go-u2u/internal/jsre"
-	"github.com/unicornultrafoundation/go-u2u/internal/jsre/deps"
-	"github.com/unicornultrafoundation/go-u2u/internal/web3ext"
-	"github.com/unicornultrafoundation/go-u2u/rpc"
+	"github.com/sesanetwork/go-sesa/console/prompt"
+	"github.com/sesanetwork/go-sesa/internal/jsre"
+	"github.com/sesanetwork/go-sesa/internal/jsre/deps"
+	"github.com/sesanetwork/go-sesa/internal/web3ext"
+	"github.com/sesanetwork/go-sesa/rpc"
 )
 
 var (
@@ -190,7 +190,7 @@ func (c *Console) initExtensions() error {
 	if err != nil {
 		return fmt.Errorf("api modules: %v", err)
 	}
-	aliases := map[string]struct{}{"u2u": {}, "personal": {}}
+	aliases := map[string]struct{}{"sesa": {}, "personal": {}}
 	for api := range apis {
 		if api == "web3" {
 			continue
@@ -295,18 +295,18 @@ func (c *Console) AutoCompleteInput(line string, pos int) (string, []string, str
 	return line[:start], c.jsre.CompleteKeywords(line[start:pos]), line[pos:]
 }
 
-// Welcome shows summary of current u2u instance and some metadata about the
+// Welcome shows summary of current sesa instance and some metadata about the
 // console's available modules.
 func (c *Console) Welcome() {
 	message := "Welcome to the Hashgraph JavaScript console!\n\n"
 
-	// Print some generic u2u metadata
+	// Print some generic sesa metadata
 	res, err := c.jsre.Run(`
 		var message = "instance: " + web3.version.node + "\n";
 		try {
-			message += "coinbase: " + u2u.coinbase + "\n";
+			message += "coinbase: " + sesa.coinbase + "\n";
 		} catch (err) {}
-		message += "at block: " + u2u.blockNumber + " (" + new Date(1000 * u2u.getBlock(u2u.blockNumber).timestamp) + ")\n";
+		message += "at block: " + sesa.blockNumber + " (" + new Date(1000 * sesa.getBlock(sesa.blockNumber).timestamp) + ")\n";
 		try {
 			message += " datadir: " + admin.datadir + "\n";
 		} catch (err) {}

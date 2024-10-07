@@ -2,7 +2,7 @@ package originatedtxs
 
 import (
 	"github.com/hashicorp/golang-lru/simplelru"
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-sesa/common"
 )
 
 type Buffer struct {

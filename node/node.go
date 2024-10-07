@@ -27,13 +27,13 @@ import (
 	"sync"
 
 	"github.com/prometheus/tsdb/fileutil"
-	"github.com/unicornultrafoundation/go-u2u/accounts"
-	"github.com/unicornultrafoundation/go-u2u/core/rawdb"
-	"github.com/unicornultrafoundation/go-u2u/ethdb"
-	"github.com/unicornultrafoundation/go-u2u/event"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/p2p"
-	"github.com/unicornultrafoundation/go-u2u/rpc"
+	"github.com/sesanetwork/go-sesa/accounts"
+	"github.com/sesanetwork/go-sesa/core/rawdb"
+	"github.com/sesanetwork/go-sesa/ethdb"
+	"github.com/sesanetwork/go-sesa/event"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/p2p"
+	"github.com/sesanetwork/go-sesa/rpc"
 )
 
 // Node is a container on which services can be registered.

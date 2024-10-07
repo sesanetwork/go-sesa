@@ -1,9 +1,9 @@
 package eventmodule
 
 import (
-	"github.com/unicornultrafoundation/go-u2u/gossip/blockproc"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/native/iblockproc"
+	"github.com/sesanetwork/go-sesa/gossip/blockproc"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/native/iblockproc"
 )
 
 type ValidatorEventsModule struct{}

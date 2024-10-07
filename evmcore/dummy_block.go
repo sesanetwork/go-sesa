@@ -20,14 +20,14 @@ import (
 	"math"
 	"math/big"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/trie"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/trie"
 
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/sesa"
 )
 
 type (
@@ -70,7 +70,7 @@ func NewEvmBlock(h *EvmHeader, txs types.Transactions) *EvmBlock {
 }
 
 // ToEvmHeader converts native.Block to EvmHeader.
-func ToEvmHeader(block *native.Block, index idx.Block, prevHash hash.Event, rules u2u.Rules) *EvmHeader {
+func ToEvmHeader(block *native.Block, index idx.Block, prevHash hash.Event, rules sesa.Rules) *EvmHeader {
 	baseFee := rules.Economy.MinGasPrice
 	if !rules.Upgrades.London {
 		baseFee = nil

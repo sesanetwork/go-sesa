@@ -6,12 +6,12 @@ import (
 	"time"
 
 	"github.com/status-im/keycard-go/hexutils"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-sesa/log"
 )
 
 type loggedCompacter struct {
-	u2udb.Store
+	sesadb.Store
 	name string
 
 	currentOp atomic.Value

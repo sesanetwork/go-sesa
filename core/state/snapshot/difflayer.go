@@ -27,8 +27,8 @@ import (
 	"time"
 
 	bloomfilter "github.com/holiman/bloomfilter/v2"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/rlp"
 )
 
 var (

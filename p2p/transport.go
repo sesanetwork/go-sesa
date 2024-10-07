@@ -25,11 +25,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/common/bitutil"
-	"github.com/unicornultrafoundation/go-u2u/metrics"
-	"github.com/unicornultrafoundation/go-u2u/p2p/rlpx"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/common/bitutil"
+	"github.com/sesanetwork/go-sesa/metrics"
+	"github.com/sesanetwork/go-sesa/p2p/rlpx"
+	"github.com/sesanetwork/go-sesa/rlp"
 )
 
 const (

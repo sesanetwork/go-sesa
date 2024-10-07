@@ -6,32 +6,32 @@ import (
 	"io"
 	"math/big"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/state"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/state"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/rlp"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
-	"github.com/unicornultrafoundation/go-u2u/gossip/blockproc"
-	"github.com/unicornultrafoundation/go-u2u/gossip/blockproc/drivermodule"
-	"github.com/unicornultrafoundation/go-u2u/gossip/blockproc/eventmodule"
-	"github.com/unicornultrafoundation/go-u2u/gossip/blockproc/evmmodule"
-	"github.com/unicornultrafoundation/go-u2u/gossip/blockproc/sealmodule"
-	"github.com/unicornultrafoundation/go-u2u/gossip/evmstore"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/native/iblockproc"
-	"github.com/unicornultrafoundation/go-u2u/native/ibr"
-	"github.com/unicornultrafoundation/go-u2u/native/ier"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesis"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesisstore"
-	"github.com/unicornultrafoundation/go-u2u/utils/iodb"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-sesa/evmcore"
+	"github.com/sesanetwork/go-sesa/gossip/blockproc"
+	"github.com/sesanetwork/go-sesa/gossip/blockproc/drivermodule"
+	"github.com/sesanetwork/go-sesa/gossip/blockproc/eventmodule"
+	"github.com/sesanetwork/go-sesa/gossip/blockproc/evmmodule"
+	"github.com/sesanetwork/go-sesa/gossip/blockproc/sealmodule"
+	"github.com/sesanetwork/go-sesa/gossip/evmstore"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/native/iblockproc"
+	"github.com/sesanetwork/go-sesa/native/ibr"
+	"github.com/sesanetwork/go-sesa/native/ier"
+	"github.com/sesanetwork/go-sesa/sesa"
+	"github.com/sesanetwork/go-sesa/sesa/genesis"
+	"github.com/sesanetwork/go-sesa/sesa/genesisstore"
+	"github.com/sesanetwork/go-sesa/utils/iodb"
 )
 
 type GenesisBuilder struct {
-	dbs u2udb.DBProducer
+	dbs sesadb.DBProducer
 
 	tmpEvmStore *evmstore.Store
 	tmpStateDB  *state.StateDB
@@ -109,7 +109,7 @@ func (b *GenesisBuilder) CurrentHash() hash.Hash {
 	return er.Hash()
 }
 
-func NewGenesisBuilder(dbs u2udb.DBProducer) *GenesisBuilder {
+func NewGenesisBuilder(dbs sesadb.DBProducer) *GenesisBuilder {
 	tmpEvmStore := evmstore.NewStore(dbs, evmstore.LiteStoreConfig())
 	statedb, _ := tmpEvmStore.StateDB(hash.Zero)
 	return &GenesisBuilder{
@@ -141,7 +141,7 @@ func (b *GenesisBuilder) ExecuteGenesisTxs(blockProc BlockProc, genesisTxs types
 	txListener := blockProc.TxListenerModule.Start(blockCtx, bs, es, b.tmpStateDB)
 	evmProcessor := blockProc.EVMModule.Start(blockCtx, b.tmpStateDB, dummyHeaderReturner{}, func(l *types.Log) {
 		txListener.OnNewLog(l)
-	}, es.Rules, es.Rules.EvmChainConfig([]u2u.UpgradeHeight{
+	}, es.Rules, es.Rules.EvmChainConfig([]sesa.UpgradeHeight{
 		{
 			Upgrades: es.Rules.Upgrades,
 			Height:   0,

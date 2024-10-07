@@ -20,7 +20,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/unicornultrafoundation/go-u2u/common/hexutil"
+	"github.com/sesanetwork/go-sesa/common/hexutil"
 )
 
 type MyType [5]byte

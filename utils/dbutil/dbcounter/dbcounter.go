@@ -4,41 +4,41 @@ import (
 	"fmt"
 	"sync/atomic"
 
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-sesa/log"
 
-	"github.com/unicornultrafoundation/go-helios/u2udb"
+	"github.com/sesanetwork/go-helios/sesadb"
 )
 
 type DBProducer struct {
-	u2udb.IterableDBProducer
+	sesadb.IterableDBProducer
 	warn bool
 }
 
 type Iterator struct {
-	u2udb.Iterator
+	sesadb.Iterator
 	itCounter *int64
 	start     []byte
 	prefix    []byte
 }
 
 type Snapshot struct {
-	u2udb.Snapshot
+	sesadb.Snapshot
 	snCounter *int64
 }
 
 type Store struct {
-	u2udb.Store
+	sesadb.Store
 	name      string
 	snCounter int64
 	itCounter int64
 	warn      bool
 }
 
-func Wrap(db u2udb.IterableDBProducer, warn bool) u2udb.IterableDBProducer {
+func Wrap(db sesadb.IterableDBProducer, warn bool) sesadb.IterableDBProducer {
 	return &DBProducer{db, warn}
 }
 
-func WrapStore(s u2udb.Store, name string, warn bool) *Store {
+func WrapStore(s sesadb.Store, name string, warn bool) *Store {
 	return &Store{
 		Store: s,
 		name:  name,
@@ -64,7 +64,7 @@ func (ds *Snapshot) Release() {
 	ds.Snapshot.Release()
 }
 
-func (ds *Store) NewIterator(prefix []byte, start []byte) u2udb.Iterator {
+func (ds *Store) NewIterator(prefix []byte, start []byte) sesadb.Iterator {
 	atomic.AddInt64(&ds.itCounter, 1)
 	return &Iterator{
 		Iterator:  ds.Store.NewIterator(prefix, start),
@@ -79,7 +79,7 @@ func (it *Iterator) Release() {
 	it.Iterator.Release()
 }
 
-func (ds *Store) GetSnapshot() (u2udb.Snapshot, error) {
+func (ds *Store) GetSnapshot() (sesadb.Snapshot, error) {
 	atomic.AddInt64(&ds.snCounter, 1)
 	snapshot, err := ds.Store.GetSnapshot()
 	if err != nil {
@@ -91,7 +91,7 @@ func (ds *Store) GetSnapshot() (u2udb.Snapshot, error) {
 	}, nil
 }
 
-func (db *DBProducer) OpenDB(name string) (u2udb.Store, error) {
+func (db *DBProducer) OpenDB(name string) (sesadb.Store, error) {
 	s, err := db.IterableDBProducer.OpenDB(name)
 	if err != nil {
 		return nil, err

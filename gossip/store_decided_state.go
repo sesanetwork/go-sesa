@@ -1,14 +1,14 @@
 package gossip
 
 import (
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/native/pos"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	ethparams "github.com/unicornultrafoundation/go-u2u/params"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/native/pos"
+	"github.com/sesanetwork/go-sesa/log"
+	ethparams "github.com/sesanetwork/go-sesa/params"
+	"github.com/sesanetwork/go-sesa/rlp"
 
-	"github.com/unicornultrafoundation/go-u2u/native/iblockproc"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
+	"github.com/sesanetwork/go-sesa/native/iblockproc"
+	"github.com/sesanetwork/go-sesa/sesa"
 )
 
 const sKey = "s"
@@ -151,7 +151,7 @@ func (s *Store) GetLatestBlockIndex() idx.Block {
 }
 
 // GetRules retrieves current network rules
-func (s *Store) GetRules() u2u.Rules {
+func (s *Store) GetRules() sesa.Rules {
 	return s.GetEpochState().Rules
 }
 
@@ -161,7 +161,7 @@ func (s *Store) GetEvmChainConfig() *ethparams.ChainConfig {
 }
 
 // GetEpochRules retrieves current network rules and epoch atomically
-func (s *Store) GetEpochRules() (u2u.Rules, idx.Epoch) {
+func (s *Store) GetEpochRules() (sesa.Rules, idx.Epoch) {
 	es := s.GetEpochState()
 	return es.Rules, es.Epoch
 }

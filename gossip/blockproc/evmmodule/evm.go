@@ -4,18 +4,18 @@ import (
 	"math"
 	"math/big"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/state"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/state"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/params"
 
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
-	"github.com/unicornultrafoundation/go-u2u/gossip/blockproc"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/native/iblockproc"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
-	"github.com/unicornultrafoundation/go-u2u/utils"
+	"github.com/sesanetwork/go-sesa/evmcore"
+	"github.com/sesanetwork/go-sesa/gossip/blockproc"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/native/iblockproc"
+	"github.com/sesanetwork/go-sesa/sesa"
+	"github.com/sesanetwork/go-sesa/utils"
 )
 
 type EVMModule struct{}
@@ -24,12 +24,12 @@ func New() *EVMModule {
 	return &EVMModule{}
 }
 
-func (p *EVMModule) Start(block iblockproc.BlockCtx, statedb *state.StateDB, reader evmcore.DummyChain, onNewLog func(*types.Log), net u2u.Rules, evmCfg *params.ChainConfig) blockproc.EVMProcessor {
+func (p *EVMModule) Start(block iblockproc.BlockCtx, statedb *state.StateDB, reader evmcore.DummyChain, onNewLog func(*types.Log), net sesa.Rules, evmCfg *params.ChainConfig) blockproc.EVMProcessor {
 	var prevBlockHash common.Hash
 	if block.Idx != 0 {
 		prevBlockHash = reader.GetHeader(common.Hash{}, uint64(block.Idx-1)).Hash
 	}
-	return &U2UEVMProcessor{
+	return &sesaEVMProcessor{
 		block:         block,
 		reader:        reader,
 		statedb:       statedb,
@@ -41,12 +41,12 @@ func (p *EVMModule) Start(block iblockproc.BlockCtx, statedb *state.StateDB, rea
 	}
 }
 
-type U2UEVMProcessor struct {
+type sesaEVMProcessor struct {
 	block    iblockproc.BlockCtx
 	reader   evmcore.DummyChain
 	statedb  *state.StateDB
 	onNewLog func(*types.Log)
-	net      u2u.Rules
+	net      sesa.Rules
 	evmCfg   *params.ChainConfig
 
 	blockIdx      *big.Int
@@ -59,7 +59,7 @@ type U2UEVMProcessor struct {
 	receipts    types.Receipts
 }
 
-func (p *U2UEVMProcessor) evmBlockWith(txs types.Transactions) *evmcore.EvmBlock {
+func (p *sesaEVMProcessor) evmBlockWith(txs types.Transactions) *evmcore.EvmBlock {
 	baseFee := p.net.Economy.MinGasPrice
 	if !p.net.Upgrades.London {
 		baseFee = nil
@@ -79,13 +79,13 @@ func (p *U2UEVMProcessor) evmBlockWith(txs types.Transactions) *evmcore.EvmBlock
 	return evmcore.NewEvmBlock(h, txs)
 }
 
-func (p *U2UEVMProcessor) Execute(txs types.Transactions) types.Receipts {
+func (p *sesaEVMProcessor) Execute(txs types.Transactions) types.Receipts {
 	evmProcessor := evmcore.NewStateProcessor(p.evmCfg, p.reader)
 	txsOffset := uint(len(p.incomingTxs))
 
 	// Process txs
 	evmBlock := p.evmBlockWith(txs)
-	receipts, _, skipped, err := evmProcessor.Process(evmBlock, p.statedb, u2u.DefaultVMConfig, &p.gasUsed, func(l *types.Log, _ *state.StateDB) {
+	receipts, _, skipped, err := evmProcessor.Process(evmBlock, p.statedb, sesa.DefaultVMConfig, &p.gasUsed, func(l *types.Log, _ *state.StateDB) {
 		// Note: l.Index is properly set before
 		l.TxIndex += txsOffset
 		p.onNewLog(l)
@@ -110,7 +110,7 @@ func (p *U2UEVMProcessor) Execute(txs types.Transactions) types.Receipts {
 	return receipts
 }
 
-func (p *U2UEVMProcessor) Finalize() (evmBlock *evmcore.EvmBlock, skippedTxs []uint32, receipts types.Receipts) {
+func (p *sesaEVMProcessor) Finalize() (evmBlock *evmcore.EvmBlock, skippedTxs []uint32, receipts types.Receipts) {
 	evmBlock = p.evmBlockWith(
 		// Filter skipped transactions. Receipts are filtered already
 		native.FilterSkippedTxs(p.incomingTxs, p.skippedTxs),

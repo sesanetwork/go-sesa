@@ -25,9 +25,9 @@ import (
 	"fmt"
 	"hash"
 
-	"github.com/unicornultrafoundation/go-u2u/common/math"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/p2p/enode"
+	"github.com/sesanetwork/go-sesa/common/math"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/p2p/enode"
 	"golang.org/x/crypto/hkdf"
 )
 

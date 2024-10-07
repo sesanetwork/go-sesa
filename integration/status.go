@@ -4,7 +4,7 @@ import (
 	"os"
 	"path"
 
-	"github.com/unicornultrafoundation/go-u2u/utils"
+	"github.com/sesanetwork/go-sesa/utils"
 )
 
 func isInterrupted(chaindataDir string) bool {

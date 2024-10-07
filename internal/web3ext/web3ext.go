@@ -20,7 +20,7 @@ package web3ext
 var Modules = map[string]string{
 	"admin":    AdminJs,
 	"debug":    DebugJs,
-	"u2u":      U2uJs,
+	"sesa":      sesaJs,
 	"net":      NetJs,
 	"personal": PersonalJs,
 	"rpc":      RpcJs,
@@ -378,9 +378,9 @@ web3._extend({
 });
 `
 
-const U2uJs = `
+const sesaJs = `
 web3._extend({
-	property: 'u2u',
+	property: 'sesa',
 	methods: [
 		new web3._extend.Method({
 			name: 'chainId',

@@ -2,19 +2,19 @@ package gossip
 
 // Simple ballot contract
 //go:generate bash -c "docker run --rm -v $(pwd)/contract/ballot:/src -v $(pwd)/contract:/dst ethereum/solc:0.5.12 -o /dst/solc/ --optimize --optimize-runs=2000 --bin --abi --allow-paths /src --overwrite /src/Ballot.sol"
-//go:generate go run github.com/unicornultrafoundation/go-u2u/libs/cmd/abigen --bin=contract/solc/Ballot.bin --abi=contract/solc/Ballot.abi --pkg=ballot --type=Contract --out=contract/ballot/contract.go
+//go:generate go run github.com/sesanetwork/go-sesa/libs/cmd/abigen --bin=contract/solc/Ballot.bin --abi=contract/solc/Ballot.abi --pkg=ballot --type=Contract --out=contract/ballot/contract.go
 
 import (
 	"math/big"
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/core/types"
 
-	"github.com/unicornultrafoundation/go-u2u/gossip/contract/ballot"
-	"github.com/unicornultrafoundation/go-u2u/logger"
-	"github.com/unicornultrafoundation/go-u2u/utils"
+	"github.com/sesanetwork/go-sesa/gossip/contract/ballot"
+	"github.com/sesanetwork/go-sesa/logger"
+	"github.com/sesanetwork/go-sesa/utils"
 )
 
 func BenchmarkBallotTxsProcessing(b *testing.B) {
@@ -57,7 +57,7 @@ func BenchmarkBallotTxsProcessing(b *testing.B) {
 
 		// Init accounts
 		for vid := idx.ValidatorID(2); vid <= count; vid++ {
-			tx := env.Transfer(1, vid, utils.ToU2U(10))
+			tx := env.Transfer(1, vid, utils.Tosesa(10))
 			txs = append(txs, tx)
 			if len(txs) > 2 {
 				flushTxs()

@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/rlp"
 
-	"github.com/unicornultrafoundation/go-u2u/native/ibr"
-	"github.com/unicornultrafoundation/go-u2u/native/ier"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesis"
-	"github.com/unicornultrafoundation/go-u2u/utils/iodb"
+	"github.com/sesanetwork/go-sesa/native/ibr"
+	"github.com/sesanetwork/go-sesa/native/ier"
+	"github.com/sesanetwork/go-sesa/sesa/genesis"
+	"github.com/sesanetwork/go-sesa/utils/iodb"
 )
 
 type (

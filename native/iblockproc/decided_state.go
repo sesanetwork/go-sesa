@@ -4,14 +4,14 @@ import (
 	"crypto/sha256"
 	"math/big"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/native/pos"
-	"github.com/unicornultrafoundation/go-helios/types"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/native/pos"
+	"github.com/sesanetwork/go-helios/types"
+	"github.com/sesanetwork/go-sesa/rlp"
 
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/sesa"
 )
 
 type ValidatorBlockState struct {
@@ -52,7 +52,7 @@ type BlockState struct {
 	ValidatorStates       []ValidatorBlockState
 	NextValidatorProfiles ValidatorProfiles
 
-	DirtyRules *u2u.Rules `rlp:"nil"` // nil means that there's no changes compared to epoch rules
+	DirtyRules *sesa.Rules `rlp:"nil"` // nil means that there's no changes compared to epoch rules
 
 	AdvanceEpochs idx.Epoch
 }
@@ -99,7 +99,7 @@ type EpochStateV1 struct {
 	ValidatorStates   []ValidatorEpochState
 	ValidatorProfiles ValidatorProfiles
 
-	Rules u2u.Rules
+	Rules sesa.Rules
 }
 
 type EpochState EpochStateV1
@@ -147,7 +147,7 @@ func (es EpochState) Copy() EpochState {
 	cp.ValidatorStates = make([]ValidatorEpochState, len(es.ValidatorStates))
 	copy(cp.ValidatorStates, es.ValidatorStates)
 	cp.ValidatorProfiles = es.ValidatorProfiles.Copy()
-	if es.Rules != (u2u.Rules{}) {
+	if es.Rules != (sesa.Rules{}) {
 		cp.Rules = es.Rules.Copy()
 	}
 	return cp

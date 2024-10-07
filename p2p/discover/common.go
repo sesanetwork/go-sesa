@@ -20,11 +20,11 @@ import (
 	"crypto/ecdsa"
 	"net"
 
-	"github.com/unicornultrafoundation/go-u2u/common/mclock"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/p2p/enode"
-	"github.com/unicornultrafoundation/go-u2u/p2p/enr"
-	"github.com/unicornultrafoundation/go-u2u/p2p/netutil"
+	"github.com/sesanetwork/go-sesa/common/mclock"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/p2p/enode"
+	"github.com/sesanetwork/go-sesa/p2p/enr"
+	"github.com/sesanetwork/go-sesa/p2p/netutil"
 )
 
 // UDPConn is a network connection on which discovery can operate.

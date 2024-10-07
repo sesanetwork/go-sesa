@@ -19,7 +19,7 @@ package snap
 import (
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/p2p/tracker"
+	"github.com/sesanetwork/go-sesa/p2p/tracker"
 )
 
 // requestTracker is a singleton tracker for request times.

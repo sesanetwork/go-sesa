@@ -21,7 +21,7 @@ package p2p
 import (
 	"net"
 
-	"github.com/unicornultrafoundation/go-u2u/metrics"
+	"github.com/sesanetwork/go-sesa/metrics"
 )
 
 const (

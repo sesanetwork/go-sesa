@@ -12,25 +12,25 @@ import (
 	"strings"
 
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/unicornultrafoundation/go-helios/common/bigendian"
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/pebble"
-	"github.com/unicornultrafoundation/go-u2u/cmd/utils"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-helios/common/bigendian"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-helios/sesadb/pebble"
+	"github.com/sesanetwork/go-sesa/cmd/utils"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/rlp"
 	"gopkg.in/urfave/cli.v1"
 
-	"github.com/unicornultrafoundation/go-u2u/gossip"
-	"github.com/unicornultrafoundation/go-u2u/gossip/evmstore"
-	"github.com/unicornultrafoundation/go-u2u/native/ibr"
-	"github.com/unicornultrafoundation/go-u2u/native/ier"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesis"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesisstore"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesisstore/fileshash"
-	"github.com/unicornultrafoundation/go-u2u/utils/devnullfile"
-	"github.com/unicornultrafoundation/go-u2u/utils/iodb"
+	"github.com/sesanetwork/go-sesa/gossip"
+	"github.com/sesanetwork/go-sesa/gossip/evmstore"
+	"github.com/sesanetwork/go-sesa/native/ibr"
+	"github.com/sesanetwork/go-sesa/native/ier"
+	"github.com/sesanetwork/go-sesa/sesa/genesis"
+	"github.com/sesanetwork/go-sesa/sesa/genesisstore"
+	"github.com/sesanetwork/go-sesa/sesa/genesisstore/fileshash"
+	"github.com/sesanetwork/go-sesa/utils/devnullfile"
+	"github.com/sesanetwork/go-sesa/utils/iodb"
 )
 
 type dropableFile struct {
@@ -44,7 +44,7 @@ func (f dropableFile) Drop() error {
 }
 
 type mptIterator struct {
-	u2udb.Iterator
+	sesadb.Iterator
 }
 
 func (it mptIterator) Next() bool {
@@ -57,7 +57,7 @@ func (it mptIterator) Next() bool {
 }
 
 type mptAndPreimageIterator struct {
-	u2udb.Iterator
+	sesadb.Iterator
 }
 
 func (it mptAndPreimageIterator) Next() bool {
@@ -70,8 +70,8 @@ func (it mptAndPreimageIterator) Next() bool {
 }
 
 type excludingIterator struct {
-	u2udb.Iterator
-	exclude u2udb.Reader
+	sesadb.Iterator
+	exclude sesadb.Reader
 }
 
 func (it excludingIterator) Next() bool {
@@ -228,7 +228,7 @@ func exportGenesis(ctx *cli.Context) error {
 		return errors.New("--export.evm.mode must be one of {full, ext-mpt, mpt}")
 	}
 
-	var excludeEvmDB u2udb.Store
+	var excludeEvmDB sesadb.Store
 	if excludeEvmDBPath := ctx.String(EvmExportExclude.Name); len(excludeEvmDBPath) > 0 {
 		db, err := pebble.New(excludeEvmDBPath, 1024*opt.MiB, utils.MakeDatabaseHandles()/2, nil, nil)
 		if err != nil {

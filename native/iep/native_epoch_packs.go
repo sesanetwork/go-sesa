@@ -1,8 +1,8 @@
 package iep
 
 import (
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/native/ier"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/native/ier"
 )
 
 type LlrEpochPack struct {

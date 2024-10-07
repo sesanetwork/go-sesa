@@ -1,8 +1,8 @@
 package driverpos
 
 import (
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/crypto"
 )
 
 // Events

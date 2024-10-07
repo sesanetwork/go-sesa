@@ -20,7 +20,7 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/unicornultrafoundation/go-u2u/p2p/enode"
+	"github.com/sesanetwork/go-sesa/p2p/enode"
 )
 
 var (

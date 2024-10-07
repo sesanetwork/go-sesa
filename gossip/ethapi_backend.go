@@ -10,27 +10,27 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
 
-	"github.com/unicornultrafoundation/go-u2u/accounts"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/state"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/core/vm"
-	"github.com/unicornultrafoundation/go-u2u/ethapi"
-	"github.com/unicornultrafoundation/go-u2u/ethdb"
-	notify "github.com/unicornultrafoundation/go-u2u/event"
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
-	"github.com/unicornultrafoundation/go-u2u/evmcore/txtracer"
-	"github.com/unicornultrafoundation/go-u2u/gossip/evmstore"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/native/iblockproc"
-	"github.com/unicornultrafoundation/go-u2u/params"
-	"github.com/unicornultrafoundation/go-u2u/rpc"
-	"github.com/unicornultrafoundation/go-u2u/topicsdb"
-	"github.com/unicornultrafoundation/go-u2u/tracing"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
+	"github.com/sesanetwork/go-sesa/accounts"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/state"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/core/vm"
+	"github.com/sesanetwork/go-sesa/ethapi"
+	"github.com/sesanetwork/go-sesa/ethdb"
+	notify "github.com/sesanetwork/go-sesa/event"
+	"github.com/sesanetwork/go-sesa/evmcore"
+	"github.com/sesanetwork/go-sesa/evmcore/txtracer"
+	"github.com/sesanetwork/go-sesa/gossip/evmstore"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/native/iblockproc"
+	"github.com/sesanetwork/go-sesa/params"
+	"github.com/sesanetwork/go-sesa/rpc"
+	"github.com/sesanetwork/go-sesa/topicsdb"
+	"github.com/sesanetwork/go-sesa/tracing"
+	"github.com/sesanetwork/go-sesa/sesa"
 )
 
 // EthAPIBackend implements ethapi.Backend.
@@ -344,7 +344,7 @@ func (b *EthAPIBackend) GetEVM(ctx context.Context, msg evmcore.Message, state *
 	vmError := func() error { return nil }
 
 	if vmConfig == nil {
-		vmConfig = &u2u.DefaultVMConfig
+		vmConfig = &sesa.DefaultVMConfig
 	}
 	txContext := evmcore.NewEVMTxContext(msg)
 	context := evmcore.NewEVMBlockContext(header, b.state, nil)

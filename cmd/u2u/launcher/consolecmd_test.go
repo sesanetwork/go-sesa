@@ -11,9 +11,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-sesa/params"
 
-	"github.com/unicornultrafoundation/go-u2u/integration/makefakegenesis"
+	"github.com/sesanetwork/go-sesa/integration/makefakegenesis"
 )
 
 const (
@@ -24,7 +24,7 @@ const (
 // Tests that a node embedded within a console can be started up properly and
 // then terminated by closing the input stream.
 func TestConsoleWelcome(t *testing.T) {
-	// Start an u2u console, make sure it's cleaned up and terminate the console
+	// Start an sesa console, make sure it's cleaned up and terminate the console
 	cli := exec(t,
 		"--fakenet", "0/1", "--port", "0", "--maxpeers", "0", "--nodiscover", "--nat", "none", "--cache", "7923",
 		"console")
@@ -41,7 +41,7 @@ func TestConsoleWelcome(t *testing.T) {
 	cli.Expect(`
 Welcome to the Hashgraph JavaScript console!
 
-instance: go-u2u/v{{version}}/{{goos}}-{{goarch}}/{{gover}}
+instance: go-sesa/v{{version}}/{{goos}}-{{goarch}}/{{gover}}
 coinbase: {{.Coinbase}}
 at block: 1 ({{niltime}})
  datadir: {{.Datadir}}
@@ -62,7 +62,7 @@ func TestIPCAttachWelcome(t *testing.T) {
 	} else {
 		ws := tmpdir(t)
 		defer os.RemoveAll(ws)
-		ipc = filepath.Join(ws, "u2u.ipc")
+		ipc = filepath.Join(ws, "sesa.ipc")
 	}
 	cli := exec(t,
 		"--fakenet", "0/1", "--port", "0", "--maxpeers", "0", "--nodiscover", "--nat", "none",
@@ -105,7 +105,7 @@ func TestWSAttachWelcome(t *testing.T) {
 }
 
 func testAttachWelcome(t *testing.T, cli *testcli, endpoint, apis string) {
-	// Attach to a running u2u node and terminate immediately
+	// Attach to a running sesa node and terminate immediately
 	attach := exec(t, "attach", endpoint)
 
 	// Gather all the infos the welcome message needs to contain
@@ -123,7 +123,7 @@ func testAttachWelcome(t *testing.T, cli *testcli, endpoint, apis string) {
 	attach.Expect(`
 Welcome to the Hashgraph JavaScript console!
 
-instance: go-u2u/v{{version}}/{{goos}}-{{goarch}}/{{gover}}
+instance: go-sesa/v{{version}}/{{goos}}-{{goarch}}/{{gover}}
 coinbase: {{coinbase}}
 at block: 1 ({{niltime}}){{if ipc}}
  datadir: {{datadir}}{{end}}

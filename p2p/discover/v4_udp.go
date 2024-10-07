@@ -29,12 +29,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/p2p/discover/discfilter"
-	"github.com/unicornultrafoundation/go-u2u/p2p/discover/v4wire"
-	"github.com/unicornultrafoundation/go-u2u/p2p/enode"
-	"github.com/unicornultrafoundation/go-u2u/p2p/netutil"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/p2p/discover/discfilter"
+	"github.com/sesanetwork/go-sesa/p2p/discover/v4wire"
+	"github.com/sesanetwork/go-sesa/p2p/enode"
+	"github.com/sesanetwork/go-sesa/p2p/netutil"
 )
 
 // Errors

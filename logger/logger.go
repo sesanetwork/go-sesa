@@ -2,7 +2,7 @@ package logger
 
 import (
 	"github.com/evalphobia/logrus_sentry"
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-sesa/log"
 )
 
 // init with defaults.

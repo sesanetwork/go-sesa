@@ -1,51 +1,51 @@
 package threads
 
 import (
-	"github.com/unicornultrafoundation/go-helios/u2udb"
+	"github.com/sesanetwork/go-helios/sesadb"
 
-	"github.com/unicornultrafoundation/go-u2u/logger"
+	"github.com/sesanetwork/go-sesa/logger"
 )
 
 type (
 	countedDbProducer struct {
-		u2udb.DBProducer
+		sesadb.DBProducer
 	}
 
 	countedFullDbProducer struct {
-		u2udb.FullDBProducer
+		sesadb.FullDBProducer
 	}
 
 	countedStore struct {
-		u2udb.Store
+		sesadb.Store
 	}
 
 	countedIterator struct {
-		u2udb.Iterator
+		sesadb.Iterator
 		release func(count int)
 	}
 )
 
-func CountedDBProducer(dbs u2udb.DBProducer) u2udb.DBProducer {
+func CountedDBProducer(dbs sesadb.DBProducer) sesadb.DBProducer {
 	return &countedDbProducer{dbs}
 }
 
-func CountedFullDBProducer(dbs u2udb.FullDBProducer) u2udb.FullDBProducer {
+func CountedFullDBProducer(dbs sesadb.FullDBProducer) sesadb.FullDBProducer {
 	return &countedFullDbProducer{dbs}
 }
 
-func (p *countedDbProducer) OpenDB(name string) (u2udb.Store, error) {
+func (p *countedDbProducer) OpenDB(name string) (sesadb.Store, error) {
 	s, err := p.DBProducer.OpenDB(name)
 	return &countedStore{s}, err
 }
 
-func (p *countedFullDbProducer) OpenDB(name string) (u2udb.Store, error) {
+func (p *countedFullDbProducer) OpenDB(name string) (sesadb.Store, error) {
 	s, err := p.FullDBProducer.OpenDB(name)
 	return &countedStore{s}, err
 }
 
 var notifier = logger.New("threads-pool")
 
-func (s *countedStore) NewIterator(prefix []byte, start []byte) u2udb.Iterator {
+func (s *countedStore) NewIterator(prefix []byte, start []byte) sesadb.Iterator {
 	got, release := GlobalPool.Lock(1)
 	if got < 1 {
 		notifier.Log.Warn("Too many DB iterators")

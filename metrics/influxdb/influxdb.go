@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/influxdata/influxdb/client"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/metrics"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/metrics"
 )
 
 type reporter struct {

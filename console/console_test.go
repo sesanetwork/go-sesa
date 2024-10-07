@@ -24,13 +24,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/console/prompt"
-	"github.com/unicornultrafoundation/go-u2u/core"
-	"github.com/unicornultrafoundation/go-u2u/eth/ethconfig"
-	"github.com/unicornultrafoundation/go-u2u/internal/jsre"
-	"github.com/unicornultrafoundation/go-u2u/miner"
-	"github.com/unicornultrafoundation/go-u2u/node"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/console/prompt"
+	"github.com/sesanetwork/go-sesa/core"
+	"github.com/sesanetwork/go-sesa/eth/ethconfig"
+	"github.com/sesanetwork/go-sesa/internal/jsre"
+	"github.com/sesanetwork/go-sesa/miner"
+	"github.com/sesanetwork/go-sesa/node"
 )
 
 const (

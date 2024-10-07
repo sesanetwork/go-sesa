@@ -19,7 +19,7 @@ package params
 import (
 	"math/big"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-sesa/common"
 )
 
 // DAOForkBlockExtra is the block header extra-data field to set for the DAO fork

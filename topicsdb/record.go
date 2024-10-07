@@ -1,9 +1,9 @@
 package topicsdb
 
 import (
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
 )
 
 type (
@@ -26,7 +26,7 @@ func newLogrec(rec ID, topicCount uint8) *logrec {
 
 // fetch record's data.
 func (rec *logrec) fetch(
-	logrecTable u2udb.Reader,
+	logrecTable sesadb.Reader,
 ) {
 	r := &types.Log{
 		BlockNumber: rec.ID.BlockNumber(),

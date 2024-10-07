@@ -28,11 +28,11 @@ import (
 
 	"gopkg.in/urfave/cli.v1"
 	
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/eth/ethconfig"
-	"github.com/unicornultrafoundation/go-u2u/internal/debug"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/node"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/eth/ethconfig"
+	"github.com/sesanetwork/go-sesa/internal/debug"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/node"
 )
 
 const (

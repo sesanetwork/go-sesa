@@ -26,17 +26,17 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/unicornultrafoundation/go-u2u/accounts"
-	"github.com/unicornultrafoundation/go-u2u/accounts/external"
-	"github.com/unicornultrafoundation/go-u2u/accounts/keystore"
-	"github.com/unicornultrafoundation/go-u2u/accounts/scwallet"
-	"github.com/unicornultrafoundation/go-u2u/accounts/usbwallet"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/p2p"
-	"github.com/unicornultrafoundation/go-u2u/p2p/enode"
-	"github.com/unicornultrafoundation/go-u2u/rpc"
+	"github.com/sesanetwork/go-sesa/accounts"
+	"github.com/sesanetwork/go-sesa/accounts/external"
+	"github.com/sesanetwork/go-sesa/accounts/keystore"
+	"github.com/sesanetwork/go-sesa/accounts/scwallet"
+	"github.com/sesanetwork/go-sesa/accounts/usbwallet"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/p2p"
+	"github.com/sesanetwork/go-sesa/p2p/enode"
+	"github.com/sesanetwork/go-sesa/rpc"
 )
 
 const (

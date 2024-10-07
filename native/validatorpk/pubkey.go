@@ -2,7 +2,7 @@ package validatorpk
 
 import (
 	"github.com/pkg/errors"
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-sesa/common"
 )
 
 const (

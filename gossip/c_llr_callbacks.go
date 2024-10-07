@@ -3,19 +3,19 @@ package gossip
 import (
 	"errors"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/native/pos"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/native/pos"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
 
-	"github.com/unicornultrafoundation/go-u2u/eventcheck"
-	"github.com/unicornultrafoundation/go-u2u/gossip/evmstore"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/native/iblockproc"
-	"github.com/unicornultrafoundation/go-u2u/native/ibr"
-	"github.com/unicornultrafoundation/go-u2u/native/ier"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
+	"github.com/sesanetwork/go-sesa/eventcheck"
+	"github.com/sesanetwork/go-sesa/gossip/evmstore"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/native/iblockproc"
+	"github.com/sesanetwork/go-sesa/native/ibr"
+	"github.com/sesanetwork/go-sesa/native/ier"
+	"github.com/sesanetwork/go-sesa/sesa"
 )
 
 var errValidatorNotExist = errors.New("validator does not exist")
@@ -242,7 +242,7 @@ func (s *Store) WriteFullEpochRecord(er ier.LlrIdxFullEpochRecord) {
 
 func (s *Store) WriteUpgradeHeight(bs iblockproc.BlockState, es iblockproc.EpochState, prevEs *iblockproc.EpochState) {
 	if prevEs == nil || es.Rules.Upgrades != prevEs.Rules.Upgrades {
-		s.AddUpgradeHeight(u2u.UpgradeHeight{
+		s.AddUpgradeHeight(sesa.UpgradeHeight{
 			Upgrades: es.Rules.Upgrades,
 			Height:   bs.LastBlock.Idx + 1,
 		})

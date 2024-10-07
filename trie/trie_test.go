@@ -31,12 +31,12 @@ import (
 	"testing/quick"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/ethdb"
-	"github.com/unicornultrafoundation/go-u2u/ethdb/leveldb"
-	"github.com/unicornultrafoundation/go-u2u/ethdb/memorydb"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/ethdb"
+	"github.com/sesanetwork/go-sesa/ethdb/leveldb"
+	"github.com/sesanetwork/go-sesa/ethdb/memorydb"
+	"github.com/sesanetwork/go-sesa/rlp"
 	"golang.org/x/crypto/sha3"
 )
 

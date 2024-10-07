@@ -22,7 +22,7 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/unicornultrafoundation/go-u2u/ethdb"
+	"github.com/sesanetwork/go-sesa/ethdb"
 )
 
 // TestDatabaseSuite runs a suite of tests against a KeyValueStore database

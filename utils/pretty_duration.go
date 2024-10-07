@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-sesa/common"
 )
 
 // PrettyDuration is a combination of common.PrettyDuration and common.PrettyAge

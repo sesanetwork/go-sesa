@@ -4,23 +4,23 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-sesa/common"
 
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/native/iblockproc"
-	"github.com/unicornultrafoundation/go-u2u/utils/migration"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/native/iblockproc"
+	"github.com/sesanetwork/go-sesa/utils/migration"
 )
 
-func isEmptyDB(db u2udb.Iteratee) bool {
+func isEmptyDB(db sesadb.Iteratee) bool {
 	it := db.NewIterator(nil, nil)
 	defer it.Release()
 	return !it.Next()
 }
 
 func (s *Store) migrateData() error {
-	versions := migration.NewU2UdbIDStore(s.table.Version)
+	versions := migration.NewsesadbIDStore(s.table.Version)
 	if isEmptyDB(s.table.Version) {
 		// short circuit if empty DB
 		versions.SetID(s.migrations().ID())
@@ -34,7 +34,7 @@ func (s *Store) migrateData() error {
 
 func (s *Store) migrations() *migration.Migration {
 	return migration.
-		Begin("u2u-gossip-store").
+		Begin("sesa-gossip-store").
 		Next("used gas recovery", unsupportedMigration).
 		Next("tx hashes recovery", unsupportedMigration).
 		Next("DAG heads recovery", unsupportedMigration).

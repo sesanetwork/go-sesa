@@ -3,8 +3,8 @@ package genesisstore
 import (
 	"io"
 
-	"github.com/unicornultrafoundation/go-u2u/logger"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesis"
+	"github.com/sesanetwork/go-sesa/logger"
+	"github.com/sesanetwork/go-sesa/sesa/genesis"
 )
 
 func BlocksSection(i int) string {

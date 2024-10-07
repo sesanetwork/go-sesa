@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/unicornultrafoundation/go-u2u/node"
+	"github.com/sesanetwork/go-sesa/node"
 )
 
 // SampleLifecycle is a trivial network service that can be attached to a node for

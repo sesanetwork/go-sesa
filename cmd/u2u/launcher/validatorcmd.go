@@ -9,12 +9,12 @@ import (
 	
 	"gopkg.in/urfave/cli.v1"
 
-	"github.com/unicornultrafoundation/go-u2u/cmd/utils"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/native/validatorpk"
-	"github.com/unicornultrafoundation/go-u2u/valkeystore"
-	"github.com/unicornultrafoundation/go-u2u/valkeystore/encryption"
+	"github.com/sesanetwork/go-sesa/cmd/utils"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/native/validatorpk"
+	"github.com/sesanetwork/go-sesa/valkeystore"
+	"github.com/sesanetwork/go-sesa/valkeystore/encryption"
 )
 
 var (
@@ -38,7 +38,7 @@ Note that exporting your key in unencrypted format is NOT supported.
 
 Keys are stored under <DATADIR>/keystore/validator.
 It is safe to transfer the entire directory or the individual keys therein
-between u2u nodes by simply copying.
+between sesa nodes by simply copying.
 
 Make sure you backup your keys regularly.`,
 		Subcommands: []cli.Command{
@@ -52,7 +52,7 @@ Make sure you backup your keys regularly.`,
 					utils.PasswordFileFlag,
 				},
 				Description: `
-    u2u validator new
+    sesa validator new
 
 Creates a new validator private key and prints the public key.
 
@@ -76,7 +76,7 @@ password to file or expose in any other way.
 				},
 				ArgsUsage: "<account address> <validator pubkey>",
 				Description: `
-    u2u validator convert
+    sesa validator convert
 
 Converts an account private key to a validator private key and saves in the validator keystore.
 `,

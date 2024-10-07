@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-sesa/log"
 )
 
 // Migration is a migration step.

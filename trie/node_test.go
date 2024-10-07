@@ -20,7 +20,7 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-sesa/rlp"
 )
 
 func newTestFullNode(v []byte) []interface{} {

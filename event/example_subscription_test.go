@@ -19,7 +19,7 @@ package event_test
 import (
 	"fmt"
 
-	"github.com/unicornultrafoundation/go-u2u/event"
+	"github.com/sesanetwork/go-sesa/event"
 )
 
 func ExampleNewSubscription() {

@@ -21,11 +21,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/common/hexutil"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
-	"github.com/unicornultrafoundation/go-u2u/trie"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/common/hexutil"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/rlp"
+	"github.com/sesanetwork/go-sesa/trie"
 )
 
 // DumpConfig is a set of options to control what portions of the statewill be

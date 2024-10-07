@@ -21,7 +21,7 @@ package metrics
 
 import (
 	"github.com/shirou/gopsutil/cpu"
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-sesa/log"
 )
 
 // ReadCPUStats retrieves the current CPU stats.

@@ -27,7 +27,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-sesa/common"
 )
 
 // TestPack tests the general pack/unpack tests in packing_test.go

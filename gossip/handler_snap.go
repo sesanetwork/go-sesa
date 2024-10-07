@@ -17,8 +17,8 @@
 package gossip
 
 import (
-	"github.com/unicornultrafoundation/go-u2u/eth/protocols/snap"
-	"github.com/unicornultrafoundation/go-u2u/p2p/enode"
+	"github.com/sesanetwork/go-sesa/eth/protocols/snap"
+	"github.com/sesanetwork/go-sesa/p2p/enode"
 )
 
 // snapHandler implements the snap.Backend interface to handle the various network
@@ -59,7 +59,7 @@ func (h *handler) runSnapExtension(peer *snap.Peer, handler snap.Handler) error 
 	defer h.peerWG.Done()
 	if err := h.peers.RegisterSnapExtension(peer); err != nil {
 		logger := peer.Log().Error
-		if err == errSnapWithoutU2U {
+		if err == errSnapWithoutsesa {
 			logger = peer.Log().Trace
 		}
 		logger("Snapshot extension registration failed", "err", err)

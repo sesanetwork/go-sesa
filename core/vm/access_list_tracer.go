@@ -20,8 +20,8 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
 )
 
 // accessList is an accumulator for the set of accounts and storage slots an EVM

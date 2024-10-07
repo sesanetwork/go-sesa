@@ -17,7 +17,7 @@
 package rawdb
 
 import (
-	"github.com/unicornultrafoundation/go-u2u/ethdb"
+	"github.com/sesanetwork/go-sesa/ethdb"
 )
 
 // table is a wrapper around a database that prefixes each key access with a pre-

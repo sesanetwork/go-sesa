@@ -1,9 +1,9 @@
 package sfclib
 
 import (
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/common/hexutil"
-	"github.com/unicornultrafoundation/go-u2u/gossip/contract/sfclib100"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/common/hexutil"
+	"github.com/sesanetwork/go-sesa/gossip/contract/sfclib100"
 )
 
 // GetContractBin is SFCLib contract genesis implementation bin code

@@ -11,15 +11,15 @@ import (
 
 	"github.com/status-im/keycard-go/hexutils"
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/unicornultrafoundation/go-helios/common/bigendian"
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-helios/common/bigendian"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-sesa/rlp"
 
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesis"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesisstore/filelog"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesisstore/fileshash"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesisstore/readersmap"
-	"github.com/unicornultrafoundation/go-u2u/utils/ioread"
+	"github.com/sesanetwork/go-sesa/sesa/genesis"
+	"github.com/sesanetwork/go-sesa/sesa/genesisstore/filelog"
+	"github.com/sesanetwork/go-sesa/sesa/genesisstore/fileshash"
+	"github.com/sesanetwork/go-sesa/sesa/genesisstore/readersmap"
+	"github.com/sesanetwork/go-sesa/utils/ioread"
 )
 
 var (

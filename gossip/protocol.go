@@ -1,27 +1,27 @@
 package gossip
 
 import (
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	notify "github.com/unicornultrafoundation/go-u2u/event"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
+	notify "github.com/sesanetwork/go-sesa/event"
 
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
-	"github.com/unicornultrafoundation/go-u2u/gossip/emitter"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/native/ibr"
-	"github.com/unicornultrafoundation/go-u2u/native/iep"
+	"github.com/sesanetwork/go-sesa/evmcore"
+	"github.com/sesanetwork/go-sesa/gossip/emitter"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/native/ibr"
+	"github.com/sesanetwork/go-sesa/native/iep"
 )
 
-// Constants to match up U2U Protocol versions and messages
+// Constants to match up sesa Protocol versions and messages
 const (
 	UP01            = 1
 	ProtocolVersion = UP01
 )
 
 // ProtocolName is the official short name of the protocol used during capability negotiation.
-const ProtocolName = "u2u"
+const ProtocolName = "sesa"
 
 // ProtocolVersions are the supported versions of the protocol (first is primary).
 var ProtocolVersions = []uint{UP01}

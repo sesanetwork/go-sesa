@@ -21,7 +21,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/unicornultrafoundation/go-u2u/eth/tracers/internal/tracers"
+	"github.com/sesanetwork/go-sesa/eth/tracers/internal/tracers"
 )
 
 // all contains all the built in JavaScript tracers by name.

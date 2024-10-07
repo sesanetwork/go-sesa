@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/emitter/doublesign"
-	"github.com/unicornultrafoundation/go-helios/hash"
+	"github.com/sesanetwork/go-helios/emitter/doublesign"
+	"github.com/sesanetwork/go-helios/hash"
 
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/utils/errlock"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/utils/errlock"
 )
 
 type syncStatus struct {

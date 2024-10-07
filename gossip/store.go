@@ -5,66 +5,66 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/log"
 
-	"github.com/unicornultrafoundation/go-helios/common/bigendian"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/flushable"
-	"github.com/unicornultrafoundation/go-helios/u2udb/memorydb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/table"
-	"github.com/unicornultrafoundation/go-helios/utils/wlru"
-	"github.com/unicornultrafoundation/go-u2u/gossip/evmstore"
-	txtracer "github.com/unicornultrafoundation/go-u2u/gossip/txtracer"
-	"github.com/unicornultrafoundation/go-u2u/logger"
-	"github.com/unicornultrafoundation/go-u2u/utils/adapters/snap2udb"
-	"github.com/unicornultrafoundation/go-u2u/utils/dbutil/switchable"
-	"github.com/unicornultrafoundation/go-u2u/utils/eventid"
-	"github.com/unicornultrafoundation/go-u2u/utils/randat"
-	"github.com/unicornultrafoundation/go-u2u/utils/rlpstore"
+	"github.com/sesanetwork/go-helios/common/bigendian"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-helios/sesadb/flushable"
+	"github.com/sesanetwork/go-helios/sesadb/memorydb"
+	"github.com/sesanetwork/go-helios/sesadb/table"
+	"github.com/sesanetwork/go-helios/utils/wlru"
+	"github.com/sesanetwork/go-sesa/gossip/evmstore"
+	txtracer "github.com/sesanetwork/go-sesa/gossip/txtracer"
+	"github.com/sesanetwork/go-sesa/logger"
+	"github.com/sesanetwork/go-sesa/utils/adapters/snap2udb"
+	"github.com/sesanetwork/go-sesa/utils/dbutil/switchable"
+	"github.com/sesanetwork/go-sesa/utils/eventid"
+	"github.com/sesanetwork/go-sesa/utils/randat"
+	"github.com/sesanetwork/go-sesa/utils/rlpstore"
 )
 
 // Store is a node persistent storage working over physical key-value database.
 type Store struct {
-	dbs u2udb.FlushableDBProducer
+	dbs sesadb.FlushableDBProducer
 	cfg StoreConfig
 
 	snapshotedEVMDB *switchable.Snapshot
 	evm             *evmstore.Store
 	txtracer        *txtracer.Store
 	table           struct {
-		Version u2udb.Store `table:"_"`
+		Version sesadb.Store `table:"_"`
 
 		// Main DAG tables
-		BlockEpochState        u2udb.Store `table:"D"`
-		BlockEpochStateHistory u2udb.Store `table:"h"`
-		Events                 u2udb.Store `table:"e"`
-		Blocks                 u2udb.Store `table:"b"`
-		EpochBlocks            u2udb.Store `table:"P"`
-		Genesis                u2udb.Store `table:"g"`
-		UpgradeHeights         u2udb.Store `table:"U"`
+		BlockEpochState        sesadb.Store `table:"D"`
+		BlockEpochStateHistory sesadb.Store `table:"h"`
+		Events                 sesadb.Store `table:"e"`
+		Blocks                 sesadb.Store `table:"b"`
+		EpochBlocks            sesadb.Store `table:"P"`
+		Genesis                sesadb.Store `table:"g"`
+		UpgradeHeights         sesadb.Store `table:"U"`
 
 		// Transaction traces
-		TransactionTraces u2udb.Store `table:"t"`
+		TransactionTraces sesadb.Store `table:"t"`
 
 		// P2P-only
-		HighestLamport u2udb.Store `table:"l"`
+		HighestLamport sesadb.Store `table:"l"`
 
 		// Network version
-		NetworkVersion u2udb.Store `table:"V"`
+		NetworkVersion sesadb.Store `table:"V"`
 
 		// API-only
-		BlockHashes u2udb.Store `table:"B"`
+		BlockHashes sesadb.Store `table:"B"`
 
-		LlrState           u2udb.Store `table:"S"`
-		LlrBlockResults    u2udb.Store `table:"R"`
-		LlrEpochResults    u2udb.Store `table:"Q"`
-		LlrBlockVotes      u2udb.Store `table:"T"`
-		LlrBlockVotesIndex u2udb.Store `table:"J"`
-		LlrEpochVotes      u2udb.Store `table:"E"`
-		LlrEpochVoteIndex  u2udb.Store `table:"I"`
-		LlrLastBlockVotes  u2udb.Store `table:"G"`
-		LlrLastEpochVote   u2udb.Store `table:"F"`
+		LlrState           sesadb.Store `table:"S"`
+		LlrBlockResults    sesadb.Store `table:"R"`
+		LlrEpochResults    sesadb.Store `table:"Q"`
+		LlrBlockVotes      sesadb.Store `table:"T"`
+		LlrBlockVotesIndex sesadb.Store `table:"J"`
+		LlrEpochVotes      sesadb.Store `table:"E"`
+		LlrEpochVoteIndex  sesadb.Store `table:"I"`
+		LlrLastBlockVotes  sesadb.Store `table:"G"`
+		LlrLastEpochVote   sesadb.Store `table:"F"`
 	}
 
 	prevFlushTime time.Time
@@ -111,7 +111,7 @@ func NewMemStore() *Store {
 }
 
 // NewStore creates store over key-value db.
-func NewStore(dbs u2udb.FlushableDBProducer, cfg StoreConfig) *Store {
+func NewStore(dbs sesadb.FlushableDBProducer, cfg StoreConfig) *Store {
 	s := &Store{
 		dbs:           dbs,
 		cfg:           cfg,

@@ -4,11 +4,11 @@ import (
 	"context"
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
 
-	"github.com/unicornultrafoundation/go-u2u/utils/dbutil/threads"
+	"github.com/sesanetwork/go-sesa/utils/dbutil/threads"
 )
 
 // withThreadPool wraps the index and limits its threads in use

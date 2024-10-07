@@ -19,7 +19,7 @@ package snap
 import (
 	"testing"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-sesa/common"
 )
 
 // Tests that given a starting hash and a density, the hash ranger can correctly

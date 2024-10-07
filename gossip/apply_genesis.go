@@ -3,13 +3,13 @@ package gossip
 import (
 	"errors"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/u2udb/batched"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/sesadb/batched"
 
-	"github.com/unicornultrafoundation/go-u2u/native/iblockproc"
-	"github.com/unicornultrafoundation/go-u2u/native/ibr"
-	"github.com/unicornultrafoundation/go-u2u/native/ier"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesis"
+	"github.com/sesanetwork/go-sesa/native/iblockproc"
+	"github.com/sesanetwork/go-sesa/native/ibr"
+	"github.com/sesanetwork/go-sesa/native/ier"
+	"github.com/sesanetwork/go-sesa/sesa/genesis"
 )
 
 // ApplyGenesis writes initial state.

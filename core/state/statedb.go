@@ -24,15 +24,15 @@ import (
 	"sort"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/rawdb"
-	"github.com/unicornultrafoundation/go-u2u/core/state/snapshot"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/metrics"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
-	"github.com/unicornultrafoundation/go-u2u/trie"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/rawdb"
+	"github.com/sesanetwork/go-sesa/core/state/snapshot"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/metrics"
+	"github.com/sesanetwork/go-sesa/rlp"
+	"github.com/sesanetwork/go-sesa/trie"
 )
 
 type revision struct {
@@ -667,7 +667,7 @@ func (s *StateDB) Copy() *StateDB {
 	}
 	// Copy the dirty states, logs, and preimages
 	for addr := range s.journal.dirties {
-		// As documented [here](https://github.com/unicornultrafoundation/go-u2u/libs/pull/16485#issuecomment-380438527),
+		// As documented [here](https://github.com/sesanetwork/go-sesa/libs/pull/16485#issuecomment-380438527),
 		// and in the Finalise-method, there is a case where an object is in the journal but not
 		// in the stateObjects: OOG after touch on ripeMD prior to Byzantium. Thus, we need to check for
 		// nil

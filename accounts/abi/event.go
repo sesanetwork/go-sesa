@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/crypto"
 )
 
 // Event is an event potentially triggered by the EVM's LOG mechanism. The Event

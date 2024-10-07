@@ -20,10 +20,10 @@ import (
 	"context"
 	"sync"
 
-	u2u "github.com/unicornultrafoundation/go-u2u"
-	"github.com/unicornultrafoundation/go-u2u/event"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/snap/snapstream/snapleecher"
-	"github.com/unicornultrafoundation/go-u2u/rpc"
+	sesa "github.com/sesanetwork/go-sesa"
+	"github.com/sesanetwork/go-sesa/event"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/snap/snapstream/snapleecher"
+	"github.com/sesanetwork/go-sesa/rpc"
 )
 
 // PublicDownloaderAPI provides an API which gives information about the current synchronisation status.
@@ -123,7 +123,7 @@ func (api *PublicDownloaderAPI) Syncing(ctx context.Context) (*rpc.Subscription,
 // SyncingResult provides information about the current synchronisation status for this node.
 type SyncingResult struct {
 	Syncing bool             `json:"syncing"`
-	Status  u2u.SyncProgress `json:"status"`
+	Status  sesa.SyncProgress `json:"status"`
 }
 
 // uninstallSyncSubscriptionRequest uninstalles a syncing subscription in the API event loop.

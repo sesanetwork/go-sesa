@@ -26,9 +26,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/common/math"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/common/math"
+	"github.com/sesanetwork/go-sesa/crypto"
 )
 
 const jsondata = `

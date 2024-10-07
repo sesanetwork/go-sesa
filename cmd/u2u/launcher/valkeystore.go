@@ -6,14 +6,14 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/unicornultrafoundation/go-u2u/cmd/utils"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/node"
+	"github.com/sesanetwork/go-sesa/cmd/utils"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/node"
 	cli "gopkg.in/urfave/cli.v1"
 
-	"github.com/unicornultrafoundation/go-u2u/native/validatorpk"
-	"github.com/unicornultrafoundation/go-u2u/valkeystore"
+	"github.com/sesanetwork/go-sesa/native/validatorpk"
+	"github.com/sesanetwork/go-sesa/valkeystore"
 )
 
 func addFakeValidatorKey(ctx *cli.Context, key *ecdsa.PrivateKey, pubkey validatorpk.PubKey, valKeystore valkeystore.RawKeystoreI) {

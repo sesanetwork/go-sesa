@@ -26,12 +26,12 @@ import (
 
 	"gopkg.in/urfave/cli.v1"
 
-	"github.com/unicornultrafoundation/go-u2u/accounts/abi/bind"
-	"github.com/unicornultrafoundation/go-u2u/cmd/utils"
-	"github.com/unicornultrafoundation/go-u2u/common/compiler"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/flags"
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-sesa/accounts/abi/bind"
+	"github.com/sesanetwork/go-sesa/cmd/utils"
+	"github.com/sesanetwork/go-sesa/common/compiler"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/flags"
+	"github.com/sesanetwork/go-sesa/log"
 )
 
 var (
@@ -79,7 +79,7 @@ var (
 	// Git SHA1 commit hash of the release (set via linker flags).
 	gitCommit = ""
 	gitDate   = ""
-	app       = flags.NewApp(gitCommit, gitDate, "U2U ABI wrapper code generator")
+	app       = flags.NewApp(gitCommit, gitDate, "sesa ABI wrapper code generator")
 )
 
 func init() {

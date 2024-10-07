@@ -25,17 +25,17 @@ import (
 	"sync"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/common/prque"
-	"github.com/unicornultrafoundation/go-u2u/core/state"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	notify "github.com/unicornultrafoundation/go-u2u/event"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/metrics"
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/common/prque"
+	"github.com/sesanetwork/go-sesa/core/state"
+	"github.com/sesanetwork/go-sesa/core/types"
+	notify "github.com/sesanetwork/go-sesa/event"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/metrics"
+	"github.com/sesanetwork/go-sesa/params"
 
-	"github.com/unicornultrafoundation/go-u2u/utils/signers/gsignercache"
-	"github.com/unicornultrafoundation/go-u2u/utils/txtime"
+	"github.com/sesanetwork/go-sesa/utils/signers/gsignercache"
+	"github.com/sesanetwork/go-sesa/utils/txtime"
 )
 
 const (
@@ -624,7 +624,7 @@ func (pool *TxPool) validateTx(tx *types.Transaction, local bool) error {
 	if !local && tx.GasTipCapIntCmp(pool.gasPrice) < 0 {
 		return ErrUnderpriced
 	}
-	// Ensure U2U-specific hard bounds
+	// Ensure sesa-specific hard bounds
 	if recommendedGasTip, minPrice := pool.chain.EffectiveMinTip(), pool.chain.MinGasPrice(); recommendedGasTip != nil && minPrice != nil {
 		if tx.GasTipCapIntCmp(recommendedGasTip) < 0 {
 			return ErrUnderpriced
@@ -1185,7 +1185,7 @@ func (pool *TxPool) runReorg(done chan struct{}, reset *txpoolResetRequest, dirt
 	if reset != nil {
 		pool.demoteUnexecutables()
 		if pool.chain.MinGasPrice() != nil {
-			// U2U-specific base fee
+			// sesa-specific base fee
 			pool.priced.SetBaseFee(pool.chain.MinGasPrice())
 		} else {
 			// for tests only
@@ -1226,7 +1226,7 @@ func (pool *TxPool) runReorg(done chan struct{}, reset *txpoolResetRequest, dirt
 // reset retrieves the current state of the blockchain and ensures the content
 // of the transaction pool is valid with regard to the chain state.
 func (pool *TxPool) reset(oldHead, newHead *EvmHeader) {
-	// update chain config (U2U-specific)
+	// update chain config (sesa-specific)
 	if newConfig := pool.chain.Config(); newConfig != nil {
 		pool.chainconfig = newConfig
 	}

@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/unicornultrafoundation/go-u2u/crypto"
+	"github.com/sesanetwork/go-sesa/crypto"
 )
 
 // FunctionType represents different types of functions a contract might have.

@@ -3,7 +3,7 @@ package fileshash
 import (
 	"io"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
+	"github.com/sesanetwork/go-helios/hash"
 )
 
 type Map struct {

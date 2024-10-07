@@ -5,21 +5,21 @@ import (
 	"math"
 	"math/big"
 
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/state"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/state"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/log"
 
-	"github.com/unicornultrafoundation/go-u2u/gossip/blockproc"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/native/drivertype"
-	"github.com/unicornultrafoundation/go-u2u/native/iblockproc"
-	"github.com/unicornultrafoundation/go-u2u/native/validatorpk"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
-	"github.com/unicornultrafoundation/go-u2u/u2u/contracts/driver"
-	"github.com/unicornultrafoundation/go-u2u/u2u/contracts/driver/drivercall"
-	"github.com/unicornultrafoundation/go-u2u/u2u/contracts/driver/driverpos"
+	"github.com/sesanetwork/go-sesa/gossip/blockproc"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/native/drivertype"
+	"github.com/sesanetwork/go-sesa/native/iblockproc"
+	"github.com/sesanetwork/go-sesa/native/validatorpk"
+	"github.com/sesanetwork/go-sesa/sesa"
+	"github.com/sesanetwork/go-sesa/sesa/contracts/driver"
+	"github.com/sesanetwork/go-sesa/sesa/contracts/driver/drivercall"
+	"github.com/sesanetwork/go-sesa/sesa/contracts/driver/driverpos"
 )
 
 const (
@@ -95,13 +95,13 @@ func (p *DriverTxPreTransactor) PopInternalTxs(block iblockproc.BlockCtx, bs ibl
 		for oldValIdx := idx.Validator(0); oldValIdx < es.Validators.Len(); oldValIdx++ {
 			info := bs.ValidatorStates[oldValIdx]
 			// forgive downtime if below BlockMissedSlack
-			missed := u2u.BlocksMissed{
+			missed := sesa.BlocksMissed{
 				BlocksNum: maxBlockIdx(block.Idx, info.LastBlock) - info.LastBlock,
 				Period:    native.MaxTimestamp(block.Time, info.LastOnlineTime) - info.LastOnlineTime,
 			}
 			uptime := info.Uptime
 			if missed.BlocksNum <= es.Rules.Economy.BlockMissedSlack {
-				missed = u2u.BlocksMissed{}
+				missed = sesa.BlocksMissed{}
 				prevOnlineTime := native.MaxTimestamp(info.LastOnlineTime, es.EpochStart)
 				uptime += native.MaxTimestamp(block.Time, prevOnlineTime) - prevOnlineTime
 			}
@@ -213,7 +213,7 @@ func (p *DriverTxListener) OnNewLog(l *types.Log) {
 		if p.bs.DirtyRules != nil {
 			last = p.bs.DirtyRules
 		}
-		updated, err := u2u.UpdateRules(*last, diff)
+		updated, err := sesa.UpdateRules(*last, diff)
 		if err != nil {
 			log.Warn("Network rules update error", "err", err)
 			return

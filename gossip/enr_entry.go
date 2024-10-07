@@ -1,8 +1,8 @@
 package gossip
 
 import (
-	"github.com/unicornultrafoundation/go-u2u/core/forkid"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-sesa/core/forkid"
+	"github.com/sesanetwork/go-sesa/rlp"
 )
 
 // Enr is ENR entry which advertises eth protocol
@@ -15,7 +15,7 @@ type Enr struct {
 
 // ENRKey implements enr.Entry.
 func (e Enr) ENRKey() string {
-	return "u2u"
+	return "sesa"
 }
 
 func (s *Service) currentEnr() *Enr {

@@ -9,51 +9,51 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/dag"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	utypes "github.com/unicornultrafoundation/go-helios/types"
-	"github.com/unicornultrafoundation/go-helios/utils/workers"
-	"github.com/unicornultrafoundation/go-u2u/accounts"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/eth/protocols/snap"
-	"github.com/unicornultrafoundation/go-u2u/event"
-	notify "github.com/unicornultrafoundation/go-u2u/event"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/node"
-	"github.com/unicornultrafoundation/go-u2u/p2p"
-	"github.com/unicornultrafoundation/go-u2u/p2p/dnsdisc"
-	"github.com/unicornultrafoundation/go-u2u/p2p/enode"
-	"github.com/unicornultrafoundation/go-u2u/p2p/enr"
-	"github.com/unicornultrafoundation/go-u2u/rpc"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/dag"
+	"github.com/sesanetwork/go-helios/native/idx"
+	utypes "github.com/sesanetwork/go-helios/types"
+	"github.com/sesanetwork/go-helios/utils/workers"
+	"github.com/sesanetwork/go-sesa/accounts"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/eth/protocols/snap"
+	"github.com/sesanetwork/go-sesa/event"
+	notify "github.com/sesanetwork/go-sesa/event"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/node"
+	"github.com/sesanetwork/go-sesa/p2p"
+	"github.com/sesanetwork/go-sesa/p2p/dnsdisc"
+	"github.com/sesanetwork/go-sesa/p2p/enode"
+	"github.com/sesanetwork/go-sesa/p2p/enr"
+	"github.com/sesanetwork/go-sesa/rpc"
 
-	"github.com/unicornultrafoundation/go-u2u/ethapi"
-	"github.com/unicornultrafoundation/go-u2u/eventcheck"
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/basiccheck"
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/epochcheck"
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/gaspowercheck"
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/heavycheck"
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/parentscheck"
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
-	"github.com/unicornultrafoundation/go-u2u/gossip/blockproc"
-	"github.com/unicornultrafoundation/go-u2u/gossip/blockproc/drivermodule"
-	"github.com/unicornultrafoundation/go-u2u/gossip/blockproc/eventmodule"
-	"github.com/unicornultrafoundation/go-u2u/gossip/blockproc/evmmodule"
-	"github.com/unicornultrafoundation/go-u2u/gossip/blockproc/sealmodule"
-	"github.com/unicornultrafoundation/go-u2u/gossip/blockproc/verwatcher"
-	"github.com/unicornultrafoundation/go-u2u/gossip/emitter"
-	"github.com/unicornultrafoundation/go-u2u/gossip/filters"
-	"github.com/unicornultrafoundation/go-u2u/gossip/gasprice"
-	"github.com/unicornultrafoundation/go-u2u/gossip/proclogger"
-	snapsync "github.com/unicornultrafoundation/go-u2u/gossip/protocols/snap"
-	"github.com/unicornultrafoundation/go-u2u/logger"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/utils/signers/gsignercache"
-	"github.com/unicornultrafoundation/go-u2u/utils/txtime"
-	"github.com/unicornultrafoundation/go-u2u/utils/wgmutex"
-	"github.com/unicornultrafoundation/go-u2u/valkeystore"
-	"github.com/unicornultrafoundation/go-u2u/vecmt"
+	"github.com/sesanetwork/go-sesa/ethapi"
+	"github.com/sesanetwork/go-sesa/eventcheck"
+	"github.com/sesanetwork/go-sesa/eventcheck/basiccheck"
+	"github.com/sesanetwork/go-sesa/eventcheck/epochcheck"
+	"github.com/sesanetwork/go-sesa/eventcheck/gaspowercheck"
+	"github.com/sesanetwork/go-sesa/eventcheck/heavycheck"
+	"github.com/sesanetwork/go-sesa/eventcheck/parentscheck"
+	"github.com/sesanetwork/go-sesa/evmcore"
+	"github.com/sesanetwork/go-sesa/gossip/blockproc"
+	"github.com/sesanetwork/go-sesa/gossip/blockproc/drivermodule"
+	"github.com/sesanetwork/go-sesa/gossip/blockproc/eventmodule"
+	"github.com/sesanetwork/go-sesa/gossip/blockproc/evmmodule"
+	"github.com/sesanetwork/go-sesa/gossip/blockproc/sealmodule"
+	"github.com/sesanetwork/go-sesa/gossip/blockproc/verwatcher"
+	"github.com/sesanetwork/go-sesa/gossip/emitter"
+	"github.com/sesanetwork/go-sesa/gossip/filters"
+	"github.com/sesanetwork/go-sesa/gossip/gasprice"
+	"github.com/sesanetwork/go-sesa/gossip/proclogger"
+	snapsync "github.com/sesanetwork/go-sesa/gossip/protocols/snap"
+	"github.com/sesanetwork/go-sesa/logger"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/utils/signers/gsignercache"
+	"github.com/sesanetwork/go-sesa/utils/txtime"
+	"github.com/sesanetwork/go-sesa/utils/wgmutex"
+	"github.com/sesanetwork/go-sesa/valkeystore"
+	"github.com/sesanetwork/go-sesa/vecmt"
 )
 
 type ServiceFeed struct {
@@ -142,7 +142,7 @@ type Service struct {
 	// application protocol
 	handler *handler
 
-	u2uDialCandidates  enode.Iterator
+	sesaDialCandidates  enode.Iterator
 	snapDialCandidates enode.Iterator
 
 	EthAPI        *EthAPIBackend
@@ -237,7 +237,7 @@ func newService(config Config, store *Store, blockProc BlockProc, engine utypes.
 	// init dialCandidates
 	dnsclient := dnsdisc.NewClient(dnsdisc.Config{})
 	var err error
-	svc.u2uDialCandidates, err = dnsclient.NewIterator(config.U2UDiscoveryURLs...)
+	svc.sesaDialCandidates, err = dnsclient.NewIterator(config.sesaDiscoveryURLs...)
 	if err != nil {
 		return nil, err
 	}
@@ -353,7 +353,7 @@ func (s *Service) RegisterEmitter(em *emitter.Emitter) {
 	s.emitters = append(s.emitters, em)
 }
 
-// MakeProtocols constructs the P2P protocol definitions for `u2u`.
+// MakeProtocols constructs the P2P protocol definitions for `sesa`.
 func MakeProtocols(svc *Service, backend *handler, disc enode.Iterator) []p2p.Protocol {
 	protocols := make([]p2p.Protocol, len(ProtocolVersions))
 	for i, version := range ProtocolVersions {
@@ -397,7 +397,7 @@ func MakeProtocols(svc *Service, backend *handler, disc enode.Iterator) []p2p.Pr
 // Protocols returns protocols the service can communicate on.
 func (s *Service) Protocols() []p2p.Protocol {
 	protos := append(
-		MakeProtocols(s, s.handler, s.u2uDialCandidates),
+		MakeProtocols(s, s.handler, s.sesaDialCandidates),
 		snap.MakeProtocols((*snapHandler)(s.handler), s.snapDialCandidates)...)
 	return protos
 }
@@ -481,14 +481,14 @@ func (s *Service) WaitBlockEnd() {
 
 // Stop method invoked when the node terminates the service.
 func (s *Service) Stop() error {
-	defer log.Info("U2U service stopped")
+	defer log.Info("sesa service stopped")
 	s.verWatcher.Stop()
 	for _, em := range s.emitters {
 		em.Stop()
 	}
 
 	// Stop all the peer-related stuff first.
-	s.u2uDialCandidates.Close()
+	s.sesaDialCandidates.Close()
 	s.snapDialCandidates.Close()
 
 	s.handler.Stop()

@@ -3,11 +3,11 @@ package emitter
 import (
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/emitter/ancestor"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/native/pos"
-	"github.com/unicornultrafoundation/go-helios/utils/piecefunc"
-	"github.com/unicornultrafoundation/go-u2u/native"
+	"github.com/sesanetwork/go-helios/emitter/ancestor"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/native/pos"
+	"github.com/sesanetwork/go-helios/utils/piecefunc"
+	"github.com/sesanetwork/go-sesa/native"
 )
 
 func scalarUpdMetric(diff idx.Event, weight pos.Weight, totalWeight pos.Weight) ancestor.Metric {

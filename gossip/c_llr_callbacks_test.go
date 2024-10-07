@@ -14,23 +14,23 @@ import (
 	"github.com/status-im/keycard-go/hexutils"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/native/pos"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
-	"github.com/unicornultrafoundation/go-u2u/rpc"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/native/pos"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/rlp"
+	"github.com/sesanetwork/go-sesa/rpc"
 
-	"github.com/unicornultrafoundation/go-u2u/eventcheck"
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/epochcheck"
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
-	"github.com/unicornultrafoundation/go-u2u/gossip/contract/ballot"
-	"github.com/unicornultrafoundation/go-u2u/gossip/filters"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/native/ibr"
-	"github.com/unicornultrafoundation/go-u2u/native/ier"
+	"github.com/sesanetwork/go-sesa/eventcheck"
+	"github.com/sesanetwork/go-sesa/eventcheck/epochcheck"
+	"github.com/sesanetwork/go-sesa/evmcore"
+	"github.com/sesanetwork/go-sesa/gossip/contract/ballot"
+	"github.com/sesanetwork/go-sesa/gossip/filters"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/native/ibr"
+	"github.com/sesanetwork/go-sesa/native/ier"
 )
 
 type IntegrationTestSuite struct {
@@ -812,7 +812,7 @@ func (s *IntegrationTestSuite) TestFullRepeater() {
 	wg.Wait()
 
 	// Comparing the store states
-	fetchTable := func(table u2udb.Store) map[string]string {
+	fetchTable := func(table sesadb.Store) map[string]string {
 		var m = make(map[string]string)
 		it := table.NewIterator(nil, nil)
 		defer it.Release()

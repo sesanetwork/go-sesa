@@ -3,11 +3,11 @@ package emitter
 import (
 	"io"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/log"
 
-	"github.com/unicornultrafoundation/go-u2u/utils"
+	"github.com/sesanetwork/go-sesa/utils"
 )
 
 var openPrevActionFile = utils.OpenFile

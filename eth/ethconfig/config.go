@@ -23,12 +23,12 @@ import (
 	"os/user"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core"
-	"github.com/unicornultrafoundation/go-u2u/eth/gasprice"
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
-	"github.com/unicornultrafoundation/go-u2u/miner"
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core"
+	"github.com/sesanetwork/go-sesa/eth/gasprice"
+	"github.com/sesanetwork/go-sesa/evmcore"
+	"github.com/sesanetwork/go-sesa/miner"
+	"github.com/sesanetwork/go-sesa/params"
 )
 
 // FullNodeGPO contains default gasprice oracle settings for full node.

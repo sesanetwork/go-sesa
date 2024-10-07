@@ -22,7 +22,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/common/mclock"
+	"github.com/sesanetwork/go-sesa/common/mclock"
 )
 
 const (

@@ -1,11 +1,11 @@
-package u2u
+package sesa
 
 import (
 	"math/big"
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-sesa/rlp"
 )
 
 func TestUpdateRules(t *testing.T) {

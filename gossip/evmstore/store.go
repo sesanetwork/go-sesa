@@ -4,26 +4,26 @@ import (
 	"errors"
 
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/nokeyiserr"
-	"github.com/unicornultrafoundation/go-helios/u2udb/table"
-	"github.com/unicornultrafoundation/go-helios/utils/wlru"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/common/prque"
-	"github.com/unicornultrafoundation/go-u2u/core/rawdb"
-	"github.com/unicornultrafoundation/go-u2u/core/state"
-	"github.com/unicornultrafoundation/go-u2u/core/state/snapshot"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/ethdb"
-	"github.com/unicornultrafoundation/go-u2u/trie"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-helios/sesadb/nokeyiserr"
+	"github.com/sesanetwork/go-helios/sesadb/table"
+	"github.com/sesanetwork/go-helios/utils/wlru"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/common/prque"
+	"github.com/sesanetwork/go-sesa/core/rawdb"
+	"github.com/sesanetwork/go-sesa/core/state"
+	"github.com/sesanetwork/go-sesa/core/state/snapshot"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/ethdb"
+	"github.com/sesanetwork/go-sesa/trie"
 
-	"github.com/unicornultrafoundation/go-u2u/logger"
-	"github.com/unicornultrafoundation/go-u2u/native/iblockproc"
-	"github.com/unicornultrafoundation/go-u2u/topicsdb"
-	"github.com/unicornultrafoundation/go-u2u/utils/adapters/udb2ethdb"
-	"github.com/unicornultrafoundation/go-u2u/utils/rlpstore"
+	"github.com/sesanetwork/go-sesa/logger"
+	"github.com/sesanetwork/go-sesa/native/iblockproc"
+	"github.com/sesanetwork/go-sesa/topicsdb"
+	"github.com/sesanetwork/go-sesa/utils/adapters/udb2ethdb"
+	"github.com/sesanetwork/go-sesa/utils/rlpstore"
 )
 
 const nominalSize uint = 1
@@ -33,11 +33,11 @@ type Store struct {
 	cfg StoreConfig
 
 	table struct {
-		Evm u2udb.Store `table:"M"`
+		Evm sesadb.Store `table:"M"`
 		// API-only tables
-		Receipts    u2udb.Store `table:"r"`
-		TxPositions u2udb.Store `table:"x"`
-		Txs         u2udb.Store `table:"X"`
+		Receipts    sesadb.Store `table:"r"`
+		TxPositions sesadb.Store `table:"x"`
+		Txs         sesadb.Store `table:"X"`
 	}
 
 	EvmDb    ethdb.Database
@@ -63,7 +63,7 @@ const (
 )
 
 // NewStore creates store over key-value db.
-func NewStore(dbs u2udb.DBProducer, cfg StoreConfig) *Store {
+func NewStore(dbs sesadb.DBProducer, cfg StoreConfig) *Store {
 	s := &Store{
 		cfg:      cfg,
 		Instance: logger.New("evm-store"),
@@ -114,7 +114,7 @@ func (s *Store) initEVMDB() {
 	})
 }
 
-func (s *Store) ResetWithEVMDB(evmStore u2udb.Store) *Store {
+func (s *Store) ResetWithEVMDB(evmStore sesadb.Store) *Store {
 	cp := *s
 	cp.table.Evm = evmStore
 	cp.initEVMDB()
@@ -122,7 +122,7 @@ func (s *Store) ResetWithEVMDB(evmStore u2udb.Store) *Store {
 	return &cp
 }
 
-func (s *Store) EVMDB() u2udb.Store {
+func (s *Store) EVMDB() sesadb.Store {
 	return s.table.Evm
 }
 

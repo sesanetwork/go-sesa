@@ -3,13 +3,13 @@ package dagstreamseeder
 import (
 	"errors"
 
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-sesa/rlp"
 
-	"github.com/unicornultrafoundation/go-helios/gossip/basestream"
-	"github.com/unicornultrafoundation/go-helios/gossip/basestream/basestreamseeder"
-	"github.com/unicornultrafoundation/go-helios/hash"
+	"github.com/sesanetwork/go-helios/gossip/basestream"
+	"github.com/sesanetwork/go-helios/gossip/basestream/basestreamseeder"
+	"github.com/sesanetwork/go-helios/hash"
 
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/dag/dagstream"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/dag/dagstream"
 )
 
 var (

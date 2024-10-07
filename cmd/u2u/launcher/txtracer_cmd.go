@@ -14,15 +14,15 @@ import (
 
 	"gopkg.in/urfave/cli.v1"
 
-	"github.com/unicornultrafoundation/go-u2u/cmd/utils"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-sesa/cmd/utils"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/rlp"
 
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-u2u/gossip"
-	"github.com/unicornultrafoundation/go-u2u/native"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-sesa/gossip"
+	"github.com/sesanetwork/go-sesa/native"
 )
 
 type TracePayload struct {
@@ -198,7 +198,7 @@ func exportTxTracer(ctx *cli.Context) error {
 	return nil
 }
 
-func makeRawGossipStoreTrace(producer u2udb.FlushableDBProducer, cfg *config) (*gossip.Store, error) {
+func makeRawGossipStoreTrace(producer sesadb.FlushableDBProducer, cfg *config) (*gossip.Store, error) {
 	gdb := makeGossipStore(producer, cfg)
 
 	if gdb.TxTraceStore() == nil {

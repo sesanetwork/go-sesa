@@ -6,12 +6,12 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/common/math"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/common/math"
+	"github.com/sesanetwork/go-sesa/core/types"
 
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/sesa"
 )
 
 type fakeTx struct {
@@ -23,8 +23,8 @@ type fakeTx struct {
 type TestBackend struct {
 	block             idx.Block
 	totalGasPowerLeft uint64
-	rules             u2u.Rules
-	pendingRules      u2u.Rules
+	rules             sesa.Rules
+	pendingRules      sesa.Rules
 	pendingTxs        []fakeTx
 }
 
@@ -36,11 +36,11 @@ func (t TestBackend) TotalGasPowerLeft() uint64 {
 	return t.totalGasPowerLeft
 }
 
-func (t TestBackend) GetRules() u2u.Rules {
+func (t TestBackend) GetRules() sesa.Rules {
 	return t.rules
 }
 
-func (t TestBackend) GetPendingRules() u2u.Rules {
+func (t TestBackend) GetPendingRules() sesa.Rules {
 	return t.pendingRules
 }
 
@@ -63,8 +63,8 @@ func TestOracle_EffectiveMinGasPrice(t *testing.T) {
 	backend := &TestBackend{
 		block:             1,
 		totalGasPowerLeft: 0,
-		rules:             u2u.FakeNetRules(),
-		pendingRules:      u2u.FakeNetRules(),
+		rules:             sesa.FakeNetRules(),
+		pendingRules:      sesa.FakeNetRules(),
 	}
 
 	gpo := NewOracle(Config{})
@@ -123,8 +123,8 @@ func TestOracle_EffectiveMinGasPrice(t *testing.T) {
 func TestOracle_constructiveGasPrice(t *testing.T) {
 	backend := &TestBackend{
 		totalGasPowerLeft: 0,
-		rules:             u2u.FakeNetRules(),
-		pendingRules:      u2u.FakeNetRules(),
+		rules:             sesa.FakeNetRules(),
+		pendingRules:      sesa.FakeNetRules(),
 	}
 
 	gpo := NewOracle(Config{})
@@ -165,8 +165,8 @@ func TestOracle_constructiveGasPrice(t *testing.T) {
 func TestOracle_reactiveGasPrice(t *testing.T) {
 	backend := &TestBackend{
 		totalGasPowerLeft: 0,
-		rules:             u2u.FakeNetRules(),
-		pendingRules:      u2u.FakeNetRules(),
+		rules:             sesa.FakeNetRules(),
+		pendingRules:      sesa.FakeNetRules(),
 	}
 
 	gpo := NewOracle(Config{})

@@ -4,12 +4,12 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/gossip/basestream/basestreamleecher"
-	"github.com/unicornultrafoundation/go-helios/gossip/basestream/basestreamleecher/basepeerleecher"
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/gossip/basestream/basestreamleecher"
+	"github.com/sesanetwork/go-helios/gossip/basestream/basestreamleecher/basepeerleecher"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
 
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/blockvotes/bvstream"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/blockvotes/bvstream"
 )
 
 // Leecher is responsible for requesting BVs based on lexicographic BVs streams

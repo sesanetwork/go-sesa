@@ -7,37 +7,37 @@ import (
 	"strings"
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/native/idx"
 	"gopkg.in/urfave/cli.v1"
 
-	"github.com/unicornultrafoundation/go-u2u/accounts"
-	"github.com/unicornultrafoundation/go-u2u/accounts/keystore"
-	"github.com/unicornultrafoundation/go-u2u/cmd/u2u/launcher/monitoring"
-	"github.com/unicornultrafoundation/go-u2u/cmd/u2u/launcher/tracing"
-	"github.com/unicornultrafoundation/go-u2u/cmd/utils"
-	"github.com/unicornultrafoundation/go-u2u/console/prompt"
-	"github.com/unicornultrafoundation/go-u2u/debug"
-	"github.com/unicornultrafoundation/go-u2u/ethclient"
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
-	"github.com/unicornultrafoundation/go-u2u/flags"
-	"github.com/unicornultrafoundation/go-u2u/gossip"
-	"github.com/unicornultrafoundation/go-u2u/gossip/emitter"
-	"github.com/unicornultrafoundation/go-u2u/integration"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	evmetrics "github.com/unicornultrafoundation/go-u2u/metrics"
-	"github.com/unicornultrafoundation/go-u2u/node"
-	"github.com/unicornultrafoundation/go-u2u/p2p/discover/discfilter"
-	"github.com/unicornultrafoundation/go-u2u/params"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesis"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesisstore"
-	"github.com/unicornultrafoundation/go-u2u/utils/errlock"
-	"github.com/unicornultrafoundation/go-u2u/valkeystore"
-	_ "github.com/unicornultrafoundation/go-u2u/version"
+	"github.com/sesanetwork/go-sesa/accounts"
+	"github.com/sesanetwork/go-sesa/accounts/keystore"
+	"github.com/sesanetwork/go-sesa/cmd/sesa/launcher/monitoring"
+	"github.com/sesanetwork/go-sesa/cmd/sesa/launcher/tracing"
+	"github.com/sesanetwork/go-sesa/cmd/utils"
+	"github.com/sesanetwork/go-sesa/console/prompt"
+	"github.com/sesanetwork/go-sesa/debug"
+	"github.com/sesanetwork/go-sesa/ethclient"
+	"github.com/sesanetwork/go-sesa/evmcore"
+	"github.com/sesanetwork/go-sesa/flags"
+	"github.com/sesanetwork/go-sesa/gossip"
+	"github.com/sesanetwork/go-sesa/gossip/emitter"
+	"github.com/sesanetwork/go-sesa/integration"
+	"github.com/sesanetwork/go-sesa/log"
+	evmetrics "github.com/sesanetwork/go-sesa/metrics"
+	"github.com/sesanetwork/go-sesa/node"
+	"github.com/sesanetwork/go-sesa/p2p/discover/discfilter"
+	"github.com/sesanetwork/go-sesa/params"
+	"github.com/sesanetwork/go-sesa/sesa/genesis"
+	"github.com/sesanetwork/go-sesa/sesa/genesisstore"
+	"github.com/sesanetwork/go-sesa/utils/errlock"
+	"github.com/sesanetwork/go-sesa/valkeystore"
+	_ "github.com/sesanetwork/go-sesa/version"
 )
 
 const (
 	// clientIdentifier to advertise over the network.
-	clientIdentifier = "go-u2u"
+	clientIdentifier = "go-sesa"
 )
 
 var (
@@ -45,7 +45,7 @@ var (
 	gitCommit = ""
 	gitDate   = ""
 	// The app that holds all commands and flags.
-	app = flags.NewApp(gitCommit, gitDate, "the go-u2u command line interface")
+	app = flags.NewApp(gitCommit, gitDate, "the go-sesa command line interface")
 
 	nodeFlags        []cli.Flag
 	testFlags        []cli.Flag
@@ -54,7 +54,7 @@ var (
 	performanceFlags []cli.Flag
 	networkingFlags  []cli.Flag
 	txpoolFlags      []cli.Flag
-	u2uFlags         []cli.Flag
+	sesaFlags         []cli.Flag
 	rpcFlags         []cli.Flag
 	metricsFlags     []cli.Flag
 )
@@ -103,7 +103,7 @@ func initFlags() {
 		utils.TxPoolGlobalQueueFlag,
 		utils.TxPoolLifetimeFlag,
 	}
-	u2uFlags = []cli.Flag{
+	sesaFlags = []cli.Flag{
 		GenesisFlag,
 		ExperimentalGenesisFlag,
 		utils.IdentityFlag,
@@ -174,7 +174,7 @@ func initFlags() {
 	nodeFlags = append(nodeFlags, performanceFlags...)
 	nodeFlags = append(nodeFlags, networkingFlags...)
 	nodeFlags = append(nodeFlags, txpoolFlags...)
-	nodeFlags = append(nodeFlags, u2uFlags...)
+	nodeFlags = append(nodeFlags, sesaFlags...)
 }
 
 // init the CLI app.
@@ -249,7 +249,7 @@ func Launch(args []string) error {
 	return app.Run(args)
 }
 
-// u2u is the main entry point into the system if no special subcommand is ran.
+// sesa is the main entry point into the system if no special subcommand is ran.
 // It creates a default node based on the command line arguments and runs it in
 // blocking mode, waiting for it to be shut down.
 func hashgraphMain(ctx *cli.Context) error {
@@ -348,7 +348,7 @@ func makeNode(ctx *cli.Context, cfg *config, genesisStore *genesisstore.Store) (
 		}
 		return false
 	}
-	svc, err := gossip.NewService(stack, cfg.U2U, gdb, blockProc, engine, dagIndex, newTxPool, haltCheck)
+	svc, err := gossip.NewService(stack, cfg.sesa, gdb, blockProc, engine, dagIndex, newTxPool, haltCheck)
 	if err != nil {
 		utils.Fatalf("Failed to create the service: %v", err)
 	}
@@ -399,7 +399,7 @@ func startNode(ctx *cli.Context, stack *node.Node) {
 	events := make(chan accounts.WalletEvent, 16)
 	stack.AccountManager().Subscribe(events)
 
-	// Create a client to interact with local u2u node.
+	// Create a client to interact with local sesa node.
 	rpcClient, err := stack.Attach()
 	if err != nil {
 		utils.Fatalf("Failed to attach to self: %v", err)

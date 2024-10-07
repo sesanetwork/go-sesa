@@ -25,19 +25,19 @@ import (
 	"sync"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/common/hexutil"
-	"github.com/unicornultrafoundation/go-u2u/core/state"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/core/vm"
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
-	"github.com/unicornultrafoundation/go-u2u/evmcore/txtracer"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/params"
-	"github.com/unicornultrafoundation/go-u2u/rpc"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
-	"github.com/unicornultrafoundation/go-u2u/u2u/contracts/sfc"
-	"github.com/unicornultrafoundation/go-u2u/utils/signers/gsignercache"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/common/hexutil"
+	"github.com/sesanetwork/go-sesa/core/state"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/core/vm"
+	"github.com/sesanetwork/go-sesa/evmcore"
+	"github.com/sesanetwork/go-sesa/evmcore/txtracer"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/params"
+	"github.com/sesanetwork/go-sesa/rpc"
+	"github.com/sesanetwork/go-sesa/sesa"
+	"github.com/sesanetwork/go-sesa/sesa/contracts/sfc"
+	"github.com/sesanetwork/go-sesa/utils/signers/gsignercache"
 )
 
 // PublicTxTraceAPI provides an API to access transaction tracing.
@@ -59,7 +59,7 @@ func (s *PublicTxTraceAPI) traceTx(
 
 	// Providing default config
 	// In case of trace transaction node, this config is changed
-	cfg := u2u.DefaultVMConfig
+	cfg := sesa.DefaultVMConfig
 	cfg.Debug = true
 	txTracer := txtracer.NewTraceStructLogger(nil)
 	cfg.Tracer = txTracer
@@ -253,7 +253,7 @@ func (s *PublicTxTraceAPI) traceBlock(ctx context.Context, block *evmcore.EvmBlo
 					return nil, fmt.Errorf("cannot replay tranasction %s, error %s", tx.Hash().String(), err)
 				}
 				state.Prepare(tx.Hash(), i)
-				vmConfig := u2u.DefaultVMConfig
+				vmConfig := sesa.DefaultVMConfig
 				vmConfig.NoBaseFee = true
 				vmConfig.Debug = false
 				vmConfig.Tracer = nil

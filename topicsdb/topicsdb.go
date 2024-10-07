@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
 )
 
 const maxTopicsCount = 5 // count is limited hard to 5 by EVM (see LOG0...LOG4 ops)
@@ -28,14 +28,14 @@ type Index interface {
 }
 
 // New Index instance.
-func New(dbs u2udb.DBProducer) Index {
+func New(dbs sesadb.DBProducer) Index {
 	tt := newIndex(dbs)
 
 	return tt
 }
 
 // New Index instance consumes limited threads count.
-func NewWithThreadPool(dbs u2udb.DBProducer) Index {
+func NewWithThreadPool(dbs sesadb.DBProducer) Index {
 	tt := newIndex(dbs)
 	return &withThreadPool{tt}
 }

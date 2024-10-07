@@ -3,8 +3,8 @@ package utils
 import (
 	"fmt"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
 )
 
 // NameOf returns human readable string representation.

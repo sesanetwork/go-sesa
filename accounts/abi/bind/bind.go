@@ -17,7 +17,7 @@
 // Package bind generates Ethereum contract Go bindings.
 //
 // Detailed usage document and tutorial available on the go-ethereum Wiki page:
-// https://github.com/unicornultrafoundation/go-u2u/libs/wiki/Native-DApps:-Go-bindings-to-Ethereum-contracts
+// https://github.com/sesanetwork/go-sesa/libs/wiki/Native-DApps:-Go-bindings-to-Ethereum-contracts
 package bind
 
 import (
@@ -30,8 +30,8 @@ import (
 	"text/template"
 	"unicode"
 
-	"github.com/unicornultrafoundation/go-u2u/accounts/abi"
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-sesa/accounts/abi"
+	"github.com/sesanetwork/go-sesa/log"
 )
 
 // Lang is a target programming language selector to generate bindings for.

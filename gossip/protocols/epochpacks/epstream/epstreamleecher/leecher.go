@@ -4,11 +4,11 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/gossip/basestream/basestreamleecher"
-	"github.com/unicornultrafoundation/go-helios/gossip/basestream/basestreamleecher/basepeerleecher"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/gossip/basestream/basestreamleecher"
+	"github.com/sesanetwork/go-helios/gossip/basestream/basestreamleecher/basepeerleecher"
+	"github.com/sesanetwork/go-helios/native/idx"
 
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/epochpacks/epstream"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/epochpacks/epstream"
 )
 
 // Leecher is responsible for requesting EPs based on lexicographic EPs streams

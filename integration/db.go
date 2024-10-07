@@ -7,22 +7,22 @@ import (
 	"path"
 	"strings"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/dag"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/flaggedproducer"
-	"github.com/unicornultrafoundation/go-helios/u2udb/flushable"
-	"github.com/unicornultrafoundation/go-helios/u2udb/leveldb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/multidb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/pebble"
-	"github.com/unicornultrafoundation/go-helios/utils/fmtfilter"
-	"github.com/unicornultrafoundation/go-u2u/cmd/utils"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/metrics"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/dag"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-helios/sesadb/flaggedproducer"
+	"github.com/sesanetwork/go-helios/sesadb/flushable"
+	"github.com/sesanetwork/go-helios/sesadb/leveldb"
+	"github.com/sesanetwork/go-helios/sesadb/multidb"
+	"github.com/sesanetwork/go-helios/sesadb/pebble"
+	"github.com/sesanetwork/go-helios/utils/fmtfilter"
+	"github.com/sesanetwork/go-sesa/cmd/utils"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/metrics"
 
-	"github.com/unicornultrafoundation/go-u2u/gossip"
-	"github.com/unicornultrafoundation/go-u2u/utils/dbutil/asyncflushproducer"
-	"github.com/unicornultrafoundation/go-u2u/utils/dbutil/dbcounter"
+	"github.com/sesanetwork/go-sesa/gossip"
+	"github.com/sesanetwork/go-sesa/utils/dbutil/asyncflushproducer"
+	"github.com/sesanetwork/go-sesa/utils/dbutil/dbcounter"
 )
 
 type DBsConfig struct {
@@ -41,9 +41,9 @@ type DBsCacheConfig struct {
 	Table map[string]DBCacheConfig
 }
 
-func SupportedDBs(chaindataDir string, cfg DBsCacheConfig) (map[multidb.TypeName]u2udb.IterableDBProducer, map[multidb.TypeName]u2udb.FullDBProducer) {
+func SupportedDBs(chaindataDir string, cfg DBsCacheConfig) (map[multidb.TypeName]sesadb.IterableDBProducer, map[multidb.TypeName]sesadb.FullDBProducer) {
 	if chaindataDir == "inmemory" || chaindataDir == "" {
-		chaindataDir, _ = ioutil.TempDir("", "u2u-tmp")
+		chaindataDir, _ = ioutil.TempDir("", "sesa-tmp")
 	}
 	cacher, err := DbCacheFdlimit(cfg)
 	if err != nil {
@@ -66,14 +66,14 @@ func SupportedDBs(chaindataDir string, cfg DBsCacheConfig) (map[multidb.TypeName
 		pebbleDrc = WrapDatabaseWithMetrics(pebbleDrc)
 	}
 
-	return map[multidb.TypeName]u2udb.IterableDBProducer{
+	return map[multidb.TypeName]sesadb.IterableDBProducer{
 			"leveldb-fsh": leveldbFsh,
 			"leveldb-flg": leveldbFlg,
 			"leveldb-drc": leveldbDrc,
 			"pebble-fsh":  pebbleFsh,
 			"pebble-flg":  pebbleFlg,
 			"pebble-drc":  pebbleDrc,
-		}, map[multidb.TypeName]u2udb.FullDBProducer{
+		}, map[multidb.TypeName]sesadb.FullDBProducer{
 			"leveldb-fsh": flushable.NewSyncedPool(leveldbFsh, FlushIDKey),
 			"leveldb-flg": flaggedproducer.Wrap(leveldbFlg, FlushIDKey),
 			"leveldb-drc": &DummyScopedProducer{leveldbDrc},
@@ -159,7 +159,7 @@ func MakeDBDirs(chaindataDir string) {
 }
 
 type DummyScopedProducer struct {
-	u2udb.IterableDBProducer
+	sesadb.IterableDBProducer
 }
 
 func (d DummyScopedProducer) NotFlushedSizeEst() int {

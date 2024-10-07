@@ -9,12 +9,12 @@ import (
 	"fmt"
 	"sync/atomic"
 
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/skiperrors"
-	"github.com/unicornultrafoundation/go-helios/u2udb/table"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-helios/sesadb/skiperrors"
+	"github.com/sesanetwork/go-helios/sesadb/table"
 
-	"github.com/unicornultrafoundation/go-u2u/logger"
+	"github.com/sesanetwork/go-sesa/logger"
 )
 
 var (
@@ -24,11 +24,11 @@ var (
 type (
 	epochStore struct {
 		epoch idx.Epoch
-		db    u2udb.Store
+		db    sesadb.Store
 		table struct {
-			LastEvents u2udb.Store `table:"t"`
-			Heads      u2udb.Store `table:"H"`
-			DagIndex   u2udb.Store `table:"v"`
+			LastEvents sesadb.Store `table:"t"`
+			Heads      sesadb.Store `table:"H"`
+			DagIndex   sesadb.Store `table:"v"`
 		}
 		cache struct {
 			Heads      atomic.Value
@@ -39,7 +39,7 @@ type (
 	}
 )
 
-func newEpochStore(epoch idx.Epoch, db u2udb.Store) *epochStore {
+func newEpochStore(epoch idx.Epoch, db sesadb.Store) *epochStore {
 	es := &epochStore{
 		epoch:    epoch,
 		db:       db,

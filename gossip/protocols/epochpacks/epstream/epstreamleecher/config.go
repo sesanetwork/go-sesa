@@ -3,7 +3,7 @@ package epstreamleecher
 import (
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/gossip/basestream/basestreamleecher/basepeerleecher"
+	"github.com/sesanetwork/go-helios/gossip/basestream/basestreamleecher/basepeerleecher"
 )
 
 type Config struct {

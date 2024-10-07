@@ -26,12 +26,12 @@ import (
 
 	"github.com/dop251/goja"
 
-	"github.com/unicornultrafoundation/go-u2u/accounts/scwallet"
-	"github.com/unicornultrafoundation/go-u2u/accounts/usbwallet"
-	"github.com/unicornultrafoundation/go-u2u/common/hexutil"
-	"github.com/unicornultrafoundation/go-u2u/console/prompt"
-	"github.com/unicornultrafoundation/go-u2u/internal/jsre"
-	"github.com/unicornultrafoundation/go-u2u/rpc"
+	"github.com/sesanetwork/go-sesa/accounts/scwallet"
+	"github.com/sesanetwork/go-sesa/accounts/usbwallet"
+	"github.com/sesanetwork/go-sesa/common/hexutil"
+	"github.com/sesanetwork/go-sesa/console/prompt"
+	"github.com/sesanetwork/go-sesa/internal/jsre"
+	"github.com/sesanetwork/go-sesa/rpc"
 )
 
 // bridge is a collection of JavaScript utility methods to bride the .js runtime

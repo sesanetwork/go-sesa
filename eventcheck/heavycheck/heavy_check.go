@@ -6,15 +6,15 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/crypto"
 
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/basiccheck"
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/epochcheck"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/native/validatorpk"
+	"github.com/sesanetwork/go-sesa/eventcheck/basiccheck"
+	"github.com/sesanetwork/go-sesa/eventcheck/epochcheck"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/native/validatorpk"
 )
 
 var (

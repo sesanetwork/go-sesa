@@ -1,9 +1,9 @@
 # Docker
 
-Contains the scripts to do u2u benchmarking (only for fakenet now) with Docker from [`docker/`] dir
+Contains the scripts to do sesa benchmarking (only for fakenet now) with Docker from [`docker/`] dir
 
 ## Image
-- Dockerfile.u2u is used to run a docker image containing u2u build binary
+- Dockerfile.sesa is used to run a docker image containing sesa build binary
 
 ## Prometheus metrics collection
   From [`docker/monitoring`] (./monitoring) dir
@@ -38,5 +38,5 @@ Contains the scripts to do u2u benchmarking (only for fakenet now) with Docker f
  - client side: [tx latency](http://localhost:9090/graph?g0.range_input=5m&g0.expr=txstorm_tx_ttf&g0.tab=0)
  - client side: [count of sent txs](http://localhost:9090/graph?g0.range_input=5m&g0.expr=txstorm_tx_count_sent&g0.tab=0)
  - client side: [count of confirmed txs](http://localhost:9090/graph?g0.range_input=5m&g0.expr=txstorm_tx_count_got&g0.tab=0)
- - node side: [tx time2finish](http://localhost:9090/graph?g0.range_input=5m&g0.expr=u2u_tx_ttf&g0.tab=0)
- - node side: [data dir size](http://localhost:9090/graph?g0.range_input=5m&g0.expr=u2u_db_size&g0.tab=0)
+ - node side: [tx time2finish](http://localhost:9090/graph?g0.range_input=5m&g0.expr=sesa_tx_ttf&g0.tab=0)
+ - node side: [data dir size](http://localhost:9090/graph?g0.range_input=5m&g0.expr=sesa_db_size&g0.tab=0)

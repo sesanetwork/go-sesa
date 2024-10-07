@@ -21,8 +21,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/common/hexutil"
-	"github.com/unicornultrafoundation/go-u2u/rpc"
+	"github.com/sesanetwork/go-sesa/common/hexutil"
+	"github.com/sesanetwork/go-sesa/rpc"
 )
 
 // In this example, our client wishes to track the latest 'block number'

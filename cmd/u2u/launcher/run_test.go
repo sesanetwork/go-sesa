@@ -11,13 +11,13 @@ import (
 
 	"github.com/docker/docker/pkg/reexec"
 
-	"github.com/unicornultrafoundation/go-u2u/cmd/cmdtest"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/rpc"
+	"github.com/sesanetwork/go-sesa/cmd/cmdtest"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/rpc"
 )
 
 func tmpdir(t *testing.T) string {
-	dir, err := ioutil.TempDir("", "u2u-test")
+	dir, err := ioutil.TempDir("", "sesa-test")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -40,8 +40,8 @@ func (tt *testcli) readConfig() {
 }
 
 func init() {
-	// Run the app if we've been exec'd as "u2u-test" in exec().
-	reexec.Register("u2u-test", func() {
+	// Run the app if we've been exec'd as "sesa-test" in exec().
+	reexec.Register("sesa-test", func() {
 		if err := app.Run(os.Args); err != nil {
 			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
@@ -88,9 +88,9 @@ func exec(t *testing.T, args ...string) *testcli {
 		}()
 	}
 
-	// Boot "u2u". This actually runs the test binary but the TestMain
+	// Boot "sesa". This actually runs the test binary but the TestMain
 	// function will prevent any tests from running.
-	tt.Run("u2u-test", args...)
+	tt.Run("sesa-test", args...)
 
 	// Read the generated key
 	tt.readConfig()

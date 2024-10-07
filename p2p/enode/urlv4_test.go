@@ -24,8 +24,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/p2p/enr"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/p2p/enr"
 )
 
 func init() {

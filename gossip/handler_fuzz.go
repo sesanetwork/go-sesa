@@ -10,17 +10,17 @@ import (
 	"sync"
 
 	_ "github.com/dvyukov/go-fuzz/go-fuzz-defs"
-	"github.com/unicornultrafoundation/go-helios/utils/cachescale"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/p2p"
-	"github.com/unicornultrafoundation/go-u2u/p2p/enode"
+	"github.com/sesanetwork/go-helios/utils/cachescale"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/p2p"
+	"github.com/sesanetwork/go-sesa/p2p/enode"
 
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
-	"github.com/unicornultrafoundation/go-u2u/integration/makefakegenesis"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
-	"github.com/unicornultrafoundation/go-u2u/utils"
-	"github.com/unicornultrafoundation/go-u2u/utils/signers/gsignercache"
+	"github.com/sesanetwork/go-sesa/evmcore"
+	"github.com/sesanetwork/go-sesa/integration/makefakegenesis"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/sesa"
+	"github.com/sesanetwork/go-sesa/utils"
+	"github.com/sesanetwork/go-sesa/utils/signers/gsignercache"
 )
 
 const (
@@ -68,7 +68,7 @@ func makeFuzzedHandler() (h *handler, err error) {
 		genesisStake   = 2 * 4e6
 	)
 
-	genStore := makefakegenesis.FakeGenesisStore(genesisStakers, utils.ToU2U(genesisBalance), utils.ToU2U(genesisStake))
+	genStore := makefakegenesis.FakeGenesisStore(genesisStakers, utils.Tosesa(genesisBalance), utils.Tosesa(genesisStake))
 	genesis := genStore.Genesis()
 
 	config := DefaultConfig(cachescale.Identity)
@@ -79,7 +79,7 @@ func makeFuzzedHandler() (h *handler, err error) {
 	}
 
 	var (
-		network             = u2u.FakeNetRules()
+		network             = sesa.FakeNetRules()
 		heavyCheckReader    HeavyCheckReader
 		gasPowerCheckReader GasPowerCheckReader
 		// TODO: init

@@ -23,7 +23,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/p2p/enr"
+	"github.com/sesanetwork/go-sesa/p2p/enr"
 )
 
 func TestReadNodes(t *testing.T) {

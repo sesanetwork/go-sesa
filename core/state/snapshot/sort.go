@@ -19,7 +19,7 @@ package snapshot
 import (
 	"bytes"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-sesa/common"
 )
 
 // hashes is a helper to implement sort.Interface.

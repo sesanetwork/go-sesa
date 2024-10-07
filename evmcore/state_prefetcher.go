@@ -19,12 +19,12 @@ package evmcore
 import (
 	"sync/atomic"
 
-	"github.com/unicornultrafoundation/go-u2u/core/state"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/core/vm"
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-sesa/core/state"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/core/vm"
+	"github.com/sesanetwork/go-sesa/params"
 
-	"github.com/unicornultrafoundation/go-u2u/utils/signers/gsignercache"
+	"github.com/sesanetwork/go-sesa/utils/signers/gsignercache"
 )
 
 // statePrefetcher is a basic Prefetcher, which blindly executes a block on top

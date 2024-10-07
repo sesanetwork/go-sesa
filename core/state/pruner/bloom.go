@@ -22,9 +22,9 @@ import (
 	"os"
 
 	bloomfilter "github.com/holiman/bloomfilter/v2"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/rawdb"
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/rawdb"
+	"github.com/sesanetwork/go-sesa/log"
 )
 
 // stateBloomHasher is a wrapper around a byte blob to satisfy the interface API

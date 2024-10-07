@@ -8,20 +8,20 @@ import (
 	"strings"
 
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/batched"
-	"github.com/unicornultrafoundation/go-helios/u2udb/pebble"
-	"github.com/unicornultrafoundation/go-helios/u2udb/skipkeys"
-	"github.com/unicornultrafoundation/go-helios/u2udb/table"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-helios/sesadb/batched"
+	"github.com/sesanetwork/go-helios/sesadb/pebble"
+	"github.com/sesanetwork/go-helios/sesadb/skipkeys"
+	"github.com/sesanetwork/go-helios/sesadb/table"
 
-	"github.com/unicornultrafoundation/go-u2u/cmd/utils"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/utils/dbutil/autocompact"
-	"github.com/unicornultrafoundation/go-u2u/utils/dbutil/compactdb"
+	"github.com/sesanetwork/go-sesa/cmd/utils"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/utils/dbutil/autocompact"
+	"github.com/sesanetwork/go-sesa/utils/dbutil/compactdb"
 )
 
-func lastKey(db u2udb.Store) []byte {
+func lastKey(db sesadb.Store) []byte {
 	var start []byte
 	for {
 		for b := 0xff; b >= 0; b-- {
@@ -37,8 +37,8 @@ func lastKey(db u2udb.Store) []byte {
 }
 
 type transformTask struct {
-	openSrc func() u2udb.Store
-	openDst func() u2udb.Store
+	openSrc func() sesadb.Store
+	openDst func() sesadb.Store
 	name    string
 	dir     string
 	dropSrc bool
@@ -127,7 +127,7 @@ func mustTransform(m transformTask) {
 	}
 }
 
-func isEmptyDB(db u2udb.Iteratee) bool {
+func isEmptyDB(db sesadb.Iteratee) bool {
 	it := db.NewIterator(nil, nil)
 	defer it.Release()
 	return !it.Next()
@@ -135,7 +135,7 @@ func isEmptyDB(db u2udb.Iteratee) bool {
 
 type closebaleTable struct {
 	*table.Table
-	backend u2udb.Store
+	backend sesadb.Store
 }
 
 func (s *closebaleTable) Close() error {
@@ -146,7 +146,7 @@ func (s *closebaleTable) Drop() {
 	s.backend.Drop()
 }
 
-func newClosableTable(db u2udb.Store, prefix []byte) *closebaleTable {
+func newClosableTable(db sesadb.Store, prefix []byte) *closebaleTable {
 	return &closebaleTable{
 		Table:   table.New(db, prefix),
 		backend: db,
@@ -184,7 +184,7 @@ func translateGossipPrefix(p byte) byte {
 	return p
 }
 
-func migrateLegacyDBs(chaindataDir string, dbs u2udb.FlushableDBProducer, mode string, layout RoutingConfig) error {
+func migrateLegacyDBs(chaindataDir string, dbs sesadb.FlushableDBProducer, mode string, layout RoutingConfig) error {
 	{ // didn't erase the brackets to avoid massive code changes
 		// migrate DB layout
 		cacheFn, err := DbCacheFdlimit(DBsCacheConfig{
@@ -199,14 +199,14 @@ func migrateLegacyDBs(chaindataDir string, dbs u2udb.FlushableDBProducer, mode s
 			return err
 		}
 		oldDBs := pebble.NewProducer(chaindataDir, cacheFn)
-		openOldDB := func(name string) u2udb.Store {
+		openOldDB := func(name string) sesadb.Store {
 			db, err := oldDBs.OpenDB(name)
 			if err != nil {
 				utils.Fatalf("Failed to open %s old DB: %v", name, err)
 			}
 			return db
 		}
-		openNewDB := func(name string) u2udb.Store {
+		openNewDB := func(name string) sesadb.Store {
 			db, err := dbs.OpenDB(name)
 			if err != nil {
 				utils.Fatalf("Failed to open %s DB: %v", name, err)
@@ -220,10 +220,10 @@ func migrateLegacyDBs(chaindataDir string, dbs u2udb.FlushableDBProducer, mode s
 			for _, name := range oldDBs.Names() {
 				if strings.HasPrefix(name, "hashgraph") || strings.HasPrefix(name, "gossip-") {
 					mustTransform(transformTask{
-						openSrc: func() u2udb.Store {
+						openSrc: func() sesadb.Store {
 							return skipkeys.Wrap(openOldDB(name), MetadataPrefix)
 						},
-						openDst: func() u2udb.Store {
+						openDst: func() sesadb.Store {
 							return openNewDB(name)
 						},
 						name: name,
@@ -236,20 +236,20 @@ func migrateLegacyDBs(chaindataDir string, dbs u2udb.FlushableDBProducer, mode s
 
 			// move logs
 			mustTransform(transformTask{
-				openSrc: func() u2udb.Store {
+				openSrc: func() sesadb.Store {
 					return newClosableTable(openOldDB("gossip"), []byte("Lr"))
 				},
-				openDst: func() u2udb.Store {
+				openDst: func() sesadb.Store {
 					return openNewDB("evm-logs/r")
 				},
 				name: "gossip/Lr",
 				dir:  chaindataDir,
 			})
 			mustTransform(transformTask{
-				openSrc: func() u2udb.Store {
+				openSrc: func() sesadb.Store {
 					return newClosableTable(openOldDB("gossip"), []byte("Lt"))
 				},
-				openDst: func() u2udb.Store {
+				openDst: func() sesadb.Store {
 					return openNewDB("evm-logs/t")
 				},
 				name: "gossip/Lt",
@@ -263,10 +263,10 @@ func migrateLegacyDBs(chaindataDir string, dbs u2udb.FlushableDBProducer, mode s
 					continue
 				}
 				mustTransform(transformTask{
-					openSrc: func() u2udb.Store {
+					openSrc: func() sesadb.Store {
 						return newClosableTable(openOldDB("gossip"), []byte{byte(b)})
 					},
-					openDst: func() u2udb.Store {
+					openDst: func() sesadb.Store {
 						if b == int('M') || b == int('r') || b == int('x') || b == int('X') {
 							return openNewDB("evm/" + string([]byte{byte(b)}))
 						} else {

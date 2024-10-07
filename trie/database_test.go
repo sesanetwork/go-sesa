@@ -19,8 +19,8 @@ package trie
 import (
 	"testing"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/ethdb/memorydb"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/ethdb/memorydb"
 )
 
 // Tests that the trie database returns a missing trie node error if attempting

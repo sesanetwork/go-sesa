@@ -19,7 +19,7 @@ package gasprice
 import (
 	"math/big"
 
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-sesa/params"
 )
 
 const sampleNumber = 3 // Number of transactions sampled in a block

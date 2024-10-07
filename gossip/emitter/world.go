@@ -4,17 +4,17 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/native/pos"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/state"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/native/pos"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/state"
+	"github.com/sesanetwork/go-sesa/core/types"
 
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
-	"github.com/unicornultrafoundation/go-u2u/valkeystore"
-	"github.com/unicornultrafoundation/go-u2u/vecmt"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/sesa"
+	"github.com/sesanetwork/go-sesa/valkeystore"
+	"github.com/sesanetwork/go-sesa/vecmt"
 )
 
 var (
@@ -74,7 +74,7 @@ type Reader interface {
 	GetLastEvent(epoch idx.Epoch, from idx.ValidatorID) *hash.Event
 	GetHeads(idx.Epoch) hash.Events
 	GetGenesisTime() native.Timestamp
-	GetRules() u2u.Rules
+	GetRules() sesa.Rules
 }
 
 type TxPool interface {

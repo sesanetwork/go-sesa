@@ -22,8 +22,8 @@ import (
 	"net/http"
 	"sort"
 
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/metrics"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/metrics"
 )
 
 // Handler returns an HTTP handler which dump metrics in Prometheus format.

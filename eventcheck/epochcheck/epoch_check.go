@@ -3,12 +3,12 @@ package epochcheck
 import (
 	"errors"
 
-	base "github.com/unicornultrafoundation/go-helios/eventcheck/epochcheck"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	base "github.com/sesanetwork/go-helios/eventcheck/epochcheck"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/core/types"
 
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/sesa"
 )
 
 var (
@@ -26,7 +26,7 @@ var (
 // Reader returns currents epoch and its validators group.
 type Reader interface {
 	base.Reader
-	GetEpochRules() (u2u.Rules, idx.Epoch)
+	GetEpochRules() (sesa.Rules, idx.Epoch)
 }
 
 // Checker which require only current epoch info
@@ -42,7 +42,7 @@ func New(reader Reader) *Checker {
 	}
 }
 
-func CalcGasPowerUsed(e native.EventPayloadI, rules u2u.Rules) uint64 {
+func CalcGasPowerUsed(e native.EventPayloadI, rules sesa.Rules) uint64 {
 	txsGas := uint64(0)
 	for _, tx := range e.Txs() {
 		txsGas += tx.Gas()
@@ -71,7 +71,7 @@ func CalcGasPowerUsed(e native.EventPayloadI, rules u2u.Rules) uint64 {
 	return txsGas + parentsGas + extraGas + gasCfg.EventGas + mpsGas + bvsGas + ersGas
 }
 
-func (v *Checker) checkGas(e native.EventPayloadI, rules u2u.Rules) error {
+func (v *Checker) checkGas(e native.EventPayloadI, rules sesa.Rules) error {
 	if e.GasPowerUsed() > rules.Economy.Gas.MaxEventGas {
 		return ErrTooBigGasUsed
 	}
@@ -81,7 +81,7 @@ func (v *Checker) checkGas(e native.EventPayloadI, rules u2u.Rules) error {
 	return nil
 }
 
-func CheckTxs(txs types.Transactions, rules u2u.Rules) error {
+func CheckTxs(txs types.Transactions, rules sesa.Rules) error {
 	maxType := uint8(0)
 	if rules.Upgrades.Berlin {
 		maxType = 1

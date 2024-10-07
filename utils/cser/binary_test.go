@@ -9,7 +9,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/unicornultrafoundation/go-u2u/utils/fast"
+	"github.com/sesanetwork/go-sesa/utils/fast"
 )
 
 func TestEmpty(t *testing.T) {

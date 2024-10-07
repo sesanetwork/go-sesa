@@ -1,12 +1,12 @@
 package iblockproc
 
 import (
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/native/pos"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/native/pos"
 
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/sesa"
 )
 
 type ValidatorEpochStateV0 struct {
@@ -25,5 +25,5 @@ type EpochStateV0 struct {
 	ValidatorStates   []ValidatorEpochStateV0
 	ValidatorProfiles ValidatorProfiles
 
-	Rules u2u.Rules
+	Rules sesa.Rules
 }

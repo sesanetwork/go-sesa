@@ -3,18 +3,18 @@ package switchable
 import (
 	"sync"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-sesa/common"
 
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-u2u/utils/dbutil/itergc"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-sesa/utils/dbutil/itergc"
 )
 
 type Snapshot struct {
-	u2udb.Snapshot
+	sesadb.Snapshot
 	mu sync.RWMutex
 }
 
-func (s *Snapshot) SwitchTo(snap u2udb.Snapshot) u2udb.Snapshot {
+func (s *Snapshot) SwitchTo(snap sesadb.Snapshot) sesadb.Snapshot {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	old := s.Snapshot
@@ -22,7 +22,7 @@ func (s *Snapshot) SwitchTo(snap u2udb.Snapshot) u2udb.Snapshot {
 	return old
 }
 
-func Wrap(snap u2udb.Snapshot) *Snapshot {
+func Wrap(snap sesadb.Snapshot) *Snapshot {
 	s := &Snapshot{}
 	s.SwitchTo(snap)
 	return s
@@ -54,7 +54,7 @@ func (s *Snapshot) Release() {
 // NewIterator creates a binary-alphabetical iterator over a subset
 // of database content with a particular key prefix, starting at a particular
 // initial key (or after, if it does not exist).
-func (s *Snapshot) NewIterator(prefix []byte, start []byte) u2udb.Iterator {
+func (s *Snapshot) NewIterator(prefix []byte, start []byte) sesadb.Iterator {
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 
@@ -74,9 +74,9 @@ func (s *Snapshot) NewIterator(prefix []byte, start []byte) u2udb.Iterator {
 
 type switchableIterator struct {
 	mu       *sync.RWMutex
-	upd      *u2udb.Snapshot
-	cur      u2udb.Snapshot
-	parentIt u2udb.Iterator
+	upd      *sesadb.Snapshot
+	cur      sesadb.Snapshot
+	parentIt sesadb.Iterator
 
 	prefix, start []byte
 	key, value    []byte

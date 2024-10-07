@@ -7,26 +7,26 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/dag"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/native/pos"
-	utypes "github.com/unicornultrafoundation/go-helios/types"
-	"github.com/unicornultrafoundation/go-helios/utils/workers"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/dag"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/native/pos"
+	utypes "github.com/sesanetwork/go-helios/types"
+	"github.com/sesanetwork/go-helios/utils/workers"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
-	"github.com/unicornultrafoundation/go-u2u/evmcore/txtracer"
-	"github.com/unicornultrafoundation/go-u2u/gossip/blockproc/verwatcher"
-	"github.com/unicornultrafoundation/go-u2u/gossip/emitter"
-	"github.com/unicornultrafoundation/go-u2u/gossip/evmstore"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/metrics"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/native/iblockproc"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
-	"github.com/unicornultrafoundation/go-u2u/utils"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/evmcore"
+	"github.com/sesanetwork/go-sesa/evmcore/txtracer"
+	"github.com/sesanetwork/go-sesa/gossip/blockproc/verwatcher"
+	"github.com/sesanetwork/go-sesa/gossip/emitter"
+	"github.com/sesanetwork/go-sesa/gossip/evmstore"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/metrics"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/native/iblockproc"
+	"github.com/sesanetwork/go-sesa/sesa"
+	"github.com/sesanetwork/go-sesa/utils"
 )
 
 var (
@@ -264,7 +264,7 @@ func consensusCallbackBeginBlockFn(
 
 				// Providing default config
 				// In case of trace transaction node, this config is changed
-				evmCfg := u2u.DefaultVMConfig
+				evmCfg := sesa.DefaultVMConfig
 				if store.txtracer != nil {
 					evmCfg.Debug = true
 					evmCfg.Tracer = txtracer.NewTraceStructLogger(store.txtracer)
@@ -289,7 +289,7 @@ func consensusCallbackBeginBlockFn(
 					prevUpg := es.Rules.Upgrades
 					bs, es = sealer.SealEpoch() // TODO: refactor to not mutate the bs, it is unclear
 					if es.Rules.Upgrades != prevUpg {
-						store.AddUpgradeHeight(u2u.UpgradeHeight{
+						store.AddUpgradeHeight(sesa.UpgradeHeight{
 							Upgrades: es.Rules.Upgrades,
 							Height:   blockCtx.Idx + 1,
 						})
@@ -495,7 +495,7 @@ func (s *Service) ReexecuteBlocks(from, to idx.Block) {
 		es := s.store.GetHistoryEpochState(s.store.FindBlockEpoch(b))
 		// Providing default config
 		// In case of trace transaction node, this config is changed
-		evmCfg := u2u.DefaultVMConfig
+		evmCfg := sesa.DefaultVMConfig
 		if s.store.txtracer != nil {
 			evmCfg.Debug = true
 			evmCfg.Tracer = txtracer.NewTraceStructLogger(s.store.txtracer)
@@ -529,7 +529,7 @@ func (s *Service) RecoverEVM() {
 }
 
 // spillBlockEvents excludes first events which exceed MaxBlockGas
-func spillBlockEvents(store *Store, block *native.Block, network u2u.Rules) (*native.Block, native.EventPayloads) {
+func spillBlockEvents(store *Store, block *native.Block, network sesa.Rules) (*native.Block, native.EventPayloads) {
 	fullEvents := make(native.EventPayloads, len(block.Events))
 	if len(block.Events) == 0 {
 		return block, fullEvents

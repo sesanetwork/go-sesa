@@ -1,8 +1,8 @@
 package valkeystore
 
 import (
-	"github.com/unicornultrafoundation/go-u2u/native/validatorpk"
-	"github.com/unicornultrafoundation/go-u2u/valkeystore/encryption"
+	"github.com/sesanetwork/go-sesa/native/validatorpk"
+	"github.com/sesanetwork/go-sesa/valkeystore/encryption"
 )
 
 type RawKeystoreI interface {

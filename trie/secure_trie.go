@@ -19,8 +19,8 @@ package trie
 import (
 	"fmt"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/log"
 )
 
 // SecureTrie wraps a trie with key hashing. In a secure trie, all

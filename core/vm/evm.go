@@ -23,9 +23,9 @@ import (
 
 	"github.com/holiman/uint256"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/params"
 )
 
 // emptyCodeHash is used by create to ensure deployment is disallowed to already

@@ -3,13 +3,13 @@ package brstreamseeder
 import (
 	"errors"
 
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/rlp"
 
-	"github.com/unicornultrafoundation/go-helios/gossip/basestream"
-	"github.com/unicornultrafoundation/go-helios/gossip/basestream/basestreamseeder"
+	"github.com/sesanetwork/go-helios/gossip/basestream"
+	"github.com/sesanetwork/go-helios/gossip/basestream/basestreamseeder"
 
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/blockrecords/brstream"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/blockrecords/brstream"
 )
 
 var (

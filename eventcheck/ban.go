@@ -3,10 +3,10 @@ package eventcheck
 import (
 	"errors"
 
-	base "github.com/unicornultrafoundation/go-helios/eventcheck"
+	base "github.com/sesanetwork/go-helios/eventcheck"
 
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/epochcheck"
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/heavycheck"
+	"github.com/sesanetwork/go-sesa/eventcheck/epochcheck"
+	"github.com/sesanetwork/go-sesa/eventcheck/heavycheck"
 )
 
 var (

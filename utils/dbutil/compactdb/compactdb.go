@@ -5,14 +5,14 @@ import (
 	"math/big"
 	"strconv"
 
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/table"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-helios/sesadb/table"
 
-	"github.com/unicornultrafoundation/go-u2u/utils"
+	"github.com/sesanetwork/go-sesa/utils"
 )
 
 type contCompacter struct {
-	u2udb.Store
+	sesadb.Store
 	prev []byte
 }
 
@@ -63,7 +63,7 @@ func compact(db *contCompacter, prefix []byte, iters int) error {
 	return nil
 }
 
-func Compact(db u2udb.Store, loggingName string, sizePerIter uint64) error {
+func Compact(db sesadb.Store, loggingName string, sizePerIter uint64) error {
 	loggedDB := &loggedCompacter{
 		Store: db,
 		name:  loggingName,

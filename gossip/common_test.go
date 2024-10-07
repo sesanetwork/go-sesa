@@ -10,33 +10,33 @@ import (
 	"sync"
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/consensus"
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/dag"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/utils/cachescale"
-	go_u2u "github.com/unicornultrafoundation/go-u2u"
-	"github.com/unicornultrafoundation/go-u2u/accounts/abi/bind"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/common/hexutil"
-	"github.com/unicornultrafoundation/go-u2u/core/state"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/core/vm"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-helios/consensus"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/dag"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/utils/cachescale"
+	go_sesa "github.com/sesanetwork/go-sesa"
+	"github.com/sesanetwork/go-sesa/accounts/abi/bind"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/common/hexutil"
+	"github.com/sesanetwork/go-sesa/core/state"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/core/vm"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/log"
 
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
-	"github.com/unicornultrafoundation/go-u2u/gossip/blockproc"
-	"github.com/unicornultrafoundation/go-u2u/gossip/emitter"
-	"github.com/unicornultrafoundation/go-u2u/integration/makefakegenesis"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/native/iblockproc"
-	"github.com/unicornultrafoundation/go-u2u/native/validatorpk"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
-	"github.com/unicornultrafoundation/go-u2u/utils"
-	"github.com/unicornultrafoundation/go-u2u/utils/adapters/vecmt2dagidx"
-	"github.com/unicornultrafoundation/go-u2u/valkeystore"
-	"github.com/unicornultrafoundation/go-u2u/vecmt"
+	"github.com/sesanetwork/go-sesa/evmcore"
+	"github.com/sesanetwork/go-sesa/gossip/blockproc"
+	"github.com/sesanetwork/go-sesa/gossip/emitter"
+	"github.com/sesanetwork/go-sesa/integration/makefakegenesis"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/native/iblockproc"
+	"github.com/sesanetwork/go-sesa/native/validatorpk"
+	"github.com/sesanetwork/go-sesa/sesa"
+	"github.com/sesanetwork/go-sesa/utils"
+	"github.com/sesanetwork/go-sesa/utils/adapters/vecmt2dagidx"
+	"github.com/sesanetwork/go-sesa/valkeystore"
+	"github.com/sesanetwork/go-sesa/vecmt"
 )
 
 const (
@@ -131,11 +131,11 @@ func (m testConfirmedEventsModule) Start(bs iblockproc.BlockState, es iblockproc
 }
 
 func newTestEnv(firstEpoch idx.Epoch, validatorsNum idx.Validator) *testEnv {
-	rules := u2u.FakeNetRules()
+	rules := sesa.FakeNetRules()
 	rules.Epochs.MaxEpochDuration = native.Timestamp(maxEpochDuration)
 	rules.Blocks.MaxEmptyBlockSkipPeriod = 0
 
-	genStore := makefakegenesis.FakeGenesisStoreWithRulesAndStart(validatorsNum, utils.ToU2U(genesisBalance), utils.ToU2U(genesisStake), rules, firstEpoch, 2)
+	genStore := makefakegenesis.FakeGenesisStoreWithRulesAndStart(validatorsNum, utils.Tosesa(genesisBalance), utils.Tosesa(genesisStake), rules, firstEpoch, 2)
 	genesis := genStore.Genesis()
 
 	store := NewMemStore()
@@ -403,7 +403,7 @@ func (env *testEnv) CodeAt(ctx context.Context, contract common.Address, blockNu
 
 // ContractCall executes an Ethereum contract call with the specified data as the
 // input.
-func (env *testEnv) CallContract(ctx context.Context, call go_u2u.CallMsg, blockNumber *big.Int) ([]byte, error) {
+func (env *testEnv) CallContract(ctx context.Context, call go_sesa.CallMsg, blockNumber *big.Int) ([]byte, error) {
 	if blockNumber != nil && idx.Block(blockNumber.Uint64()) != env.store.GetLatestBlockIndex() {
 		return nil, errBlockNumberUnsupported
 	}
@@ -430,7 +430,7 @@ func (env *testEnv) HeaderByNumber(ctx context.Context, number *big.Int) (*types
 // callContract implements common code between normal and pending contract calls.
 // state is modified during execution, make sure to copy it if necessary.
 func (env *testEnv) callContract(
-	ctx context.Context, call go_u2u.CallMsg, block *evmcore.EvmBlock, state *state.StateDB,
+	ctx context.Context, call go_sesa.CallMsg, block *evmcore.EvmBlock, state *state.StateDB,
 ) (
 	ret []byte, usedGas uint64, failed bool, err error,
 ) {
@@ -454,7 +454,7 @@ func (env *testEnv) callContract(
 	// about the transaction and calling mechanisms.
 	txContext := evmcore.NewEVMTxContext(msg)
 	context := evmcore.NewEVMBlockContext(block.Header(), env.GetEvmStateReader(), nil)
-	vmenv := vm.NewEVM(context, txContext, state, env.store.GetEvmChainConfig(), u2u.DefaultVMConfig)
+	vmenv := vm.NewEVM(context, txContext, state, env.store.GetEvmChainConfig(), sesa.DefaultVMConfig)
 	gaspool := new(evmcore.GasPool).AddGas(math.MaxUint64)
 	res, err := evmcore.NewStateTransition(vmenv, msg, gaspool).TransitionDb()
 
@@ -495,7 +495,7 @@ func (env *testEnv) SuggestGasPrice(ctx context.Context) (*big.Int, error) {
 // There is no guarantee that this is the true gas limit requirement as other
 // transactions may be added or removed by miners, but it should provide a basis
 // for setting a reasonable default.
-func (env *testEnv) EstimateGas(ctx context.Context, call go_u2u.CallMsg) (gas uint64, err error) {
+func (env *testEnv) EstimateGas(ctx context.Context, call go_sesa.CallMsg) (gas uint64, err error) {
 	if call.To == nil {
 		gas = gasLimit * 10000
 	} else {
@@ -516,21 +516,21 @@ func (env *testEnv) SendTransaction(ctx context.Context, tx *types.Transaction) 
 
 // FilterLogs executes a log filter operation, blocking during execution and
 // returning all the results in one batch.
-func (env *testEnv) FilterLogs(ctx context.Context, query go_u2u.FilterQuery) ([]types.Log, error) {
+func (env *testEnv) FilterLogs(ctx context.Context, query go_sesa.FilterQuery) ([]types.Log, error) {
 	panic("not implemented yet")
 	return nil, nil
 }
 
 // SubscribeFilterLogs creates a background log filtering operation, returning
 // a subscription immediately, which can be used to stream the found events.
-func (env *testEnv) SubscribeFilterLogs(ctx context.Context, query go_u2u.FilterQuery, ch chan<- types.Log) (go_u2u.Subscription, error) {
+func (env *testEnv) SubscribeFilterLogs(ctx context.Context, query go_sesa.FilterQuery, ch chan<- types.Log) (go_sesa.Subscription, error) {
 	panic("not implemented yet")
 	return nil, nil
 }
 
 // callmsg implements evmcore.Message to allow passing it as a transaction simulator.
 type callmsg struct {
-	go_u2u.CallMsg
+	go_sesa.CallMsg
 }
 
 func (m callmsg) From() common.Address         { return m.CallMsg.From }

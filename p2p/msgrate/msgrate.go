@@ -24,7 +24,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-sesa/log"
 )
 
 // measurementImpact is the impact a single measurement has on a peer's final

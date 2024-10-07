@@ -13,28 +13,28 @@ import (
 
 	"github.com/naoina/toml"
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/unicornultrafoundation/go-helios/consensus"
-	"github.com/unicornultrafoundation/go-helios/utils/cachescale"
-	"github.com/unicornultrafoundation/go-u2u/cmd/utils"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/node"
-	"github.com/unicornultrafoundation/go-u2u/p2p/enode"
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-helios/consensus"
+	"github.com/sesanetwork/go-helios/utils/cachescale"
+	"github.com/sesanetwork/go-sesa/cmd/utils"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/node"
+	"github.com/sesanetwork/go-sesa/p2p/enode"
+	"github.com/sesanetwork/go-sesa/params"
 	"gopkg.in/urfave/cli.v1"
 
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
-	"github.com/unicornultrafoundation/go-u2u/gossip"
-	"github.com/unicornultrafoundation/go-u2u/gossip/emitter"
-	"github.com/unicornultrafoundation/go-u2u/gossip/gasprice"
-	"github.com/unicornultrafoundation/go-u2u/integration"
-	"github.com/unicornultrafoundation/go-u2u/integration/makefakegenesis"
-	"github.com/unicornultrafoundation/go-u2u/monitoring"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesis"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesisstore"
-	futils "github.com/unicornultrafoundation/go-u2u/utils"
-	"github.com/unicornultrafoundation/go-u2u/utils/memory"
-	"github.com/unicornultrafoundation/go-u2u/vecmt"
+	"github.com/sesanetwork/go-sesa/evmcore"
+	"github.com/sesanetwork/go-sesa/gossip"
+	"github.com/sesanetwork/go-sesa/gossip/emitter"
+	"github.com/sesanetwork/go-sesa/gossip/gasprice"
+	"github.com/sesanetwork/go-sesa/integration"
+	"github.com/sesanetwork/go-sesa/integration/makefakegenesis"
+	"github.com/sesanetwork/go-sesa/monitoring"
+	"github.com/sesanetwork/go-sesa/sesa/genesis"
+	"github.com/sesanetwork/go-sesa/sesa/genesisstore"
+	futils "github.com/sesanetwork/go-sesa/utils"
+	"github.com/sesanetwork/go-sesa/utils/memory"
+	"github.com/sesanetwork/go-sesa/vecmt"
 )
 
 var (
@@ -91,7 +91,7 @@ var (
 	}
 	RPCGlobalTxFeeCapFlag = cli.Float64Flag{
 		Name:  "rpc.txfeecap",
-		Usage: "Sets a cap on transaction fee (in U2U) that can be sent via the RPC APIs (0 = no cap)",
+		Usage: "Sets a cap on transaction fee (in sesa) that can be sent via the RPC APIs (0 = no cap)",
 		Value: gossip.DefaultConfig(cachescale.Identity).RPCTxFeeCap,
 	}
 	RPCGlobalTimeoutFlag = cli.DurationFlag{
@@ -176,10 +176,10 @@ var tomlSettings = toml.Config{
 
 type config struct {
 	Node           node.Config
-	U2U            gossip.Config
+	sesa            gossip.Config
 	Emitter        emitter.Config
 	TxPool         evmcore.TxPoolConfig
-	U2UStore       gossip.StoreConfig
+	sesaStore       gossip.StoreConfig
 	Hashgraph      consensus.Config
 	HashgraphStore consensus.StoreConfig
 	VectorClock    vecmt.IndexConfig
@@ -189,8 +189,8 @@ type config struct {
 
 func (c *config) AppConfigs() integration.Configs {
 	return integration.Configs{
-		U2U:            c.U2U,
-		U2UStore:       c.U2UStore,
+		sesa:            c.sesa,
+		sesaStore:       c.sesaStore,
 		Hashgraph:      c.Hashgraph,
 		HashgraphStore: c.HashgraphStore,
 		VectorClock:    c.VectorClock,
@@ -225,7 +225,7 @@ func mayGetGenesisStore(ctx *cli.Context) *genesisstore.Store {
 		if err != nil {
 			log.Crit("Invalid flag", "flag", FakeNetFlag.Name, "err", err)
 		}
-		return makefakegenesis.FakeGenesisStore(num, futils.ToU2U(1000000000), futils.ToU2U(5000000))
+		return makefakegenesis.FakeGenesisStore(num, futils.Tosesa(1000000000), futils.Tosesa(5000000))
 	case ctx.GlobalIsSet(GenesisFlag.Name):
 		genesisPath := ctx.GlobalString(GenesisFlag.Name)
 
@@ -246,7 +246,7 @@ func mayGetGenesisStore(ctx *cli.Context) *genesisstore.Store {
 				NetworkID:   g.NetworkID,
 				NetworkName: g.NetworkName,
 			}
-			for _, allowed := range AllowedU2UGenesis {
+			for _, allowed := range AllowedsesaGenesis {
 				if allowed.Hashes.Equal(genesisHashes) && allowed.Header.Equal(gHeader) {
 					log.Info("Genesis file is a known preset", "name", allowed.Name)
 					goto notExperimental
@@ -474,7 +474,7 @@ func cacheScaler(ctx *cli.Context) cachescale.Func {
 	if !ctx.GlobalIsSet(CacheFlag.Name) {
 		recommendedCache := totalMemory / 2
 		if recommendedCache > baseSize {
-			log.Warn(fmt.Sprintf("Please add '--%s %d' flag to allocate more cache for U2U Client. Total memory is %d MB.", CacheFlag.Name, recommendedCache, totalMemory))
+			log.Warn(fmt.Sprintf("Please add '--%s %d' flag to allocate more cache for sesa Client. Total memory is %d MB.", CacheFlag.Name, recommendedCache, totalMemory))
 		}
 		return cachescale.Identity
 	}
@@ -496,10 +496,10 @@ func mayMakeAllConfigs(ctx *cli.Context) (*config, error) {
 	cacheRatio := cacheScaler(ctx)
 	cfg := config{
 		Node:           defaultNodeConfig(),
-		U2U:            gossip.DefaultConfig(cacheRatio),
+		sesa:            gossip.DefaultConfig(cacheRatio),
 		Emitter:        emitter.DefaultConfig(),
 		TxPool:         evmcore.DefaultTxPoolConfig,
-		U2UStore:       gossip.DefaultStoreConfig(cacheRatio),
+		sesaStore:       gossip.DefaultStoreConfig(cacheRatio),
 		Hashgraph:      consensus.DefaultConfig(),
 		HashgraphStore: consensus.DefaultStoreConfig(cacheRatio),
 		VectorClock:    vecmt.DefaultConfig(cacheRatio),
@@ -524,11 +524,11 @@ func mayMakeAllConfigs(ctx *cli.Context) (*config, error) {
 
 	// Apply flags (high priority)
 	var err error
-	cfg.U2U, err = gossipConfigWithFlags(ctx, cfg.U2U)
+	cfg.sesa, err = gossipConfigWithFlags(ctx, cfg.sesa)
 	if err != nil {
 		return nil, err
 	}
-	cfg.U2UStore, err = gossipStoreConfigWithFlags(ctx, cfg.U2UStore)
+	cfg.sesaStore, err = gossipStoreConfigWithFlags(ctx, cfg.sesaStore)
 	if err != nil {
 		return nil, err
 	}
@@ -547,19 +547,19 @@ func mayMakeAllConfigs(ctx *cli.Context) (*config, error) {
 	// Process DBs defaults in the end because they are applied only in absence of config or flags
 	cfg = setDBConfigDefault(cfg, cacheRatio)
 	// Sanitize GPO config
-	if cfg.U2U.GPO.MinGasTip == nil || cfg.U2U.GPO.MinGasTip.Sign() == 0 {
-		cfg.U2U.GPO.MinGasTip = new(big.Int).SetUint64(cfg.TxPool.PriceLimit)
+	if cfg.sesa.GPO.MinGasTip == nil || cfg.sesa.GPO.MinGasTip.Sign() == 0 {
+		cfg.sesa.GPO.MinGasTip = new(big.Int).SetUint64(cfg.TxPool.PriceLimit)
 	}
-	if cfg.U2U.GPO.MinGasTip.Cmp(new(big.Int).SetUint64(cfg.TxPool.PriceLimit)) < 0 {
-		log.Warn(fmt.Sprintf("GPO minimum gas tip (U2U.GPO.MinGasTip=%s) is lower than txpool minimum gas tip (TxPool.PriceLimit=%d)", cfg.U2U.GPO.MinGasTip.String(), cfg.TxPool.PriceLimit))
+	if cfg.sesa.GPO.MinGasTip.Cmp(new(big.Int).SetUint64(cfg.TxPool.PriceLimit)) < 0 {
+		log.Warn(fmt.Sprintf("GPO minimum gas tip (sesa.GPO.MinGasTip=%s) is lower than txpool minimum gas tip (TxPool.PriceLimit=%d)", cfg.sesa.GPO.MinGasTip.String(), cfg.TxPool.PriceLimit))
 	}
 
-	if err := cfg.U2U.Validate(); err != nil {
+	if err := cfg.sesa.Validate(); err != nil {
 		return nil, err
 	}
 
 	if ctx.GlobalIsSet(EnableTxTracerFlag.Name) {
-		cfg.U2UStore.TraceTransactions = true
+		cfg.sesaStore.TraceTransactions = true
 	}
 
 	if ctx.GlobalIsSet(EnableMonitorFlag.Name) {
@@ -583,7 +583,7 @@ func defaultNodeConfig() node.Config {
 	cfg.Version = params.VersionWithCommit(gitCommit, gitDate)
 	cfg.HTTPModules = append(cfg.HTTPModules, "eth", "dag", "abft", "web3")
 	cfg.WSModules = append(cfg.WSModules, "eth", "dag", "abft", "web3")
-	cfg.IPCPath = "u2u.ipc"
+	cfg.IPCPath = "sesa.ipc"
 	cfg.DataDir = DefaultDataDir()
 	return cfg
 }

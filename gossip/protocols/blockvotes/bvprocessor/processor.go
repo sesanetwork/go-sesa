@@ -4,12 +4,12 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/unicornultrafoundation/go-helios/native/dag"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/utils/datasemaphore"
-	"github.com/unicornultrafoundation/go-helios/utils/workers"
+	"github.com/sesanetwork/go-helios/native/dag"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/utils/datasemaphore"
+	"github.com/sesanetwork/go-helios/utils/workers"
 
-	"github.com/unicornultrafoundation/go-u2u/native"
+	"github.com/sesanetwork/go-sesa/native"
 )
 
 var (

@@ -3,12 +3,12 @@ package emitter
 import (
 	"math/rand"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/utils/piecefunc"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/utils/piecefunc"
 
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/basiccheck"
-	"github.com/unicornultrafoundation/go-u2u/native"
+	"github.com/sesanetwork/go-sesa/eventcheck/basiccheck"
+	"github.com/sesanetwork/go-sesa/native"
 )
 
 var emptyLlrBlockVotes = native.LlrBlockVotes{

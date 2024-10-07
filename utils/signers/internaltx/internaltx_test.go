@@ -6,8 +6,8 @@ import (
 
 	"github.com/status-im/keycard-go/hexutils"
 	"github.com/stretchr/testify/require"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
 )
 
 func TestIsInternal(t *testing.T) {

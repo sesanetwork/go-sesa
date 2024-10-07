@@ -1,16 +1,16 @@
 package gossip
 
 import (
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
 
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/gaspowercheck"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
-	"github.com/unicornultrafoundation/go-u2u/utils/concurrent"
+	"github.com/sesanetwork/go-sesa/eventcheck/gaspowercheck"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/sesa"
+	"github.com/sesanetwork/go-sesa/utils/concurrent"
 )
 
 type GPOBackend struct {
@@ -22,11 +22,11 @@ func (b *GPOBackend) GetLatestBlockIndex() idx.Block {
 	return b.store.GetLatestBlockIndex()
 }
 
-func (b *GPOBackend) GetRules() u2u.Rules {
+func (b *GPOBackend) GetRules() sesa.Rules {
 	return b.store.GetRules()
 }
 
-func (b *GPOBackend) GetPendingRules() u2u.Rules {
+func (b *GPOBackend) GetPendingRules() sesa.Rules {
 	bs, es := b.store.GetBlockEpochState()
 	if bs.DirtyRules != nil {
 		return *bs.DirtyRules

@@ -1,19 +1,19 @@
 package gossip
 
 import (
-	"github.com/unicornultrafoundation/go-helios/common/bigendian"
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/native/pos"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-helios/utils/simplewlru"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-helios/common/bigendian"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/native/pos"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-helios/utils/simplewlru"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/rlp"
 
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/native/ibr"
-	"github.com/unicornultrafoundation/go-u2u/native/ier"
-	"github.com/unicornultrafoundation/go-u2u/utils/bitmap"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/native/ibr"
+	"github.com/sesanetwork/go-sesa/native/ier"
+	"github.com/sesanetwork/go-sesa/utils/bitmap"
 )
 
 func (s *Store) SetBlockVotes(bvs native.LlrSignedBlockVotes) {
@@ -35,7 +35,7 @@ func (s *Store) IterateOverlappingBlockVotesRLP(start []byte, f func(key []byte,
 	}
 }
 
-func (s *Store) getLlrVoteWeight(cache *VotesCache, reader u2udb.Reader, cKey VotesCacheID, key []byte) (pos.Weight, bitmap.Set) {
+func (s *Store) getLlrVoteWeight(cache *VotesCache, reader sesadb.Reader, cKey VotesCacheID, key []byte) (pos.Weight, bitmap.Set) {
 	if cached := cache.Get(cKey); cached != nil {
 		return cached.weight, cached.set
 	}
@@ -55,7 +55,7 @@ func (s *Store) getLlrVoteWeight(cache *VotesCache, reader u2udb.Reader, cKey Vo
 	return weight, set
 }
 
-func (s *Store) flushLlrVoteWeight(table u2udb.Writer, key []byte, weight pos.Weight, set bitmap.Set) {
+func (s *Store) flushLlrVoteWeight(table sesadb.Writer, key []byte, weight pos.Weight, set bitmap.Set) {
 	err := table.Put(key, append(bigendian.Uint32ToBytes(uint32(weight)), set...))
 	if err != nil {
 		s.Log.Crit("Failed to put key-value", "err", err)
@@ -67,7 +67,7 @@ func (s *Store) flushLlrBlockVoteWeight(cKey VotesCacheID, value VotesCacheValue
 	s.flushLlrVoteWeight(s.table.LlrBlockVotesIndex, key, value.weight, value.set)
 }
 
-func (s *Store) addLlrVoteWeight(cache *VotesCache, reader u2udb.Reader, cKey VotesCacheID, key []byte, validator idx.Validator, validatorsNum idx.Validator, diff pos.Weight) pos.Weight {
+func (s *Store) addLlrVoteWeight(cache *VotesCache, reader sesadb.Reader, cKey VotesCacheID, key []byte, validator idx.Validator, validatorsNum idx.Validator, diff pos.Weight) pos.Weight {
 	weight, set := s.getLlrVoteWeight(cache, reader, cKey, key)
 	if set != nil && set.Has(int(validator)) {
 		// don't count the vote if validator already voted

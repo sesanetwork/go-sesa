@@ -7,16 +7,16 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/metrics"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/metrics"
 
-	"github.com/unicornultrafoundation/go-u2u/monitoring/prometheus"
+	"github.com/sesanetwork/go-sesa/monitoring/prometheus"
 )
 
 var once sync.Once
 
 func SetupPrometheus(endpoint string) {
-	prometheus.SetNamespace("u2u")
+	prometheus.SetNamespace("sesa")
 	prometheus.PrometheusListener(endpoint, nil)
 }
 

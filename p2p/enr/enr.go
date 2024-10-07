@@ -40,7 +40,7 @@ import (
 	"io"
 	"sort"
 
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-sesa/rlp"
 )
 
 const SizeLimit = 300 // maximum encoded size of a node record in bytes

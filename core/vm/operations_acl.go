@@ -19,9 +19,9 @@ package vm
 import (
 	"errors"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/common/math"
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/common/math"
+	"github.com/sesanetwork/go-sesa/params"
 )
 
 func makeGasSStoreFunc(clearingRefund uint64) gasFunc {

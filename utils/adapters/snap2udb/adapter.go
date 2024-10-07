@@ -1,18 +1,18 @@
 package snap2udb
 
 import (
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/devnulldb"
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-helios/sesadb/devnulldb"
+	"github.com/sesanetwork/go-sesa/log"
 )
 
 type Adapter struct {
-	u2udb.Snapshot
+	sesadb.Snapshot
 }
 
-var _ u2udb.Store = (*Adapter)(nil)
+var _ sesadb.Store = (*Adapter)(nil)
 
-func Wrap(v u2udb.Snapshot) *Adapter {
+func Wrap(v sesadb.Snapshot) *Adapter {
 	return &Adapter{v}
 }
 
@@ -26,11 +26,11 @@ func (db *Adapter) Delete(key []byte) error {
 	return nil
 }
 
-func (db *Adapter) GetSnapshot() (u2udb.Snapshot, error) {
+func (db *Adapter) GetSnapshot() (sesadb.Snapshot, error) {
 	return db.Snapshot, nil
 }
 
-func (db *Adapter) NewBatch() u2udb.Batch {
+func (db *Adapter) NewBatch() sesadb.Batch {
 	log.Warn("called NewBatch on snapshot")
 	return devnulldb.New().NewBatch()
 }

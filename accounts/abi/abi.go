@@ -23,8 +23,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/crypto"
 )
 
 // The ABI holds information about a contract's context and available

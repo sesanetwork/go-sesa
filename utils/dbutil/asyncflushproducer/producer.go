@@ -4,12 +4,12 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-u2u/metrics"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-sesa/metrics"
 )
 
 type Producer struct {
-	u2udb.FullDBProducer
+	sesadb.FullDBProducer
 	mu    sync.Mutex
 	dbs   map[string]*store
 	stats metrics.Meter
@@ -17,7 +17,7 @@ type Producer struct {
 	threshold uint64
 }
 
-func Wrap(backend u2udb.FullDBProducer, threshold uint64) *Producer {
+func Wrap(backend sesadb.FullDBProducer, threshold uint64) *Producer {
 	return &Producer{
 		stats:          metrics.NewMeterForced(),
 		FullDBProducer: backend,
@@ -26,7 +26,7 @@ func Wrap(backend u2udb.FullDBProducer, threshold uint64) *Producer {
 	}
 }
 
-func (f *Producer) OpenDB(name string) (u2udb.Store, error) {
+func (f *Producer) OpenDB(name string) (sesadb.Store, error) {
 	f.mu.Lock()
 	defer f.mu.Unlock()
 	// open existing DB

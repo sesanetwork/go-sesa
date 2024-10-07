@@ -42,7 +42,7 @@ import (
 	"fmt"
 	"hash"
 
-	ethcrypto "github.com/unicornultrafoundation/go-u2u/crypto"
+	ethcrypto "github.com/sesanetwork/go-sesa/crypto"
 )
 
 var (

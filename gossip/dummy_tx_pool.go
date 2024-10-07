@@ -5,11 +5,11 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	notify "github.com/unicornultrafoundation/go-u2u/event"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
+	notify "github.com/sesanetwork/go-sesa/event"
 
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
+	"github.com/sesanetwork/go-sesa/evmcore"
 )
 
 // dummyTxPool is a fake, helper transaction pool for testing purposes

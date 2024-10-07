@@ -1,12 +1,12 @@
 package vecmt
 
 import (
-	"github.com/unicornultrafoundation/go-helios/native/dag"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/vecengine"
-	"github.com/unicornultrafoundation/go-helios/vecfc"
+	"github.com/sesanetwork/go-helios/native/dag"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/vecengine"
+	"github.com/sesanetwork/go-helios/vecfc"
 
-	"github.com/unicornultrafoundation/go-u2u/native"
+	"github.com/sesanetwork/go-sesa/native"
 )
 
 type CreationTimer interface {

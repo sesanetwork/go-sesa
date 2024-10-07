@@ -1,10 +1,10 @@
-package u2u
+package sesa
 
 import (
 	"errors"
 	"io"
 
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-sesa/rlp"
 )
 
 type GasRulesRLPV0 struct {

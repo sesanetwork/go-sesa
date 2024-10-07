@@ -1,8 +1,8 @@
 package topicsdb
 
 import (
-	"github.com/unicornultrafoundation/go-helios/common/bigendian"
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-helios/common/bigendian"
+	"github.com/sesanetwork/go-sesa/common"
 )
 
 const (

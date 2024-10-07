@@ -5,14 +5,14 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"github.com/unicornultrafoundation/go-helios/consensus"
-	"github.com/unicornultrafoundation/go-helios/utils/cachescale"
-	"github.com/unicornultrafoundation/go-u2u/p2p/enode"
+	"github.com/sesanetwork/go-helios/consensus"
+	"github.com/sesanetwork/go-helios/utils/cachescale"
+	"github.com/sesanetwork/go-sesa/p2p/enode"
 
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
-	"github.com/unicornultrafoundation/go-u2u/gossip"
-	"github.com/unicornultrafoundation/go-u2u/gossip/emitter"
-	"github.com/unicornultrafoundation/go-u2u/vecmt"
+	"github.com/sesanetwork/go-sesa/evmcore"
+	"github.com/sesanetwork/go-sesa/gossip"
+	"github.com/sesanetwork/go-sesa/gossip/emitter"
+	"github.com/sesanetwork/go-sesa/vecmt"
 )
 
 func TestConfigFile(t *testing.T) {
@@ -23,10 +23,10 @@ func TestConfigFile(t *testing.T) {
 
 	src := config{
 		Node:           defaultNodeConfig(),
-		U2U:            gossip.DefaultConfig(cacheRatio),
+		sesa:            gossip.DefaultConfig(cacheRatio),
 		Emitter:        emitter.DefaultConfig(),
 		TxPool:         evmcore.DefaultTxPoolConfig,
-		U2UStore:       gossip.DefaultStoreConfig(cacheRatio),
+		sesaStore:       gossip.DefaultStoreConfig(cacheRatio),
 		Hashgraph:      consensus.DefaultConfig(),
 		HashgraphStore: consensus.DefaultStoreConfig(cacheRatio),
 		VectorClock:    vecmt.DefaultConfig(cacheRatio),

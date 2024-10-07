@@ -19,7 +19,7 @@ package snapshot
 import (
 	"bytes"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-sesa/common"
 )
 
 // binaryIterator is a simplistic iterator to step over the accounts or storage

@@ -5,9 +5,9 @@ import (
 	"io"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-sesa/log"
 
-	"github.com/unicornultrafoundation/go-u2u/utils"
+	"github.com/sesanetwork/go-sesa/utils"
 )
 
 type Filelog struct {

@@ -20,7 +20,7 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-sesa/common"
 )
 
 func BenchmarkCutOriginal(b *testing.B) {

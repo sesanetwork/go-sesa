@@ -5,8 +5,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/unicornultrafoundation/go-u2u/utils/bits"
-	"github.com/unicornultrafoundation/go-u2u/utils/fast"
+	"github.com/sesanetwork/go-sesa/utils/bits"
+	"github.com/sesanetwork/go-sesa/utils/fast"
 )
 
 func TestUint64Compact(t *testing.T) {

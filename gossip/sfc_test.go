@@ -1,33 +1,33 @@
 package gossip
 
 // compile SFC with truffle
-//go:generate bash -c "cd ../../u2u-sfc && git checkout 8ff03212140f8440f1dea2c63826528ceff91074"
-//go:generate bash -c "docker run --name go-u2u-sfc-compiler -v $(pwd)/contract/solc:/src/build/contracts -v $(pwd)/../../u2u-sfc:/src -w /src node:18-buster bash -c 'export NPM_CONFIG_PREFIX=~; npm install --no-save; npm install --no-save truffle@5.2.4' && docker commit go-u2u-sfc-compiler go-u2u-sfc-compiler-image && docker rm go-u2u-sfc-compiler"
-//go:generate bash -c "docker run --rm -v $(pwd)/contract/solc:/src/build/contracts -v $(pwd)/../../u2u-sfc:/src -w /src go-u2u-sfc-compiler-image bash -c 'export NPM_CONFIG_PREFIX=~; rm -f /src/build/contracts/*json; npm run build'"
+//go:generate bash -c "cd ../../sesa-sfc && git checkout 8ff03212140f8440f1dea2c63826528ceff91074"
+//go:generate bash -c "docker run --name go-sesa-sfc-compiler -v $(pwd)/contract/solc:/src/build/contracts -v $(pwd)/../../sesa-sfc:/src -w /src node:18-buster bash -c 'export NPM_CONFIG_PREFIX=~; npm install --no-save; npm install --no-save truffle@5.2.4' && docker commit go-sesa-sfc-compiler go-sesa-sfc-compiler-image && docker rm go-sesa-sfc-compiler"
+//go:generate bash -c "docker run --rm -v $(pwd)/contract/solc:/src/build/contracts -v $(pwd)/../../sesa-sfc:/src -w /src go-sesa-sfc-compiler-image bash -c 'export NPM_CONFIG_PREFIX=~; rm -f /src/build/contracts/*json; npm run build'"
 //go:generate bash -c "cd ./contract/solc && for f in SFC.json SFCLib.json; do jq -j .bytecode $DOLLAR{f} > $DOLLAR{f%.json}.bin; jq -j .deployedBytecode $DOLLAR{f} > $DOLLAR{f%.json}.bin-runtime; jq -c .abi $DOLLAR{f} > $DOLLAR{f%.json}.abi; done"
-//go:generate bash -c "docker run --rm -v $(pwd)/contract/solc:/src/build/contracts -v $(pwd)/../../u2u-sfc:/src -w /src go-u2u-sfc-compiler-image bash -c 'export NPM_CONFIG_PREFIX=~; sed -i s/runs:\\ 200,/runs:\\ 10000,/ /src/truffle-config.js; rm -f /src/build/contracts/*json; npm run build'"
-//go:generate bash -c "cd ../../u2u-sfc && git checkout -- truffle-config.js; docker rmi go-u2u-sfc-compiler-image"
+//go:generate bash -c "docker run --rm -v $(pwd)/contract/solc:/src/build/contracts -v $(pwd)/../../sesa-sfc:/src -w /src go-sesa-sfc-compiler-image bash -c 'export NPM_CONFIG_PREFIX=~; sed -i s/runs:\\ 200,/runs:\\ 10000,/ /src/truffle-config.js; rm -f /src/build/contracts/*json; npm run build'"
+//go:generate bash -c "cd ../../sesa-sfc && git checkout -- truffle-config.js; docker rmi go-sesa-sfc-compiler-image"
 //go:generate bash -c "cd ./contract/solc && for f in NetworkInitializer.json NodeDriver.json NodeDriverAuth.json; do jq -j .bytecode $DOLLAR{f} > $DOLLAR{f%.json}.bin; jq -j .deployedBytecode $DOLLAR{f} > $DOLLAR{f%.json}.bin-runtime; jq -c .abi $DOLLAR{f} > $DOLLAR{f%.json}.abi; done"
 
 // wrap SFC with golang
 //go:generate mkdir -p ./contract/sfc100
-//go:generate go run github.com/unicornultrafoundation/go-u2u/libs/cmd/abigen --bin=./contract/solc/SFC.bin --abi=./contract/solc/SFC.abi --pkg=sfc100 --type=Contract --out=contract/sfc100/contract.go
+//go:generate go run github.com/sesanetwork/go-sesa/libs/cmd/abigen --bin=./contract/solc/SFC.bin --abi=./contract/solc/SFC.abi --pkg=sfc100 --type=Contract --out=contract/sfc100/contract.go
 //go:generate bash -c "(echo -ne '\nvar ContractBinRuntime = \"'; cat contract/solc/SFC.bin-runtime; echo '\"') >> contract/sfc100/contract.go"
 // wrap SFC lib with golang
 //go:generate mkdir -p ./contract/sfclib100
-//go:generate go run github.com/unicornultrafoundation/go-u2u/libs/cmd/abigen --bin=./contract/solc/SFCLib.bin --abi=./contract/solc/SFCLib.abi --pkg=sfclib100 --type=Contract --out=contract/sfclib100/contract.go
+//go:generate go run github.com/sesanetwork/go-sesa/libs/cmd/abigen --bin=./contract/solc/SFCLib.bin --abi=./contract/solc/SFCLib.abi --pkg=sfclib100 --type=Contract --out=contract/sfclib100/contract.go
 //go:generate bash -c "(echo -ne '\nvar ContractBinRuntime = \"'; cat contract/solc/SFCLib.bin-runtime; echo '\"') >> contract/sfclib100/contract.go"
 // wrap NetworkInitializer with golang
 //go:generate mkdir -p ./contract/netinit100
-//go:generate go run github.com/unicornultrafoundation/go-u2u/libs/cmd/abigen --bin=./contract/solc/NetworkInitializer.bin --abi=./contract/solc/NetworkInitializer.abi --pkg=netinit100 --type=Contract --out=contract/netinit100/contract.go
+//go:generate go run github.com/sesanetwork/go-sesa/libs/cmd/abigen --bin=./contract/solc/NetworkInitializer.bin --abi=./contract/solc/NetworkInitializer.abi --pkg=netinit100 --type=Contract --out=contract/netinit100/contract.go
 //go:generate bash -c "(echo -ne '\nvar ContractBinRuntime = \"'; cat contract/solc/NetworkInitializer.bin-runtime; echo '\"') >> contract/netinit100/contract.go"
 // wrap NodeDriver with golang
 //go:generate mkdir -p ./contract/driver100
-//go:generate go run github.com/unicornultrafoundation/go-u2u/libs/cmd/abigen --bin=./contract/solc/NodeDriver.bin --abi=./contract/solc/NodeDriver.abi --pkg=driver100 --type=Contract --out=contract/driver100/contract.go
+//go:generate go run github.com/sesanetwork/go-sesa/libs/cmd/abigen --bin=./contract/solc/NodeDriver.bin --abi=./contract/solc/NodeDriver.abi --pkg=driver100 --type=Contract --out=contract/driver100/contract.go
 //go:generate bash -c "(echo -ne '\nvar ContractBinRuntime = \"'; cat contract/solc/NodeDriver.bin-runtime; echo '\"') >> contract/driver100/contract.go"
 // wrap NodeDriverAuth with golang
 //go:generate mkdir -p ./contract/driverauth100
-//go:generate go run github.com/unicornultrafoundation/go-u2u/libs/cmd/abigen --bin=./contract/solc/NodeDriverAuth.bin --abi=./contract/solc/NodeDriverAuth.abi --pkg=driverauth100 --type=Contract --out=contract/driverauth100/contract.go
+//go:generate go run github.com/sesanetwork/go-sesa/libs/cmd/abigen --bin=./contract/solc/NodeDriverAuth.bin --abi=./contract/solc/NodeDriverAuth.abi --pkg=driverauth100 --type=Contract --out=contract/driverauth100/contract.go
 //go:generate bash -c "(echo -ne '\nvar ContractBinRuntime = \"'; cat contract/solc/NodeDriverAuth.bin-runtime; echo '\"') >> contract/driverauth100/contract.go"
 
 import (
@@ -37,20 +37,20 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/common/hexutil"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/gossip/contract/driver100"
-	"github.com/unicornultrafoundation/go-u2u/gossip/contract/driverauth100"
-	"github.com/unicornultrafoundation/go-u2u/gossip/contract/netinit100"
-	"github.com/unicornultrafoundation/go-u2u/gossip/contract/sfc100"
-	"github.com/unicornultrafoundation/go-u2u/logger"
-	"github.com/unicornultrafoundation/go-u2u/u2u/contracts/driver"
-	"github.com/unicornultrafoundation/go-u2u/u2u/contracts/driverauth"
-	"github.com/unicornultrafoundation/go-u2u/u2u/contracts/evmwriter"
-	"github.com/unicornultrafoundation/go-u2u/u2u/contracts/netinit"
-	"github.com/unicornultrafoundation/go-u2u/u2u/contracts/sfc"
-	"github.com/unicornultrafoundation/go-u2u/utils"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/common/hexutil"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/gossip/contract/driver100"
+	"github.com/sesanetwork/go-sesa/gossip/contract/driverauth100"
+	"github.com/sesanetwork/go-sesa/gossip/contract/netinit100"
+	"github.com/sesanetwork/go-sesa/gossip/contract/sfc100"
+	"github.com/sesanetwork/go-sesa/logger"
+	"github.com/sesanetwork/go-sesa/sesa/contracts/driver"
+	"github.com/sesanetwork/go-sesa/sesa/contracts/driverauth"
+	"github.com/sesanetwork/go-sesa/sesa/contracts/evmwriter"
+	"github.com/sesanetwork/go-sesa/sesa/contracts/netinit"
+	"github.com/sesanetwork/go-sesa/sesa/contracts/sfc"
+	"github.com/sesanetwork/go-sesa/utils"
 )
 
 func TestSFC(t *testing.T) {
@@ -137,7 +137,7 @@ func TestSFC(t *testing.T) {
 
 			// create new
 			rr, err := env.ApplyTxs(nextEpoch,
-				env.Contract(admin, utils.ToU2U(0), sfc100.ContractBin),
+				env.Contract(admin, utils.Tosesa(0), sfc100.ContractBin),
 			)
 			require.NoError(err)
 			require.Equal(1, rr.Len())
@@ -171,7 +171,7 @@ func TestSFC(t *testing.T) {
 		// create new
 		anyContractBin := driver100.ContractBin
 		rr, err := env.ApplyTxs(nextEpoch,
-			env.Contract(admin, utils.ToU2U(0), anyContractBin),
+			env.Contract(admin, utils.Tosesa(0), anyContractBin),
 		)
 		require.NoError(err)
 		require.Equal(1, rr.Len())
@@ -204,7 +204,7 @@ func circleTransfers(t *testing.T, env *testEnv, count uint64) {
 		for i := idx.Validator(0); i < validatorsNum; i++ {
 			from := (i) % validatorsNum
 			to := (i + 1) % validatorsNum
-			txs[i] = env.Transfer(idx.ValidatorID(from+1), idx.ValidatorID(to+1), utils.ToU2U(100))
+			txs[i] = env.Transfer(idx.ValidatorID(from+1), idx.ValidatorID(to+1), utils.Tosesa(100))
 		}
 
 		rr, err := env.ApplyTxs(sameEpoch, txs...)

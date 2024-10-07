@@ -3,12 +3,12 @@ package integration
 import (
 	"fmt"
 
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/cachedproducer"
-	"github.com/unicornultrafoundation/go-helios/u2udb/multidb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/skipkeys"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-helios/sesadb/cachedproducer"
+	"github.com/sesanetwork/go-helios/sesadb/multidb"
+	"github.com/sesanetwork/go-helios/sesadb/skipkeys"
 
-	"github.com/unicornultrafoundation/go-u2u/utils/dbutil/threads"
+	"github.com/sesanetwork/go-sesa/utils/dbutil/threads"
 )
 
 type RoutingConfig struct {
@@ -27,8 +27,8 @@ func (a RoutingConfig) Equal(b RoutingConfig) bool {
 	return true
 }
 
-func MakeMultiProducer(rawProducers map[multidb.TypeName]u2udb.IterableDBProducer, scopedProducers map[multidb.TypeName]u2udb.FullDBProducer, cfg RoutingConfig) (u2udb.FullDBProducer, error) {
-	cachedProducers := make(map[multidb.TypeName]u2udb.FullDBProducer)
+func MakeMultiProducer(rawProducers map[multidb.TypeName]sesadb.IterableDBProducer, scopedProducers map[multidb.TypeName]sesadb.FullDBProducer, cfg RoutingConfig) (sesadb.FullDBProducer, error) {
+	cachedProducers := make(map[multidb.TypeName]sesadb.FullDBProducer)
 	var flushID []byte
 	var err error
 	for typ, producer := range scopedProducers {
@@ -43,15 +43,15 @@ func MakeMultiProducer(rawProducers map[multidb.TypeName]u2udb.IterableDBProduce
 	return threads.CountedFullDBProducer(p), err
 }
 
-func MakeDirectMultiProducer(rawProducers map[multidb.TypeName]u2udb.IterableDBProducer, cfg RoutingConfig) (u2udb.FullDBProducer, error) {
-	dproducers := map[multidb.TypeName]u2udb.FullDBProducer{}
+func MakeDirectMultiProducer(rawProducers map[multidb.TypeName]sesadb.IterableDBProducer, cfg RoutingConfig) (sesadb.FullDBProducer, error) {
+	dproducers := map[multidb.TypeName]sesadb.FullDBProducer{}
 	for typ, producer := range rawProducers {
 		dproducers[typ] = &DummyScopedProducer{producer}
 	}
 	return MakeMultiProducer(rawProducers, dproducers, cfg)
 }
 
-func makeMultiProducer(scopedProducers map[multidb.TypeName]u2udb.FullDBProducer, cfg RoutingConfig) (u2udb.FullDBProducer, error) {
+func makeMultiProducer(scopedProducers map[multidb.TypeName]sesadb.FullDBProducer, cfg RoutingConfig) (sesadb.FullDBProducer, error) {
 	multi, err := multidb.NewProducer(scopedProducers, cfg.Table, TablesKey)
 	if err != nil {
 		return nil, fmt.Errorf("failed to construct multidb: %v", err)

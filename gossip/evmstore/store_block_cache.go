@@ -1,10 +1,10 @@
 package evmstore
 
 import (
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/common"
 
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
+	"github.com/sesanetwork/go-sesa/evmcore"
 )
 
 func (s *Store) GetCachedEvmBlock(n idx.Block) *evmcore.EvmBlock {

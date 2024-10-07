@@ -3,7 +3,7 @@ package native
 import (
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/common/bigendian"
+	"github.com/sesanetwork/go-helios/common/bigendian"
 )
 
 type (

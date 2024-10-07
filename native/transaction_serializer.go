@@ -4,10 +4,10 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
 
-	"github.com/unicornultrafoundation/go-u2u/utils/cser"
+	"github.com/sesanetwork/go-sesa/utils/cser"
 )
 
 var ErrUnknownTxType = errors.New("unknown tx type")

@@ -7,17 +7,17 @@ import (
 	"time"
 
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/unicornultrafoundation/go-helios/common/bigendian"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/batched"
-	"github.com/unicornultrafoundation/go-helios/u2udb/multidb"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-helios/common/bigendian"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-helios/sesadb/batched"
+	"github.com/sesanetwork/go-helios/sesadb/multidb"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/log"
 	"gopkg.in/urfave/cli.v1"
 
-	"github.com/unicornultrafoundation/go-u2u/integration"
-	"github.com/unicornultrafoundation/go-u2u/utils"
-	"github.com/unicornultrafoundation/go-u2u/utils/dbutil/autocompact"
+	"github.com/sesanetwork/go-sesa/integration"
+	"github.com/sesanetwork/go-sesa/utils"
+	"github.com/sesanetwork/go-sesa/utils/dbutil/autocompact"
 )
 
 func dbTransform(ctx *cli.Context) error {
@@ -141,7 +141,7 @@ func (ee *dbMigrationEntries) Pop() *dbMigrationEntry {
 
 var dbLocatorOf = multidb.DBLocatorOf
 
-func readRoutes(cfg *config, dbTypes map[multidb.TypeName]u2udb.FullDBProducer) (map[string]dbMigrationEntry, error) {
+func readRoutes(cfg *config, dbTypes map[multidb.TypeName]sesadb.FullDBProducer) (map[string]dbMigrationEntry, error) {
 	router, err := multidb.NewProducer(dbTypes, cfg.DBs.Routing.Table, integration.TablesKey)
 	if err != nil {
 		return nil, err
@@ -178,7 +178,7 @@ func readRoutes(cfg *config, dbTypes map[multidb.TypeName]u2udb.FullDBProducer) 
 	return byReq, nil
 }
 
-func writeCleanTableRecords(dbTypes map[multidb.TypeName]u2udb.FullDBProducer, byReq map[string]dbMigrationEntry) error {
+func writeCleanTableRecords(dbTypes map[multidb.TypeName]sesadb.FullDBProducer, byReq map[string]dbMigrationEntry) error {
 	records := make(map[multidb.DBLocator][]multidb.TableRecord, 0)
 	for _, e := range byReq {
 		records[dbLocatorOf(e.New)] = append(records[dbLocatorOf(e.New)], multidb.TableRecord{
@@ -206,7 +206,7 @@ func writeCleanTableRecords(dbTypes map[multidb.TypeName]u2udb.FullDBProducer, b
 	return nil
 }
 
-func interchangeableType(a_, b_ multidb.TypeName, types map[multidb.TypeName]u2udb.FullDBProducer) bool {
+func interchangeableType(a_, b_ multidb.TypeName, types map[multidb.TypeName]sesadb.FullDBProducer) bool {
 	for t_ := range types {
 		a, b, t := string(a_), string(b_), string(t_)
 		t = strings.TrimSuffix(t, "fsh")
@@ -219,7 +219,7 @@ func interchangeableType(a_, b_ multidb.TypeName, types map[multidb.TypeName]u2u
 	return false
 }
 
-func transformComponent(datadir string, dbTypes, tmpDbTypes map[multidb.TypeName]u2udb.FullDBProducer, byReq map[string]dbMigrationEntry) error {
+func transformComponent(datadir string, dbTypes, tmpDbTypes map[multidb.TypeName]sesadb.FullDBProducer, byReq map[string]dbMigrationEntry) error {
 	byDB := separateIntoDBs(byReq)
 	// if it can be transformed just by DB renaming
 	if len(byDB) == 2 {

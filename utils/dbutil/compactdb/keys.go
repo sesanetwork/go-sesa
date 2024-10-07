@@ -4,19 +4,19 @@ import (
 	"bytes"
 	"math/big"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-sesa/common"
 
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/table"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-helios/sesadb/table"
 )
 
-func isEmptyDB(db u2udb.Iteratee) bool {
+func isEmptyDB(db sesadb.Iteratee) bool {
 	it := db.NewIterator(nil, nil)
 	defer it.Release()
 	return !it.Next()
 }
 
-func firstKey(db u2udb.Store) []byte {
+func firstKey(db sesadb.Store) []byte {
 	it := db.NewIterator(nil, nil)
 	defer it.Release()
 	if !it.Next() {
@@ -25,7 +25,7 @@ func firstKey(db u2udb.Store) []byte {
 	return common.CopyBytes(it.Key())
 }
 
-func lastKey(db u2udb.Store) []byte {
+func lastKey(db sesadb.Store) []byte {
 	var start []byte
 	for {
 		for b := 0xff; b >= 0; b-- {
@@ -40,7 +40,7 @@ func lastKey(db u2udb.Store) []byte {
 	}
 }
 
-func keysRange(db u2udb.Store) ([]byte, []byte, *big.Int) {
+func keysRange(db sesadb.Store) ([]byte, []byte, *big.Int) {
 	first := firstKey(db)
 	if first == nil {
 		return nil, nil, big.NewInt(0)

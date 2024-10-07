@@ -7,15 +7,15 @@ import (
 	"testing"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/params"
 
-	"github.com/unicornultrafoundation/go-u2u/integration/makefakegenesis"
-	"github.com/unicornultrafoundation/go-u2u/native/validatorpk"
+	"github.com/sesanetwork/go-sesa/integration/makefakegenesis"
+	"github.com/sesanetwork/go-sesa/native/validatorpk"
 )
 
 func TestFakeNetFlag_NonValidator(t *testing.T) {
-	// Start an u2u console, make sure it's cleaned up and terminate the console
+	// Start an sesa console, make sure it's cleaned up and terminate the console
 	cli := exec(t,
 		"--fakenet", "0/3",
 		"--port", "0", "--maxpeers", "0", "--nodiscover", "--nat", "none", "--cache", "7923", "--datadir.minfreedisk", "1",
@@ -29,13 +29,13 @@ func TestFakeNetFlag_NonValidator(t *testing.T) {
 	cli.SetTemplateFunc("niltime", genesisStart)
 	cli.SetTemplateFunc("apis", func() string { return ipcAPIs })
 
-	waitForEndpoint(t, filepath.Join(cli.Datadir, "u2u.ipc"), 60*time.Second)
+	waitForEndpoint(t, filepath.Join(cli.Datadir, "sesa.ipc"), 60*time.Second)
 
 	// Verify the actual welcome message to the required template
 	cli.Expect(`
 Welcome to the Hashgraph JavaScript console!
 
-instance: go-u2u/v{{version}}/{{goos}}-{{goarch}}/{{gover}}
+instance: go-sesa/v{{version}}/{{goos}}-{{goarch}}/{{gover}}
 coinbase: {{.Coinbase}}
 at block: 1 ({{niltime}})
  datadir: {{.Datadir}}
@@ -57,7 +57,7 @@ To exit, press ctrl-d
 }
 
 func TestFakeNetFlag_Validator(t *testing.T) {
-	// Start an u2u console, make sure it's cleaned up and terminate the console
+	// Start an sesa console, make sure it's cleaned up and terminate the console
 	cli := exec(t,
 		"--fakenet", "3/3",
 		"--port", "0", "--maxpeers", "0", "--nodiscover", "--nat", "none", "--cache", "7923", "--datadir.minfreedisk", "1",
@@ -73,13 +73,13 @@ func TestFakeNetFlag_Validator(t *testing.T) {
 	cli.SetTemplateFunc("niltime", genesisStart)
 	cli.SetTemplateFunc("apis", func() string { return ipcAPIs })
 
-	waitForEndpoint(t, filepath.Join(cli.Datadir, "u2u.ipc"), 60*time.Second)
+	waitForEndpoint(t, filepath.Join(cli.Datadir, "sesa.ipc"), 60*time.Second)
 
 	// Verify the actual welcome message to the required template
 	cli.Expect(`
 Welcome to the Hashgraph JavaScript console!
 
-instance: go-u2u/v{{version}}/{{goos}}-{{goarch}}/{{gover}}
+instance: go-sesa/v{{version}}/{{goos}}-{{goarch}}/{{gover}}
 coinbase: {{.Coinbase}}
 at block: 1 ({{niltime}})
  datadir: {{.Datadir}}

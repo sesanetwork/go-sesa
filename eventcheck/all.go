@@ -1,12 +1,12 @@
 package eventcheck
 
 import (
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/basiccheck"
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/epochcheck"
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/gaspowercheck"
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/heavycheck"
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/parentscheck"
-	"github.com/unicornultrafoundation/go-u2u/native"
+	"github.com/sesanetwork/go-sesa/eventcheck/basiccheck"
+	"github.com/sesanetwork/go-sesa/eventcheck/epochcheck"
+	"github.com/sesanetwork/go-sesa/eventcheck/gaspowercheck"
+	"github.com/sesanetwork/go-sesa/eventcheck/heavycheck"
+	"github.com/sesanetwork/go-sesa/eventcheck/parentscheck"
+	"github.com/sesanetwork/go-sesa/native"
 )
 
 // Checkers is collection of all the checkers

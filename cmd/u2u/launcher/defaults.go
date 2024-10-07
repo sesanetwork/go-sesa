@@ -8,11 +8,11 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/cmd/utils"
-	"github.com/unicornultrafoundation/go-u2u/node"
-	"github.com/unicornultrafoundation/go-u2u/p2p"
-	"github.com/unicornultrafoundation/go-u2u/p2p/nat"
-	"github.com/unicornultrafoundation/go-u2u/rpc"
+	"github.com/sesanetwork/go-sesa/cmd/utils"
+	"github.com/sesanetwork/go-sesa/node"
+	"github.com/sesanetwork/go-sesa/p2p"
+	"github.com/sesanetwork/go-sesa/p2p/nat"
+	"github.com/sesanetwork/go-sesa/rpc"
 )
 
 const (
@@ -59,19 +59,19 @@ func DefaultDataDir() string {
 	if home != "" {
 		switch runtime.GOOS {
 		case "darwin":
-			return filepath.Join(home, "Library", "U2UDATA")
+			return filepath.Join(home, "Library", "sesaDATA")
 		case "windows":
 			// We used to put everything in %HOME%\AppData\Roaming, but this caused
 			// problems with non-typical setups. If this fallback location exists and
 			// is non-empty, use it, otherwise DTRT and check %LOCALAPPDATA%.
-			fallback := filepath.Join(home, "AppData", "Roaming", "U2UDATA")
+			fallback := filepath.Join(home, "AppData", "Roaming", "sesaDATA")
 			appdata := windowsAppData()
 			if appdata == "" || isNonEmptyDir(fallback) {
 				return fallback
 			}
-			return filepath.Join(appdata, "U2UDATA")
+			return filepath.Join(appdata, "sesaDATA")
 		default:
-			return filepath.Join(home, ".u2u")
+			return filepath.Join(home, ".sesa")
 		}
 	}
 	// As we cannot guess a stable location, return empty and handle later

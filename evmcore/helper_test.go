@@ -19,9 +19,9 @@ package evmcore
 import (
 	"container/list"
 
-	"github.com/unicornultrafoundation/go-u2u/core/rawdb"
-	"github.com/unicornultrafoundation/go-u2u/ethdb"
-	notify "github.com/unicornultrafoundation/go-u2u/event"
+	"github.com/sesanetwork/go-sesa/core/rawdb"
+	"github.com/sesanetwork/go-sesa/ethdb"
+	notify "github.com/sesanetwork/go-sesa/event"
 )
 
 // Implement our EthTest Manager

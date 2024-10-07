@@ -3,10 +3,10 @@ package valkeystore
 import (
 	"errors"
 
-	"github.com/unicornultrafoundation/go-u2u/crypto"
+	"github.com/sesanetwork/go-sesa/crypto"
 
-	"github.com/unicornultrafoundation/go-u2u/native/validatorpk"
-	"github.com/unicornultrafoundation/go-u2u/valkeystore/encryption"
+	"github.com/sesanetwork/go-sesa/native/validatorpk"
+	"github.com/sesanetwork/go-sesa/valkeystore/encryption"
 )
 
 type MemKeystore struct {

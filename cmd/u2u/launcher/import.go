@@ -14,19 +14,19 @@ import (
 	"time"
 
 	"github.com/status-im/keycard-go/hexutils"
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-u2u/cmd/utils"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-sesa/cmd/utils"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/rlp"
 	"gopkg.in/urfave/cli.v1"
 
-	"github.com/unicornultrafoundation/go-u2u/gossip"
-	"github.com/unicornultrafoundation/go-u2u/gossip/emitter"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/u2u/genesisstore"
-	"github.com/unicornultrafoundation/go-u2u/utils/ioread"
+	"github.com/sesanetwork/go-sesa/gossip"
+	"github.com/sesanetwork/go-sesa/gossip/emitter"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/sesa/genesisstore"
+	"github.com/sesanetwork/go-sesa/utils/ioread"
 )
 
 func importEvm(ctx *cli.Context) error {
@@ -79,8 +79,8 @@ func importEvents(ctx *cli.Context) error {
 	// avoid P2P interaction, API calls and events emitting
 	genesisStore := mayGetGenesisStore(ctx)
 	cfg := makeAllConfigs(ctx)
-	cfg.U2U.Protocol.EventsSemaphoreLimit.Size = math.MaxUint32
-	cfg.U2U.Protocol.EventsSemaphoreLimit.Num = math.MaxUint32
+	cfg.sesa.Protocol.EventsSemaphoreLimit.Size = math.MaxUint32
+	cfg.sesa.Protocol.EventsSemaphoreLimit.Num = math.MaxUint32
 	cfg.Emitter.Validator = emitter.ValidatorConfig{}
 	cfg.TxPool.Journal = ""
 	cfg.Node.IPCPath = ""

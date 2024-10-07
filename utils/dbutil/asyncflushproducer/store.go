@@ -1,9 +1,9 @@
 package asyncflushproducer
 
-import "github.com/unicornultrafoundation/go-helios/u2udb"
+import "github.com/sesanetwork/go-helios/sesadb"
 
 type store struct {
-	u2udb.Store
+	sesadb.Store
 	CloseFn func() error
 }
 

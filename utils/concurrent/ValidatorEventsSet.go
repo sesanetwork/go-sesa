@@ -3,8 +3,8 @@ package concurrent
 import (
 	"sync"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
 )
 
 type ValidatorEventsSet struct {

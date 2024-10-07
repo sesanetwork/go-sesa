@@ -25,13 +25,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	u2u "github.com/unicornultrafoundation/go-u2u"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/common/hexutil"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/ethdb"
-	"github.com/unicornultrafoundation/go-u2u/rpc"
+	"github.com/sesanetwork/go-helios/native/idx"
+	sesa "github.com/sesanetwork/go-sesa"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/common/hexutil"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/ethdb"
+	"github.com/sesanetwork/go-sesa/rpc"
 )
 
 var (
@@ -269,7 +269,7 @@ func (api *PublicFilterAPI) Logs(ctx context.Context, crit FilterCriteria) (*rpc
 		matchedLogs = make(chan []*types.Log)
 	)
 
-	logsSub, err := api.events.SubscribeLogs(u2u.FilterQuery(crit), matchedLogs)
+	logsSub, err := api.events.SubscribeLogs(sesa.FilterQuery(crit), matchedLogs)
 	if err != nil {
 		return nil, err
 	}
@@ -296,8 +296,8 @@ func (api *PublicFilterAPI) Logs(ctx context.Context, crit FilterCriteria) (*rpc
 }
 
 // FilterCriteria represents a request to create a new filter.
-// Same as u2u.FilterQuery but with UnmarshalJSON() method.
-type FilterCriteria u2u.FilterQuery
+// Same as sesa.FilterQuery but with UnmarshalJSON() method.
+type FilterCriteria sesa.FilterQuery
 
 // NewFilter creates a new filter and returns the filter id. It can be
 // used to retrieve logs when the state changes. This method cannot be
@@ -314,7 +314,7 @@ type FilterCriteria u2u.FilterQuery
 // https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_newfilter
 func (api *PublicFilterAPI) NewFilter(crit FilterCriteria) (rpc.ID, error) {
 	logs := make(chan []*types.Log)
-	logsSub, err := api.events.SubscribeLogs(u2u.FilterQuery(crit), logs)
+	logsSub, err := api.events.SubscribeLogs(sesa.FilterQuery(crit), logs)
 	if err != nil {
 		return rpc.ID(""), err
 	}

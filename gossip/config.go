@@ -6,27 +6,27 @@ import (
 	"time"
 
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/unicornultrafoundation/go-helios/gossip/dagprocessor"
-	"github.com/unicornultrafoundation/go-helios/gossip/itemsfetcher"
-	"github.com/unicornultrafoundation/go-helios/native/dag"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/utils/cachescale"
+	"github.com/sesanetwork/go-helios/gossip/dagprocessor"
+	"github.com/sesanetwork/go-helios/gossip/itemsfetcher"
+	"github.com/sesanetwork/go-helios/native/dag"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/utils/cachescale"
 
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/heavycheck"
-	"github.com/unicornultrafoundation/go-u2u/gossip/evmstore"
-	"github.com/unicornultrafoundation/go-u2u/gossip/filters"
-	"github.com/unicornultrafoundation/go-u2u/gossip/gasprice"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/blockrecords/brprocessor"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/blockrecords/brstream/brstreamleecher"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/blockrecords/brstream/brstreamseeder"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/blockvotes/bvprocessor"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/blockvotes/bvstream/bvstreamleecher"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/blockvotes/bvstream/bvstreamseeder"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/dag/dagstream/dagstreamleecher"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/dag/dagstream/dagstreamseeder"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/epochpacks/epprocessor"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/epochpacks/epstream/epstreamleecher"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/epochpacks/epstream/epstreamseeder"
+	"github.com/sesanetwork/go-sesa/eventcheck/heavycheck"
+	"github.com/sesanetwork/go-sesa/gossip/evmstore"
+	"github.com/sesanetwork/go-sesa/gossip/filters"
+	"github.com/sesanetwork/go-sesa/gossip/gasprice"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/blockrecords/brprocessor"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/blockrecords/brstream/brstreamleecher"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/blockrecords/brstream/brstreamseeder"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/blockvotes/bvprocessor"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/blockvotes/bvstream/bvstreamleecher"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/blockvotes/bvstream/bvstreamseeder"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/dag/dagstream/dagstreamleecher"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/dag/dagstream/dagstreamseeder"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/epochpacks/epprocessor"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/epochpacks/epstream/epstreamleecher"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/epochpacks/epstream/epstreamseeder"
 )
 
 const nominalSize uint = 1
@@ -75,7 +75,7 @@ type (
 
 		// This can be set to list of enrtree:// URLs which will be queried for
 		// for nodes to connect to.
-		U2UDiscoveryURLs  []string
+		sesaDiscoveryURLs  []string
 		SnapDiscoveryURLs []string
 
 		AllowSnapsync bool
@@ -216,7 +216,7 @@ func DefaultConfig(scale cachescale.Func) Config {
 		RPCBlockExt: true,
 
 		RPCGasCap:   50000000,
-		RPCTxFeeCap: 100, // 100 U2U
+		RPCTxFeeCap: 100, // 100 sesa
 		RPCTimeout:  5 * time.Second,
 	}
 	sessionCfg := cfg.Protocol.DagStreamLeecher.Session

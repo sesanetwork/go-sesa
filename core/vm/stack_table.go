@@ -17,7 +17,7 @@
 package vm
 
 import (
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-sesa/params"
 )
 
 func minSwapStack(n int) int {

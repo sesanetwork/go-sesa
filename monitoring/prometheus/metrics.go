@@ -5,10 +5,10 @@ import (
 	"strings"
 
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/unicornultrafoundation/go-u2u/metrics"
+	"github.com/sesanetwork/go-sesa/metrics"
 )
 
-var namespace = "u2u"
+var namespace = "sesa"
 
 // SetNamespace for metrics.
 func SetNamespace(s string) {

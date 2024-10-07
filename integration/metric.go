@@ -7,9 +7,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/metrics"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/metrics"
 )
 
 const (
@@ -19,11 +19,11 @@ const (
 )
 
 type DBProducerWithMetrics struct {
-	u2udb.IterableDBProducer
+	sesadb.IterableDBProducer
 }
 
 type StoreWithMetrics struct {
-	u2udb.Store
+	sesadb.Store
 
 	diskSizeGauge  metrics.Gauge // Gauge for tracking the size of all the levels in the database
 	diskReadMeter  metrics.Meter // Meter for measuring the effective amount of data read
@@ -35,12 +35,12 @@ type StoreWithMetrics struct {
 	log log.Logger // Contextual logger tracking the database path
 }
 
-func WrapDatabaseWithMetrics(db u2udb.IterableDBProducer) u2udb.IterableDBProducer {
+func WrapDatabaseWithMetrics(db sesadb.IterableDBProducer) sesadb.IterableDBProducer {
 	wrapper := &DBProducerWithMetrics{db}
 	return wrapper
 }
 
-func WrapStoreWithMetrics(ds u2udb.Store) *StoreWithMetrics {
+func WrapStoreWithMetrics(ds sesadb.Store) *StoreWithMetrics {
 	wrapper := &StoreWithMetrics{
 		Store:    ds,
 		quitChan: make(chan chan error),
@@ -152,7 +152,7 @@ func genericNameOfTmpDB(name string) string {
 	}
 }
 
-func (db *DBProducerWithMetrics) OpenDB(name string) (u2udb.Store, error) {
+func (db *DBProducerWithMetrics) OpenDB(name string) (sesadb.Store, error) {
 	ds, err := db.IterableDBProducer.OpenDB(name)
 	if err != nil {
 		return nil, err
@@ -163,7 +163,7 @@ func (db *DBProducerWithMetrics) OpenDB(name string) (u2udb.Store, error) {
 
 	dm.log = log.New("database", name)
 
-	metric := "u2u/chaindata/" + strings.ReplaceAll(name, "-", "_")
+	metric := "sesa/chaindata/" + strings.ReplaceAll(name, "-", "_")
 	dm.diskReadMeter = metrics.GetOrRegisterMeter(metric+"/disk/read", nil)
 	dm.diskWriteMeter = metrics.GetOrRegisterMeter(metric+"/disk/write", nil)
 	// reset size metric as far as previous db will be dropped soon

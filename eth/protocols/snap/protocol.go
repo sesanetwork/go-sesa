@@ -20,9 +20,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/state/snapshot"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/state/snapshot"
+	"github.com/sesanetwork/go-sesa/rlp"
 )
 
 // Constants to match up protocol versions and messages

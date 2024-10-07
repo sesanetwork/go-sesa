@@ -4,10 +4,10 @@ import (
 	"bytes"
 	"sort"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
 
-	"github.com/unicornultrafoundation/go-u2u/utils/concurrent"
+	"github.com/sesanetwork/go-sesa/utils/concurrent"
 )
 
 type sortedLastEvent []byte

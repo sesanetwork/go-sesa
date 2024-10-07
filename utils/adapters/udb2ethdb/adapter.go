@@ -1,12 +1,12 @@
 package udb2ethdb
 
 import (
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-u2u/ethdb"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-sesa/ethdb"
 )
 
 type Adapter struct {
-	u2udb.Store
+	sesadb.Store
 }
 
 func (db *Adapter) Stat(property string) (string, error) {
@@ -16,14 +16,14 @@ func (db *Adapter) Stat(property string) (string, error) {
 
 var _ ethdb.KeyValueStore = (*Adapter)(nil)
 
-func Wrap(v u2udb.Store) *Adapter {
+func Wrap(v sesadb.Store) *Adapter {
 	return &Adapter{v}
 }
 
 // batch is a write-only memory batch that commits changes to its host
 // database when Write is called. A batch cannot be used concurrently.
 type batch struct {
-	u2udb.Batch
+	sesadb.Batch
 }
 
 // Replay replays the batch contents.

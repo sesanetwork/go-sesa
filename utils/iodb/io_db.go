@@ -3,13 +3,13 @@ package iodb
 import (
 	"io"
 
-	"github.com/unicornultrafoundation/go-helios/common/bigendian"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
+	"github.com/sesanetwork/go-helios/common/bigendian"
+	"github.com/sesanetwork/go-helios/sesadb"
 
-	"github.com/unicornultrafoundation/go-u2u/utils/ioread"
+	"github.com/sesanetwork/go-sesa/utils/ioread"
 )
 
-func Write(writer io.Writer, it u2udb.Iterator) error {
+func Write(writer io.Writer, it sesadb.Iterator) error {
 	for it.Next() {
 		_, err := writer.Write(bigendian.Uint32ToBytes(uint32(len(it.Key()))))
 		if err != nil {
@@ -31,7 +31,7 @@ func Write(writer io.Writer, it u2udb.Iterator) error {
 	return nil
 }
 
-func NewIterator(reader io.Reader) u2udb.Iterator {
+func NewIterator(reader io.Reader) sesadb.Iterator {
 	return &Iterator{
 		reader: reader,
 	}

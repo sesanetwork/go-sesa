@@ -1,26 +1,26 @@
 .PHONY: all
-all: u2u
+all: sesa
 
 GOPROXY ?= "https://proxy.golang.org,direct"
-.PHONY: u2u
-u2u:
+.PHONY: sesa
+sesa:
 	GIT_COMMIT=`git rev-list -1 HEAD 2>/dev/null || echo ""` && \
 	GIT_DATE=`git log -1 --date=short --pretty=format:%ct 2>/dev/null || echo ""` && \
 	GOPROXY=$(GOPROXY) \
 	go build \
-	    -ldflags "-s -w -X github.com/unicornultrafoundation/go-u2u/cmd/u2u/launcher.gitCommit=$${GIT_COMMIT} -X github.com/unicornultrafoundation/go-u2u/cmd/u2u/launcher.gitDate=$${GIT_DATE}" \
-	    -o build/u2u \
-	    ./cmd/u2u
+	    -ldflags "-s -w -X github.com/sesanetwork/go-sesa/cmd/sesa/launcher.gitCommit=$${GIT_COMMIT} -X github.com/sesanetwork/go-sesa/cmd/sesa/launcher.gitDate=$${GIT_DATE}" \
+	    -o build/sesa \
+	    ./cmd/sesa
 
 
 TAG ?= "latest"
 NET ?= "mainnet"
-.PHONY: u2u-image
-u2u-image:
-	curl -O https://raw.githubusercontent.com/unicornultrafoundation/u2u-genesis/main/$(NET).g
+.PHONY: sesa-image
+sesa-image:
+	curl -O https://raw.githubusercontent.com/sesanetwork/sesa-genesis/main/$(NET).g
 	docker build \
     	    --network=host \
-    	    -f ./docker/Dockerfile.u2u -t "u2u:$(TAG)" .
+    	    -f ./docker/Dockerfile.sesa -t "sesa:$(TAG)" .
 
 .PHONY: test
 test:

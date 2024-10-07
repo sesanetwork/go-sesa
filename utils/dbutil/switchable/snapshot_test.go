@@ -9,11 +9,11 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/unicornultrafoundation/go-helios/common/bigendian"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/memorydb"
+	"github.com/sesanetwork/go-helios/common/bigendian"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-helios/sesadb/memorydb"
 
-	"github.com/unicornultrafoundation/go-u2u/utils/dbutil/dbcounter"
+	"github.com/sesanetwork/go-sesa/utils/dbutil/dbcounter"
 )
 
 func decodePair(b []byte) (uint32, uint32) {
@@ -23,16 +23,16 @@ func decodePair(b []byte) (uint32, uint32) {
 }
 
 type UncallableAfterRelease struct {
-	u2udb.Snapshot
+	sesadb.Snapshot
 	iterators []*uncallableAfterReleaseIterator
 	mu        sync.Mutex
 }
 
 type uncallableAfterReleaseIterator struct {
-	u2udb.Iterator
+	sesadb.Iterator
 }
 
-func (db *UncallableAfterRelease) NewIterator(prefix []byte, start []byte) u2udb.Iterator {
+func (db *UncallableAfterRelease) NewIterator(prefix []byte, start []byte) sesadb.Iterator {
 	it := db.Snapshot.NewIterator(prefix, start)
 	wrapped := &uncallableAfterReleaseIterator{it}
 

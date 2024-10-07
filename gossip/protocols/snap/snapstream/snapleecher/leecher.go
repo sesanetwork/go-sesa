@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"sync"
 
-	u2u "github.com/unicornultrafoundation/go-u2u"
-	"github.com/unicornultrafoundation/go-u2u/core/rawdb"
-	"github.com/unicornultrafoundation/go-u2u/eth/protocols/snap"
-	"github.com/unicornultrafoundation/go-u2u/ethdb"
-	"github.com/unicornultrafoundation/go-u2u/trie"
+	sesa "github.com/sesanetwork/go-sesa"
+	"github.com/sesanetwork/go-sesa/core/rawdb"
+	"github.com/sesanetwork/go-sesa/eth/protocols/snap"
+	"github.com/sesanetwork/go-sesa/ethdb"
+	"github.com/sesanetwork/go-sesa/trie"
 )
 
 var (
@@ -119,12 +119,12 @@ func (d *Leecher) DeliverSnapPacket(peer *snap.Peer, packet snap.Packet) error {
 // In addition, during the state download phase of fast synchronisation the number
 // of processed and the total number of known states are also returned. Otherwise
 // these are zero.
-func (d *Leecher) Progress() u2u.SyncProgress {
+func (d *Leecher) Progress() sesa.SyncProgress {
 	// Lock the current stats and return the progress
 	d.syncStatsLock.RLock()
 	defer d.syncStatsLock.RUnlock()
 
-	return u2u.SyncProgress{
+	return sesa.SyncProgress{
 		PulledStates: d.syncStatsState.processed,
 		KnownStates:  d.syncStatsState.processed + d.syncStatsState.pending,
 	}

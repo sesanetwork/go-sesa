@@ -5,10 +5,10 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/unicornultrafoundation/go-u2u/accounts/keystore"
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-sesa/accounts/keystore"
+	"github.com/sesanetwork/go-sesa/common"
 
-	"github.com/unicornultrafoundation/go-u2u/native/validatorpk"
+	"github.com/sesanetwork/go-sesa/native/validatorpk"
 )
 
 type encryptedAccountKeyJSONV3 struct {

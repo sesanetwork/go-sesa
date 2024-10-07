@@ -8,21 +8,21 @@ import (
 	"time"
 
 	mapset "github.com/deckarep/golang-set"
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/dag"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/utils/datasemaphore"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/eth/protocols/snap"
-	"github.com/unicornultrafoundation/go-u2u/p2p"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/dag"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/utils/datasemaphore"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/eth/protocols/snap"
+	"github.com/sesanetwork/go-sesa/p2p"
+	"github.com/sesanetwork/go-sesa/rlp"
 
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/blockrecords/brstream"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/blockvotes/bvstream"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/dag/dagstream"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/epochpacks/epstream"
-	"github.com/unicornultrafoundation/go-u2u/native"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/blockrecords/brstream"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/blockvotes/bvstream"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/dag/dagstream"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/epochpacks/epstream"
+	"github.com/sesanetwork/go-sesa/native"
 )
 
 var (
@@ -561,7 +561,7 @@ func (p *peer) readStatus(network uint64, handshake *handshakeData, genesis comm
 // String implements fmt.Stringer.
 func (p *peer) String() string {
 	return fmt.Sprintf("Peer %s [%s]", p.id,
-		fmt.Sprintf("u2u/%2d", p.version),
+		fmt.Sprintf("sesa/%2d", p.version),
 	)
 }
 
@@ -583,7 +583,7 @@ func (p *snapPeer) info() *snapPeerInfo {
 	}
 }
 
-// eligibleForSnap checks eligibility of a peer for a snap protocol. A peer is eligible for a snap if it advertises `snap` sattelite protocol along with `u2u` protocol.
+// eligibleForSnap checks eligibility of a peer for a snap protocol. A peer is eligible for a snap if it advertises `snap` sattelite protocol along with `sesa` protocol.
 func eligibleForSnap(p *p2p.Peer) bool {
 	return p.RunningCap(ProtocolName, []uint{UP01}) && p.RunningCap(snap.ProtocolName, snap.ProtocolVersions)
 }

@@ -21,15 +21,15 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/state"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/core/vm"
-	"github.com/unicornultrafoundation/go-u2u/ethdb"
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/state"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/core/vm"
+	"github.com/sesanetwork/go-sesa/ethdb"
+	"github.com/sesanetwork/go-sesa/params"
 
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/sesa"
 )
 
 // BlockGen creates blocks for testing.
@@ -99,8 +99,8 @@ func (b *BlockGen) AddTxWithChain(bc DummyChain, tx *types.Transaction) {
 	}
 	b.statedb.Prepare(tx.Hash(), len(b.txs))
 	blockContext := NewEVMBlockContext(b.header, bc, nil)
-	vmenv := vm.NewEVM(blockContext, vm.TxContext{}, b.statedb, b.config, u2u.DefaultVMConfig)
-	receipt, _, _, err := ApplyTransaction(msg, b.config, b.gasPool, b.statedb, b.header.Number, b.header.Hash, tx, &b.header.GasUsed, vmenv, u2u.DefaultVMConfig, func(log *types.Log, db *state.StateDB) {})
+	vmenv := vm.NewEVM(blockContext, vm.TxContext{}, b.statedb, b.config, sesa.DefaultVMConfig)
+	receipt, _, _, err := ApplyTransaction(msg, b.config, b.gasPool, b.statedb, b.header.Number, b.header.Hash, tx, &b.header.GasUsed, vmenv, sesa.DefaultVMConfig, func(log *types.Log, db *state.StateDB) {})
 	if err != nil {
 		panic(err)
 	}

@@ -6,11 +6,11 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/unicornultrafoundation/go-u2u/cmd/utils"
-	"github.com/unicornultrafoundation/go-u2u/params"
+	"github.com/sesanetwork/go-sesa/cmd/utils"
+	"github.com/sesanetwork/go-sesa/params"
 	"gopkg.in/urfave/cli.v1"
 
-	"github.com/unicornultrafoundation/go-u2u/gossip"
+	"github.com/sesanetwork/go-sesa/gossip"
 )
 
 var (

@@ -31,34 +31,34 @@ import (
 	"github.com/syndtr/goleveldb/leveldb/opt"
 	"github.com/tyler-smith/go-bip39"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
 
-	"github.com/unicornultrafoundation/go-u2u/accounts"
-	"github.com/unicornultrafoundation/go-u2u/accounts/abi"
-	"github.com/unicornultrafoundation/go-u2u/accounts/keystore"
-	"github.com/unicornultrafoundation/go-u2u/accounts/scwallet"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/common/hexutil"
-	"github.com/unicornultrafoundation/go-u2u/common/math"
-	"github.com/unicornultrafoundation/go-u2u/core/state"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	"github.com/unicornultrafoundation/go-u2u/core/vm"
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/eth/tracers"
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
-	"github.com/unicornultrafoundation/go-u2u/gossip/gasprice"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/p2p"
-	"github.com/unicornultrafoundation/go-u2u/params"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
-	"github.com/unicornultrafoundation/go-u2u/rpc"
-	"github.com/unicornultrafoundation/go-u2u/trie"
-	"github.com/unicornultrafoundation/go-u2u/u2u"
-	"github.com/unicornultrafoundation/go-u2u/utils/adapters/ethdb2udb"
-	"github.com/unicornultrafoundation/go-u2u/utils/dbutil/compactdb"
-	"github.com/unicornultrafoundation/go-u2u/utils/signers/gsignercache"
-	"github.com/unicornultrafoundation/go-u2u/utils/signers/internaltx"
+	"github.com/sesanetwork/go-sesa/accounts"
+	"github.com/sesanetwork/go-sesa/accounts/abi"
+	"github.com/sesanetwork/go-sesa/accounts/keystore"
+	"github.com/sesanetwork/go-sesa/accounts/scwallet"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/common/hexutil"
+	"github.com/sesanetwork/go-sesa/common/math"
+	"github.com/sesanetwork/go-sesa/core/state"
+	"github.com/sesanetwork/go-sesa/core/types"
+	"github.com/sesanetwork/go-sesa/core/vm"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/eth/tracers"
+	"github.com/sesanetwork/go-sesa/evmcore"
+	"github.com/sesanetwork/go-sesa/gossip/gasprice"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/p2p"
+	"github.com/sesanetwork/go-sesa/params"
+	"github.com/sesanetwork/go-sesa/rlp"
+	"github.com/sesanetwork/go-sesa/rpc"
+	"github.com/sesanetwork/go-sesa/trie"
+	"github.com/sesanetwork/go-sesa/sesa"
+	"github.com/sesanetwork/go-sesa/utils/adapters/ethdb2udb"
+	"github.com/sesanetwork/go-sesa/utils/dbutil/compactdb"
+	"github.com/sesanetwork/go-sesa/utils/signers/gsignercache"
+	"github.com/sesanetwork/go-sesa/utils/signers/internaltx"
 )
 
 const (
@@ -169,7 +169,7 @@ func (s *PublicEthereumAPI) FeeHistory(ctx context.Context, blockCount rpc.Decim
 		r := rand.New(rand.NewSource(int64(oldest) + int64(i)))
 		res.GasUsedRatio = append(res.GasUsedRatio, 0.9+r.Float64()*0.1)
 	}
-	res.Note = `In the U2U network, the eth_feeHistory method operates slightly differently due to the network's unique consensus mechanism. ` +
+	res.Note = `In the sesa network, the eth_feeHistory method operates slightly differently due to the network's unique consensus mechanism. ` +
 		`Here, instead of returning a range of gas tip values from requested blocks, ` +
 		`it provides a singular estimated gas tip based on a defined confidence level (indicated by the percentile parameter). ` +
 		`This approach means that while you will receive replicated (and randomized) reward values across the requested blocks, ` +
@@ -677,7 +677,7 @@ func (s *PublicBlockChainAPI) CurrentEpoch(ctx context.Context) hexutil.Uint64 {
 }
 
 // GetRules returns network rules for an epoch
-func (s *PublicBlockChainAPI) GetRules(ctx context.Context, epoch rpc.BlockNumber) (*u2u.Rules, error) {
+func (s *PublicBlockChainAPI) GetRules(ctx context.Context, epoch rpc.BlockNumber) (*sesa.Rules, error) {
 	_, es, err := s.b.GetEpochBlockState(ctx, epoch)
 	if err != nil {
 		return nil, err
@@ -1072,7 +1072,7 @@ func DoCall(ctx context.Context, b Backend, args TransactionArgs, blockNrOrHash 
 	if err != nil {
 		return nil, err
 	}
-	vmConfig := u2u.DefaultVMConfig
+	vmConfig := sesa.DefaultVMConfig
 	vmConfig.NoBaseFee = true
 	evm, vmError, err := b.GetEVM(ctx, msg, state, header, &vmConfig)
 	if err != nil {
@@ -1620,7 +1620,7 @@ func AccessList(ctx context.Context, b Backend, blockNrOrHash rpc.BlockNumberOrH
 
 		// Apply the transaction with the access list tracer
 		tracer := vm.NewAccessListTracer(accessList, args.from(), to, precompiles)
-		config := u2u.DefaultVMConfig
+		config := sesa.DefaultVMConfig
 		config.Tracer = tracer
 		config.Debug = true
 		config.NoBaseFee = true
@@ -2284,7 +2284,7 @@ func (api *PublicDebugAPI) traceTx(ctx context.Context, message evmcore.Message,
 	}
 
 	// Run the transaction with tracing enabled.
-	evmconfig := u2u.DefaultVMConfig
+	evmconfig := sesa.DefaultVMConfig
 	evmconfig.Tracer = tracer
 	evmconfig.Debug = true
 	evmconfig.NoBaseFee = true
@@ -2459,7 +2459,7 @@ func (api *PublicDebugAPI) traceBlock(ctx context.Context, block *evmcore.EvmBlo
 		// Generate the next state snapshot fast without tracing
 		msg, _ := tx.AsMessage(signer, block.BaseFee)
 		statedb.Prepare(tx.Hash(), i)
-		vmenv := vm.NewEVM(blockCtx, evmcore.NewEVMTxContext(msg), statedb, api.b.ChainConfig(), u2u.DefaultVMConfig)
+		vmenv := vm.NewEVM(blockCtx, evmcore.NewEVMTxContext(msg), statedb, api.b.ChainConfig(), sesa.DefaultVMConfig)
 		if _, err := evmcore.ApplyMessage(vmenv, msg, new(evmcore.GasPool).AddGas(msg.Gas())); err != nil {
 			failed = err
 			break
@@ -2503,7 +2503,7 @@ func (api *PublicDebugAPI) stateAtTransaction(ctx context.Context, block *evmcor
 			return msg, context, statedb, nil
 		}
 		// Not yet the searched for transaction, execute on top of the current state
-		vmenv := vm.NewEVM(context, txContext, statedb, api.b.ChainConfig(), u2u.DefaultVMConfig)
+		vmenv := vm.NewEVM(context, txContext, statedb, api.b.ChainConfig(), sesa.DefaultVMConfig)
 		statedb.Prepare(tx.Hash(), idx)
 		if _, err := evmcore.ApplyMessage(vmenv, msg, new(evmcore.GasPool).AddGas(tx.Gas())); err != nil {
 			return nil, vm.BlockContext{}, nil, fmt.Errorf("transaction %#x failed: %v", tx.Hash(), err)
@@ -2585,7 +2585,7 @@ func checkTxFee(gasPrice *big.Int, gas uint64, cap float64) error {
 	feeEth := new(big.Float).Quo(new(big.Float).SetInt(new(big.Int).Mul(gasPrice, new(big.Int).SetUint64(gas))), new(big.Float).SetInt(big.NewInt(params.Ether)))
 	feeFloat, _ := feeEth.Float64()
 	if feeFloat > cap {
-		return fmt.Errorf("tx fee (%.2f U2U) exceeds the configured cap (%.2f U2U)", feeFloat, cap)
+		return fmt.Errorf("tx fee (%.2f sesa) exceeds the configured cap (%.2f sesa)", feeFloat, cap)
 	}
 	return nil
 }

@@ -24,8 +24,8 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/p2p"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/p2p"
 )
 
 // Tests that datadirs can be successfully created, be them manually configured

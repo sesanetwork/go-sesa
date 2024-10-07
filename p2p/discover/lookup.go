@@ -20,7 +20,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/p2p/enode"
+	"github.com/sesanetwork/go-sesa/p2p/enode"
 )
 
 // lookup performs a network search for nodes close to the given target. It approaches the

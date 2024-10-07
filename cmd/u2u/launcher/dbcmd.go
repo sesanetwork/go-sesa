@@ -5,17 +5,17 @@ import (
 	"path"
 
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/unicornultrafoundation/go-helios/u2udb"
-	"github.com/unicornultrafoundation/go-helios/u2udb/cachedproducer"
-	"github.com/unicornultrafoundation/go-helios/u2udb/multidb"
-	"github.com/unicornultrafoundation/go-u2u/cmd/utils"
-	"github.com/unicornultrafoundation/go-u2u/ethdb"
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-helios/sesadb/cachedproducer"
+	"github.com/sesanetwork/go-helios/sesadb/multidb"
+	"github.com/sesanetwork/go-sesa/cmd/utils"
+	"github.com/sesanetwork/go-sesa/ethdb"
+	"github.com/sesanetwork/go-sesa/log"
 	"gopkg.in/urfave/cli.v1"
 
-	"github.com/unicornultrafoundation/go-u2u/gossip"
-	"github.com/unicornultrafoundation/go-u2u/integration"
-	"github.com/unicornultrafoundation/go-u2u/utils/dbutil/compactdb"
+	"github.com/sesanetwork/go-sesa/gossip"
+	"github.com/sesanetwork/go-sesa/integration"
+	"github.com/sesanetwork/go-sesa/utils/dbutil/compactdb"
 )
 
 var (
@@ -39,7 +39,7 @@ var (
 					utils.DataDirFlag,
 				},
 				Description: `
-u2u db compact
+sesa db compact
 will compact all databases under datadir's chaindata.
 `,
 			},
@@ -53,7 +53,7 @@ will compact all databases under datadir's chaindata.
 					utils.DataDirFlag,
 				},
 				Description: `
-u2u db transform
+sesa db transform
 will migrate tables layout according to the configuration.
 `,
 			},
@@ -68,7 +68,7 @@ will migrate tables layout according to the configuration.
 					experimentalFlag,
 				},
 				Description: `
-u2u db heal --experimental
+sesa db heal --experimental
 Experimental - try to heal dirty DB.
 `,
 			},
@@ -76,12 +76,12 @@ Experimental - try to heal dirty DB.
 	}
 )
 
-func makeUncheckedDBsProducers(cfg *config) map[multidb.TypeName]u2udb.IterableDBProducer {
+func makeUncheckedDBsProducers(cfg *config) map[multidb.TypeName]sesadb.IterableDBProducer {
 	dbsList, _ := integration.SupportedDBs(path.Join(cfg.Node.DataDir, "chaindata"), cfg.DBs.RuntimeCache)
 	return dbsList
 }
 
-func makeUncheckedCachedDBsProducers(chaindataDir string) map[multidb.TypeName]u2udb.FullDBProducer {
+func makeUncheckedCachedDBsProducers(chaindataDir string) map[multidb.TypeName]sesadb.FullDBProducer {
 	dbTypes, _ := integration.SupportedDBs(chaindataDir, integration.DBsCacheConfig{
 		Table: map[string]integration.DBCacheConfig{
 			"": {
@@ -90,21 +90,21 @@ func makeUncheckedCachedDBsProducers(chaindataDir string) map[multidb.TypeName]u
 			},
 		},
 	})
-	wrappedDbTypes := make(map[multidb.TypeName]u2udb.FullDBProducer)
+	wrappedDbTypes := make(map[multidb.TypeName]sesadb.FullDBProducer)
 	for typ, producer := range dbTypes {
 		wrappedDbTypes[typ] = cachedproducer.WrapAll(&integration.DummyScopedProducer{IterableDBProducer: producer})
 	}
 	return wrappedDbTypes
 }
 
-func makeCheckedDBsProducers(cfg *config) map[multidb.TypeName]u2udb.IterableDBProducer {
+func makeCheckedDBsProducers(cfg *config) map[multidb.TypeName]sesadb.IterableDBProducer {
 	if err := integration.CheckStateInitialized(path.Join(cfg.Node.DataDir, "chaindata"), cfg.DBs); err != nil {
 		utils.Fatalf(err.Error())
 	}
 	return makeUncheckedDBsProducers(cfg)
 }
 
-func makeDirectDBsProducerFrom(dbsList map[multidb.TypeName]u2udb.IterableDBProducer, cfg *config) u2udb.FullDBProducer {
+func makeDirectDBsProducerFrom(dbsList map[multidb.TypeName]sesadb.IterableDBProducer, cfg *config) sesadb.FullDBProducer {
 	multiRawDbs, err := integration.MakeDirectMultiProducer(dbsList, cfg.DBs.Routing)
 	if err != nil {
 		utils.Fatalf("Failed to initialize multi DB producer: %v", err)
@@ -112,13 +112,13 @@ func makeDirectDBsProducerFrom(dbsList map[multidb.TypeName]u2udb.IterableDBProd
 	return multiRawDbs
 }
 
-func makeDirectDBsProducer(cfg *config) u2udb.FullDBProducer {
+func makeDirectDBsProducer(cfg *config) sesadb.FullDBProducer {
 	dbsList := makeCheckedDBsProducers(cfg)
 	return makeDirectDBsProducerFrom(dbsList, cfg)
 }
 
-func makeGossipStore(producer u2udb.FlushableDBProducer, cfg *config) *gossip.Store {
-	return gossip.NewStore(producer, cfg.U2UStore)
+func makeGossipStore(producer sesadb.FlushableDBProducer, cfg *config) *gossip.Store {
+	return gossip.NewStore(producer, cfg.sesaStore)
 }
 
 func compact(ctx *cli.Context) error {
@@ -137,7 +137,7 @@ func compact(ctx *cli.Context) error {
 	return nil
 }
 
-func compactDB(typ multidb.TypeName, name string, producer u2udb.DBProducer) error {
+func compactDB(typ multidb.TypeName, name string, producer sesadb.DBProducer) error {
 	humanName := path.Join(string(typ), name)
 	db, err := producer.OpenDB(name)
 	defer db.Close()

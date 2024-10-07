@@ -19,7 +19,7 @@ package vm
 import (
 	"testing"
 
-	"github.com/unicornultrafoundation/go-u2u/crypto"
+	"github.com/sesanetwork/go-sesa/crypto"
 )
 
 func TestJumpDestAnalysis(t *testing.T) {

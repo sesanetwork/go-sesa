@@ -6,10 +6,10 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/eth/gasprice"
-	"github.com/unicornultrafoundation/go-u2u/miner"
+	"github.com/sesanetwork/go-sesa/evmcore"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/eth/gasprice"
+	"github.com/sesanetwork/go-sesa/miner"
 )
 
 // MarshalTOML marshals as TOML.

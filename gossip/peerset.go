@@ -20,10 +20,10 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/eth/protocols/snap"
-	"github.com/unicornultrafoundation/go-u2u/p2p"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/eth/protocols/snap"
+	"github.com/sesanetwork/go-sesa/p2p"
 )
 
 var (
@@ -39,9 +39,9 @@ var (
 	// a peer set, but no peer with the given id exists.
 	errPeerNotRegistered = errors.New("peer not registered")
 
-	// errSnapWithoutU2U is returned if a peer attempts to connect only on the
-	// snap protocol without advertizing the u2u main protocol.
-	errSnapWithoutU2U = errors.New("peer connected on snap without compatible u2u support")
+	// errSnapWithoutsesa is returned if a peer attempts to connect only on the
+	// snap protocol without advertizing the sesa main protocol.
+	errSnapWithoutsesa = errors.New("peer connected on snap without compatible sesa support")
 )
 
 // peerSet represents the collection of active peers currently participating in
@@ -72,7 +72,7 @@ func newPeerSet() *peerSet {
 func (ps *peerSet) RegisterSnapExtension(peer *snap.Peer) error {
 	// Reject the peer if it is not eligible for a snap protocol
 	if !eligibleForSnap(peer.Peer) {
-		return errSnapWithoutU2U
+		return errSnapWithoutsesa
 	}
 	// Ensure nobody can double connect
 	ps.lock.Lock()

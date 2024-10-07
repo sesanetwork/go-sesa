@@ -24,7 +24,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/unicornultrafoundation/go-u2u/common"
+	"github.com/sesanetwork/go-sesa/common"
 )
 
 // Type enumerator

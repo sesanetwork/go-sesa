@@ -1,11 +1,11 @@
 version: '3'
 services:
   node:
-    image: u2u:latest
-    container_name: u2u
+    image: sesa:latest
+    container_name: sesa
     restart: always
     volumes:
-      - ./data:/root/.u2u
+      - ./data:/root/.sesa
       - ../../mainnet.g:/mainnet.g
       - /etc/password:/password
     ports:

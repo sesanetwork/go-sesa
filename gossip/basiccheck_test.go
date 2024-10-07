@@ -7,14 +7,14 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/suite"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-sesa/core/types"
 
-	lbasiccheck "github.com/unicornultrafoundation/go-helios/eventcheck/basiccheck"
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
+	lbasiccheck "github.com/sesanetwork/go-helios/eventcheck/basiccheck"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
 
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/basiccheck"
-	"github.com/unicornultrafoundation/go-u2u/native"
+	"github.com/sesanetwork/go-sesa/eventcheck/basiccheck"
+	"github.com/sesanetwork/go-sesa/native"
 )
 
 type LLRBasicCheckTestSuite struct {

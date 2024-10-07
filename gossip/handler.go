@@ -9,49 +9,49 @@ import (
 	"sync"
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/gossip/dagprocessor"
-	"github.com/unicornultrafoundation/go-helios/gossip/itemsfetcher"
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/dag"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/utils/datasemaphore"
-	"github.com/unicornultrafoundation/go-u2u/common"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
-	notify "github.com/unicornultrafoundation/go-u2u/event"
-	"github.com/unicornultrafoundation/go-u2u/log"
-	"github.com/unicornultrafoundation/go-u2u/p2p"
-	"github.com/unicornultrafoundation/go-u2u/p2p/discover/discfilter"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
-	"github.com/unicornultrafoundation/go-u2u/trie"
+	"github.com/sesanetwork/go-helios/gossip/dagprocessor"
+	"github.com/sesanetwork/go-helios/gossip/itemsfetcher"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/dag"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/utils/datasemaphore"
+	"github.com/sesanetwork/go-sesa/common"
+	"github.com/sesanetwork/go-sesa/core/types"
+	notify "github.com/sesanetwork/go-sesa/event"
+	"github.com/sesanetwork/go-sesa/log"
+	"github.com/sesanetwork/go-sesa/p2p"
+	"github.com/sesanetwork/go-sesa/p2p/discover/discfilter"
+	"github.com/sesanetwork/go-sesa/rlp"
+	"github.com/sesanetwork/go-sesa/trie"
 
-	"github.com/unicornultrafoundation/go-u2u/eventcheck"
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/bvallcheck"
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/epochcheck"
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/evallcheck"
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/heavycheck"
-	"github.com/unicornultrafoundation/go-u2u/eventcheck/parentlesscheck"
-	"github.com/unicornultrafoundation/go-u2u/evmcore"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/blockrecords/brprocessor"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/blockrecords/brstream"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/blockrecords/brstream/brstreamleecher"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/blockrecords/brstream/brstreamseeder"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/blockvotes/bvprocessor"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/blockvotes/bvstream"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/blockvotes/bvstream/bvstreamleecher"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/blockvotes/bvstream/bvstreamseeder"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/dag/dagstream"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/dag/dagstream/dagstreamleecher"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/dag/dagstream/dagstreamseeder"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/epochpacks/epprocessor"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/epochpacks/epstream"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/epochpacks/epstream/epstreamleecher"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/epochpacks/epstream/epstreamseeder"
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/snap/snapstream/snapleecher"
-	"github.com/unicornultrafoundation/go-u2u/logger"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/native/ibr"
-	"github.com/unicornultrafoundation/go-u2u/native/ier"
-	"github.com/unicornultrafoundation/go-u2u/utils/txtime"
+	"github.com/sesanetwork/go-sesa/eventcheck"
+	"github.com/sesanetwork/go-sesa/eventcheck/bvallcheck"
+	"github.com/sesanetwork/go-sesa/eventcheck/epochcheck"
+	"github.com/sesanetwork/go-sesa/eventcheck/evallcheck"
+	"github.com/sesanetwork/go-sesa/eventcheck/heavycheck"
+	"github.com/sesanetwork/go-sesa/eventcheck/parentlesscheck"
+	"github.com/sesanetwork/go-sesa/evmcore"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/blockrecords/brprocessor"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/blockrecords/brstream"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/blockrecords/brstream/brstreamleecher"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/blockrecords/brstream/brstreamseeder"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/blockvotes/bvprocessor"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/blockvotes/bvstream"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/blockvotes/bvstream/bvstreamleecher"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/blockvotes/bvstream/bvstreamseeder"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/dag/dagstream"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/dag/dagstream/dagstreamleecher"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/dag/dagstream/dagstreamseeder"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/epochpacks/epprocessor"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/epochpacks/epstream"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/epochpacks/epstream/epstreamleecher"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/epochpacks/epstream/epstreamseeder"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/snap/snapstream/snapleecher"
+	"github.com/sesanetwork/go-sesa/logger"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/native/ibr"
+	"github.com/sesanetwork/go-sesa/native/ier"
+	"github.com/sesanetwork/go-sesa/utils/txtime"
 )
 
 const (
@@ -194,8 +194,8 @@ type handler struct {
 	logger.Instance
 }
 
-// newHandler returns a new U2U sub protocol manager. The U2U sub protocol manages peers capable
-// with the U2U network.
+// newHandler returns a new sesa sub protocol manager. The sesa sub protocol manages peers capable
+// with the sesa network.
 func newHandler(
 	c handlerConfig,
 ) (
@@ -701,7 +701,7 @@ func (h *handler) Start(maxPeers int) {
 }
 
 func (h *handler) Stop() {
-	log.Info("Stopping U2U protocol")
+	log.Info("Stopping sesa protocol")
 
 	h.brLeecher.Stop()
 	h.brSeeder.Stop()
@@ -749,7 +749,7 @@ func (h *handler) Stop() {
 	h.wg.Wait()
 	h.peerWG.Wait()
 
-	log.Info("U2U protocol stopped")
+	log.Info("sesa protocol stopped")
 }
 
 func (h *handler) myProgress() PeerProgress {
@@ -784,7 +784,7 @@ func (h *handler) handle(p *peer) error {
 		return err
 	}
 	useless := discfilter.Banned(p.Node().ID(), p.Node().Record())
-	if !useless && (!eligibleForSnap(p.Peer) || !strings.Contains(strings.ToLower(p.Name()), "u2u")) {
+	if !useless && (!eligibleForSnap(p.Peer) || !strings.Contains(strings.ToLower(p.Name()), "sesa")) {
 		useless = true
 		discfilter.Ban(p.ID())
 	}

@@ -3,33 +3,33 @@ package itergc
 import (
 	"sync"
 
-	"github.com/unicornultrafoundation/go-helios/u2udb"
+	"github.com/sesanetwork/go-helios/sesadb"
 )
 
 type Snapshot struct {
-	u2udb.Snapshot
+	sesadb.Snapshot
 	nextID uint64
-	iters  map[uint64]u2udb.Iterator
+	iters  map[uint64]sesadb.Iterator
 	mu     sync.Locker
 }
 
 type Iterator struct {
-	u2udb.Iterator
+	sesadb.Iterator
 	mu    sync.Locker
 	id    uint64
-	iters map[uint64]u2udb.Iterator
+	iters map[uint64]sesadb.Iterator
 }
 
 // Wrap snapshot to automatically close all pending iterators upon snapshot release
-func Wrap(snapshot u2udb.Snapshot, mu sync.Locker) *Snapshot {
+func Wrap(snapshot sesadb.Snapshot, mu sync.Locker) *Snapshot {
 	return &Snapshot{
 		Snapshot: snapshot,
-		iters:    make(map[uint64]u2udb.Iterator),
+		iters:    make(map[uint64]sesadb.Iterator),
 		mu:       mu,
 	}
 }
 
-func (s *Snapshot) NewIterator(prefix []byte, start []byte) u2udb.Iterator {
+func (s *Snapshot) NewIterator(prefix []byte, start []byte) sesadb.Iterator {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	it := s.Snapshot.NewIterator(prefix, start)

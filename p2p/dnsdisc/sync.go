@@ -21,8 +21,8 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/common/mclock"
-	"github.com/unicornultrafoundation/go-u2u/p2p/enode"
+	"github.com/sesanetwork/go-sesa/common/mclock"
+	"github.com/sesanetwork/go-sesa/p2p/enode"
 )
 
 // This is the number of consecutive leaf requests that may fail before

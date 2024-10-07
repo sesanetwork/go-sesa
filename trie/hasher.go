@@ -19,8 +19,8 @@ package trie
 import (
 	"sync"
 
-	"github.com/unicornultrafoundation/go-u2u/crypto"
-	"github.com/unicornultrafoundation/go-u2u/rlp"
+	"github.com/sesanetwork/go-sesa/crypto"
+	"github.com/sesanetwork/go-sesa/rlp"
 	"golang.org/x/crypto/sha3"
 )
 

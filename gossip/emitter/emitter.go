@@ -9,19 +9,19 @@ import (
 	"sync"
 	"time"
 
-	"github.com/unicornultrafoundation/go-helios/emitter/ancestor"
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
-	"github.com/unicornultrafoundation/go-helios/native/pos"
-	"github.com/unicornultrafoundation/go-helios/utils/piecefunc"
-	"github.com/unicornultrafoundation/go-u2u/core/types"
+	"github.com/sesanetwork/go-helios/emitter/ancestor"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/native/pos"
+	"github.com/sesanetwork/go-helios/utils/piecefunc"
+	"github.com/sesanetwork/go-sesa/core/types"
 
-	"github.com/unicornultrafoundation/go-u2u/gossip/emitter/originatedtxs"
-	"github.com/unicornultrafoundation/go-u2u/logger"
-	"github.com/unicornultrafoundation/go-u2u/native"
-	"github.com/unicornultrafoundation/go-u2u/tracing"
-	"github.com/unicornultrafoundation/go-u2u/utils/errlock"
-	"github.com/unicornultrafoundation/go-u2u/utils/rate"
+	"github.com/sesanetwork/go-sesa/gossip/emitter/originatedtxs"
+	"github.com/sesanetwork/go-sesa/logger"
+	"github.com/sesanetwork/go-sesa/native"
+	"github.com/sesanetwork/go-sesa/tracing"
+	"github.com/sesanetwork/go-sesa/utils/errlock"
+	"github.com/sesanetwork/go-sesa/utils/rate"
 )
 
 const (

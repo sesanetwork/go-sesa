@@ -26,7 +26,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/unicornultrafoundation/go-u2u/common/math"
+	"github.com/sesanetwork/go-sesa/common/math"
 	"gopkg.in/urfave/cli.v1"
 )
 

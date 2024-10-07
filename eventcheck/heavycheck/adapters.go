@@ -1,9 +1,9 @@
 package heavycheck
 
 import (
-	"github.com/unicornultrafoundation/go-helios/native/dag"
+	"github.com/sesanetwork/go-helios/native/dag"
 
-	"github.com/unicornultrafoundation/go-u2u/native"
+	"github.com/sesanetwork/go-sesa/native"
 )
 
 type EventsOnly struct {

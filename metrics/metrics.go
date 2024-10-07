@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/unicornultrafoundation/go-u2u/log"
+	"github.com/sesanetwork/go-sesa/log"
 )
 
 // Enabled is checked by the constructor functions for all of the

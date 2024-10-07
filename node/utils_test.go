@@ -20,8 +20,8 @@
 package node
 
 import (
-	"github.com/unicornultrafoundation/go-u2u/p2p"
-	"github.com/unicornultrafoundation/go-u2u/rpc"
+	"github.com/sesanetwork/go-sesa/p2p"
+	"github.com/sesanetwork/go-sesa/rpc"
 )
 
 // NoopLifecycle is a trivial implementation of the Service interface.

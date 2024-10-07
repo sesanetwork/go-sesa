@@ -8,10 +8,10 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
 
-	"github.com/unicornultrafoundation/go-u2u/gossip/protocols/dag/dagstream"
+	"github.com/sesanetwork/go-sesa/gossip/protocols/dag/dagstream"
 )
 
 func TestLeecherNoDeadlocks(t *testing.T) {

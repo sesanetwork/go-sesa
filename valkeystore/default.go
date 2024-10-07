@@ -1,9 +1,9 @@
 package valkeystore
 
 import (
-	"github.com/unicornultrafoundation/go-u2u/accounts/keystore"
+	"github.com/sesanetwork/go-sesa/accounts/keystore"
 
-	"github.com/unicornultrafoundation/go-u2u/valkeystore/encryption"
+	"github.com/sesanetwork/go-sesa/valkeystore/encryption"
 )
 
 func NewDefaultFileRawKeystore(dir string) *FileKeystore {

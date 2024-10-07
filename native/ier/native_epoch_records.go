@@ -1,10 +1,10 @@
 package ier
 
 import (
-	"github.com/unicornultrafoundation/go-helios/hash"
-	"github.com/unicornultrafoundation/go-helios/native/idx"
+	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-helios/native/idx"
 
-	"github.com/unicornultrafoundation/go-u2u/native/iblockproc"
+	"github.com/sesanetwork/go-sesa/native/iblockproc"
 )
 
 type LlrFullEpochRecord struct {
