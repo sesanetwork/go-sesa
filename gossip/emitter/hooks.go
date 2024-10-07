@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/sesanetwork/go-helios/emitter/ancestor"
-	"github.com/sesanetwork/go-helios/native/idx"
-	"github.com/sesanetwork/go-helios/native/pos"
+	"github.com/sesanetwork/go-vassalo/emitter/ancestor"
+	"github.com/sesanetwork/go-vassalo/native/idx"
+	"github.com/sesanetwork/go-vassalo/native/pos"
 	"github.com/sesanetwork/go-sesa/core/types"
 
 	"github.com/sesanetwork/go-sesa/native"

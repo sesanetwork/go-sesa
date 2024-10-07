@@ -5,8 +5,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"github.com/sesanetwork/go-helios/consensus"
-	"github.com/sesanetwork/go-helios/utils/cachescale"
+	"github.com/sesanetwork/go-vassalo/consensus"
+	"github.com/sesanetwork/go-vassalo/utils/cachescale"
 	"github.com/sesanetwork/go-sesa/p2p/enode"
 
 	"github.com/sesanetwork/go-sesa/evmcore"

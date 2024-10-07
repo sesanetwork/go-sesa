@@ -13,8 +13,8 @@ import (
 
 	"github.com/naoina/toml"
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/sesanetwork/go-helios/consensus"
-	"github.com/sesanetwork/go-helios/utils/cachescale"
+	"github.com/sesanetwork/go-vassalo/consensus"
+	"github.com/sesanetwork/go-vassalo/utils/cachescale"
 	"github.com/sesanetwork/go-sesa/cmd/utils"
 	"github.com/sesanetwork/go-sesa/common"
 	"github.com/sesanetwork/go-sesa/log"

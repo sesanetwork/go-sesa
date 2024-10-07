@@ -3,7 +3,7 @@ package concurrent
 import (
 	"sync"
 
-	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-vassalo/native/idx"
 )
 
 type ValidatorEpochsSet struct {

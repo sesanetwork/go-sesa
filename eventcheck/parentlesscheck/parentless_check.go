@@ -1,7 +1,7 @@
 package parentlesscheck
 
 import (
-	"github.com/sesanetwork/go-helios/native/dag"
+	"github.com/sesanetwork/go-vassalo/native/dag"
 )
 
 type Checker struct {

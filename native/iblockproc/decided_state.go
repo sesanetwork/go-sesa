@@ -4,10 +4,10 @@ import (
 	"crypto/sha256"
 	"math/big"
 
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/native/idx"
-	"github.com/sesanetwork/go-helios/native/pos"
-	"github.com/sesanetwork/go-helios/types"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/native/idx"
+	"github.com/sesanetwork/go-vassalo/native/pos"
+	"github.com/sesanetwork/go-vassalo/types"
 	"github.com/sesanetwork/go-sesa/rlp"
 
 	"github.com/sesanetwork/go-sesa/native"

@@ -3,8 +3,8 @@ package utils
 import (
 	"fmt"
 
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/native/idx"
 )
 
 // NameOf returns human readable string representation.

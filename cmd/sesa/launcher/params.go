@@ -1,7 +1,7 @@
 package launcher
 
 import (
-	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-vassalo/hash"
 
 	"github.com/sesanetwork/go-sesa/sesa"
 	"github.com/sesanetwork/go-sesa/sesa/genesis"

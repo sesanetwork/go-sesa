@@ -7,8 +7,8 @@ package gossip
 import (
 	"bytes"
 
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/native/idx"
 	"github.com/sesanetwork/go-sesa/ethdb"
 	"github.com/sesanetwork/go-sesa/rlp"
 

@@ -3,9 +3,9 @@ package utils
 import (
 	"crypto/sha256"
 
-	"github.com/sesanetwork/go-helios/common/littleendian"
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/native/pos"
+	"github.com/sesanetwork/go-vassalo/common/littleendian"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/native/pos"
 )
 
 type weightedShuffleNode struct {

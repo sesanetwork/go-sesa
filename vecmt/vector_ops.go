@@ -1,10 +1,10 @@
 package vecmt
 
 import (
-	"github.com/sesanetwork/go-helios/native/dag"
-	"github.com/sesanetwork/go-helios/native/idx"
-	"github.com/sesanetwork/go-helios/vecengine"
-	"github.com/sesanetwork/go-helios/vecfc"
+	"github.com/sesanetwork/go-vassalo/native/dag"
+	"github.com/sesanetwork/go-vassalo/native/idx"
+	"github.com/sesanetwork/go-vassalo/vecengine"
+	"github.com/sesanetwork/go-vassalo/vecfc"
 
 	"github.com/sesanetwork/go-sesa/native"
 )

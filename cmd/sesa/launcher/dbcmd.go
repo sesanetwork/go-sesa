@@ -5,9 +5,9 @@ import (
 	"path"
 
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/sesanetwork/go-helios/sesadb"
-	"github.com/sesanetwork/go-helios/sesadb/cachedproducer"
-	"github.com/sesanetwork/go-helios/sesadb/multidb"
+	"github.com/sesanetwork/go-vassalo/sesadb"
+	"github.com/sesanetwork/go-vassalo/sesadb/cachedproducer"
+	"github.com/sesanetwork/go-vassalo/sesadb/multidb"
 	"github.com/sesanetwork/go-sesa/cmd/utils"
 	"github.com/sesanetwork/go-sesa/ethdb"
 	"github.com/sesanetwork/go-sesa/log"

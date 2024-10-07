@@ -3,10 +3,10 @@ package epstream
 import (
 	"fmt"
 
-	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-vassalo/native/idx"
 	"github.com/sesanetwork/go-sesa/rlp"
 
-	"github.com/sesanetwork/go-helios/gossip/basestream"
+	"github.com/sesanetwork/go-vassalo/gossip/basestream"
 )
 
 type Request struct {

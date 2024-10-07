@@ -9,11 +9,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sesanetwork/go-helios/emitter/ancestor"
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/native/idx"
-	"github.com/sesanetwork/go-helios/native/pos"
-	"github.com/sesanetwork/go-helios/utils/piecefunc"
+	"github.com/sesanetwork/go-vassalo/emitter/ancestor"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/native/idx"
+	"github.com/sesanetwork/go-vassalo/native/pos"
+	"github.com/sesanetwork/go-vassalo/utils/piecefunc"
 	"github.com/sesanetwork/go-sesa/core/types"
 
 	"github.com/sesanetwork/go-sesa/gossip/emitter/originatedtxs"

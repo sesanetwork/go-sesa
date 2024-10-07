@@ -1,7 +1,7 @@
 package heavycheck
 
 import (
-	"github.com/sesanetwork/go-helios/native/dag"
+	"github.com/sesanetwork/go-vassalo/native/dag"
 
 	"github.com/sesanetwork/go-sesa/native"
 )

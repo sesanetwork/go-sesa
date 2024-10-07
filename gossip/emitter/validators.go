@@ -3,9 +3,9 @@ package emitter
 import (
 	"time"
 
-	"github.com/sesanetwork/go-helios/native/idx"
-	"github.com/sesanetwork/go-helios/native/pos"
-	"github.com/sesanetwork/go-helios/utils/piecefunc"
+	"github.com/sesanetwork/go-vassalo/native/idx"
+	"github.com/sesanetwork/go-vassalo/native/pos"
+	"github.com/sesanetwork/go-vassalo/utils/piecefunc"
 )
 
 const (

@@ -6,8 +6,8 @@ import (
 
 	"github.com/sesanetwork/go-sesa/common"
 
-	"github.com/sesanetwork/go-helios/sesadb"
-	"github.com/sesanetwork/go-helios/sesadb/table"
+	"github.com/sesanetwork/go-vassalo/sesadb"
+	"github.com/sesanetwork/go-vassalo/sesadb/table"
 )
 
 func isEmptyDB(db sesadb.Iteratee) bool {

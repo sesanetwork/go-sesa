@@ -2,7 +2,7 @@ package integration
 
 import (
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/sesanetwork/go-helios/sesadb/multidb"
+	"github.com/sesanetwork/go-vassalo/sesadb/multidb"
 )
 
 var DefaultDBsConfig = PblLegacyDBsConfig

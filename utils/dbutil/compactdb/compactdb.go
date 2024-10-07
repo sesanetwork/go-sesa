@@ -5,8 +5,8 @@ import (
 	"math/big"
 	"strconv"
 
-	"github.com/sesanetwork/go-helios/sesadb"
-	"github.com/sesanetwork/go-helios/sesadb/table"
+	"github.com/sesanetwork/go-vassalo/sesadb"
+	"github.com/sesanetwork/go-vassalo/sesadb/table"
 
 	"github.com/sesanetwork/go-sesa/utils"
 )

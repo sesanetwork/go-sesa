@@ -4,7 +4,7 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-vassalo/native/idx"
 	"github.com/sesanetwork/go-sesa/accounts/abi"
 	"github.com/sesanetwork/go-sesa/common"
 

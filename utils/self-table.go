@@ -1,8 +1,8 @@
 package utils
 
 import (
-	"github.com/sesanetwork/go-helios/sesadb"
-	"github.com/sesanetwork/go-helios/sesadb/table"
+	"github.com/sesanetwork/go-vassalo/sesadb"
+	"github.com/sesanetwork/go-vassalo/sesadb/table"
 )
 
 func NewTableOrSelf(db sesadb.Store, prefix []byte) sesadb.Store {

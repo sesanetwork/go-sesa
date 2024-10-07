@@ -3,8 +3,8 @@ package epochcheck
 import (
 	"errors"
 
-	base "github.com/sesanetwork/go-helios/eventcheck/epochcheck"
-	"github.com/sesanetwork/go-helios/native/idx"
+	base "github.com/sesanetwork/go-vassalo/eventcheck/epochcheck"
+	"github.com/sesanetwork/go-vassalo/native/idx"
 	"github.com/sesanetwork/go-sesa/core/types"
 
 	"github.com/sesanetwork/go-sesa/native"

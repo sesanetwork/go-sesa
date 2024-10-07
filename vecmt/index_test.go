@@ -3,11 +3,11 @@ package vecmt
 import (
 	"testing"
 
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/native/dag"
-	"github.com/sesanetwork/go-helios/native/dag/tdag"
-	"github.com/sesanetwork/go-helios/native/pos"
-	"github.com/sesanetwork/go-helios/sesadb/memorydb"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/native/dag"
+	"github.com/sesanetwork/go-vassalo/native/dag/tdag"
+	"github.com/sesanetwork/go-vassalo/native/pos"
+	"github.com/sesanetwork/go-vassalo/sesadb/memorydb"
 
 	"github.com/sesanetwork/go-sesa/native"
 )

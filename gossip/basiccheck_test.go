@@ -9,9 +9,9 @@ import (
 	"github.com/stretchr/testify/suite"
 	"github.com/sesanetwork/go-sesa/core/types"
 
-	lbasiccheck "github.com/sesanetwork/go-helios/eventcheck/basiccheck"
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/native/idx"
+	lbasiccheck "github.com/sesanetwork/go-vassalo/eventcheck/basiccheck"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/native/idx"
 
 	"github.com/sesanetwork/go-sesa/eventcheck/basiccheck"
 	"github.com/sesanetwork/go-sesa/native"

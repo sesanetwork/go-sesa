@@ -3,7 +3,7 @@ package evmstore
 import (
 	"github.com/syndtr/goleveldb/leveldb/opt"
 
-	"github.com/sesanetwork/go-helios/sesadb/batched"
+	"github.com/sesanetwork/go-vassalo/sesadb/batched"
 
 	"github.com/sesanetwork/go-sesa/sesa/genesis"
 	"github.com/sesanetwork/go-sesa/utils/adapters/ethdb2udb"

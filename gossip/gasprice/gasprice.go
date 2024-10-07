@@ -30,8 +30,8 @@ import (
 	"github.com/sesanetwork/go-sesa/log"
 	"github.com/sesanetwork/go-sesa/params"
 
-	"github.com/sesanetwork/go-helios/native/idx"
-	"github.com/sesanetwork/go-helios/utils/piecefunc"
+	"github.com/sesanetwork/go-vassalo/native/idx"
+	"github.com/sesanetwork/go-vassalo/utils/piecefunc"
 
 	"github.com/sesanetwork/go-sesa/sesa"
 )

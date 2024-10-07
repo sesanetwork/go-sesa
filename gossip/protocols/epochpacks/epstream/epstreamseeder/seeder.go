@@ -3,11 +3,11 @@ package epstreamseeder
 import (
 	"errors"
 
-	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-vassalo/native/idx"
 	"github.com/sesanetwork/go-sesa/rlp"
 
-	"github.com/sesanetwork/go-helios/gossip/basestream"
-	"github.com/sesanetwork/go-helios/gossip/basestream/basestreamseeder"
+	"github.com/sesanetwork/go-vassalo/gossip/basestream"
+	"github.com/sesanetwork/go-vassalo/gossip/basestream/basestreamseeder"
 
 	"github.com/sesanetwork/go-sesa/gossip/protocols/epochpacks/epstream"
 )

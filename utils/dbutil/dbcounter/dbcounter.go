@@ -6,7 +6,7 @@ import (
 
 	"github.com/sesanetwork/go-sesa/log"
 
-	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-vassalo/sesadb"
 )
 
 type DBProducer struct {

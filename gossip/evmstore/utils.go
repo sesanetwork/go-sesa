@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/sesanetwork/go-helios/sesadb"
-	"github.com/sesanetwork/go-helios/sesadb/table"
-	"github.com/sesanetwork/go-helios/utils/simplewlru"
+	"github.com/sesanetwork/go-vassalo/sesadb"
+	"github.com/sesanetwork/go-vassalo/sesadb/table"
+	"github.com/sesanetwork/go-vassalo/utils/simplewlru"
 	"github.com/sesanetwork/go-sesa/common"
 	"github.com/sesanetwork/go-sesa/core/rawdb"
 	"github.com/sesanetwork/go-sesa/core/state"

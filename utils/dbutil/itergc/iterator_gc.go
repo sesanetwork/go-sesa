@@ -3,7 +3,7 @@ package itergc
 import (
 	"sync"
 
-	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-vassalo/sesadb"
 )
 
 type Snapshot struct {

@@ -3,7 +3,7 @@ package eventcheck
 import (
 	"errors"
 
-	base "github.com/sesanetwork/go-helios/eventcheck"
+	base "github.com/sesanetwork/go-vassalo/eventcheck"
 
 	"github.com/sesanetwork/go-sesa/eventcheck/epochcheck"
 	"github.com/sesanetwork/go-sesa/eventcheck/heavycheck"

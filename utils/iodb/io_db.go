@@ -3,8 +3,8 @@ package iodb
 import (
 	"io"
 
-	"github.com/sesanetwork/go-helios/common/bigendian"
-	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-vassalo/common/bigendian"
+	"github.com/sesanetwork/go-vassalo/sesadb"
 
 	"github.com/sesanetwork/go-sesa/utils/ioread"
 )

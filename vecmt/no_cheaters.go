@@ -3,7 +3,7 @@ package vecmt
 import (
 	"errors"
 
-	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-vassalo/hash"
 )
 
 // NoCheaters excludes events which are observed by selfParents as cheaters.

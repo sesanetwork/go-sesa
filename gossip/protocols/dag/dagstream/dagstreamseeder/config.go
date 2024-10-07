@@ -1,8 +1,8 @@
 package dagstreamseeder
 
 import (
-	"github.com/sesanetwork/go-helios/gossip/basestream/basestreamseeder"
-	"github.com/sesanetwork/go-helios/utils/cachescale"
+	"github.com/sesanetwork/go-vassalo/gossip/basestream/basestreamseeder"
+	"github.com/sesanetwork/go-vassalo/utils/cachescale"
 )
 
 type Config basestreamseeder.Config

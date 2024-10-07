@@ -11,8 +11,8 @@ import (
 	"github.com/sesanetwork/go-sesa/core/types"
 	"github.com/sesanetwork/go-sesa/rlp"
 
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/sesadb"
 	"github.com/sesanetwork/go-sesa/evmcore"
 	"github.com/sesanetwork/go-sesa/gossip/blockproc"
 	"github.com/sesanetwork/go-sesa/gossip/blockproc/drivermodule"

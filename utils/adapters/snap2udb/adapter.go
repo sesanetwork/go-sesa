@@ -1,8 +1,8 @@
 package snap2udb
 
 import (
-	"github.com/sesanetwork/go-helios/sesadb"
-	"github.com/sesanetwork/go-helios/sesadb/devnulldb"
+	"github.com/sesanetwork/go-vassalo/sesadb"
+	"github.com/sesanetwork/go-vassalo/sesadb/devnulldb"
 	"github.com/sesanetwork/go-sesa/log"
 )
 

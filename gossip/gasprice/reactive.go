@@ -6,7 +6,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/sesanetwork/go-helios/utils/piecefunc"
+	"github.com/sesanetwork/go-vassalo/utils/piecefunc"
 	"github.com/sesanetwork/go-sesa/core/types"
 )
 

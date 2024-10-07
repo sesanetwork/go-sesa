@@ -10,7 +10,7 @@ import (
 	"sync"
 
 	_ "github.com/dvyukov/go-fuzz/go-fuzz-defs"
-	"github.com/sesanetwork/go-helios/utils/cachescale"
+	"github.com/sesanetwork/go-vassalo/utils/cachescale"
 	"github.com/sesanetwork/go-sesa/core/types"
 	"github.com/sesanetwork/go-sesa/p2p"
 	"github.com/sesanetwork/go-sesa/p2p/enode"

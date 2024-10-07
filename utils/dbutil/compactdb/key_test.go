@@ -7,10 +7,10 @@ import (
 
 	"github.com/stretchr/testify/require"
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/sesanetwork/go-helios/sesadb"
-	"github.com/sesanetwork/go-helios/sesadb/leveldb"
-	"github.com/sesanetwork/go-helios/sesadb/memorydb"
-	"github.com/sesanetwork/go-helios/sesadb/pebble"
+	"github.com/sesanetwork/go-vassalo/sesadb"
+	"github.com/sesanetwork/go-vassalo/sesadb/leveldb"
+	"github.com/sesanetwork/go-vassalo/sesadb/memorydb"
+	"github.com/sesanetwork/go-vassalo/sesadb/pebble"
 )
 
 func tmpDir(name string) string {

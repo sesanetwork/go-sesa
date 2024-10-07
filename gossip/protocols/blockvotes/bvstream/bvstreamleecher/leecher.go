@@ -4,10 +4,10 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/sesanetwork/go-helios/gossip/basestream/basestreamleecher"
-	"github.com/sesanetwork/go-helios/gossip/basestream/basestreamleecher/basepeerleecher"
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-vassalo/gossip/basestream/basestreamleecher"
+	"github.com/sesanetwork/go-vassalo/gossip/basestream/basestreamleecher/basepeerleecher"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/native/idx"
 
 	"github.com/sesanetwork/go-sesa/gossip/protocols/blockvotes/bvstream"
 )

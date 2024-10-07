@@ -3,10 +3,10 @@ package integration
 import (
 	"fmt"
 
-	"github.com/sesanetwork/go-helios/sesadb"
-	"github.com/sesanetwork/go-helios/sesadb/cachedproducer"
-	"github.com/sesanetwork/go-helios/sesadb/multidb"
-	"github.com/sesanetwork/go-helios/sesadb/skipkeys"
+	"github.com/sesanetwork/go-vassalo/sesadb"
+	"github.com/sesanetwork/go-vassalo/sesadb/cachedproducer"
+	"github.com/sesanetwork/go-vassalo/sesadb/multidb"
+	"github.com/sesanetwork/go-vassalo/sesadb/skipkeys"
 
 	"github.com/sesanetwork/go-sesa/utils/dbutil/threads"
 )

@@ -11,7 +11,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-vassalo/hash"
 
 	"github.com/sesanetwork/go-sesa/utils/ioread"
 )

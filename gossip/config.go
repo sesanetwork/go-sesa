@@ -6,11 +6,11 @@ import (
 	"time"
 
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/sesanetwork/go-helios/gossip/dagprocessor"
-	"github.com/sesanetwork/go-helios/gossip/itemsfetcher"
-	"github.com/sesanetwork/go-helios/native/dag"
-	"github.com/sesanetwork/go-helios/native/idx"
-	"github.com/sesanetwork/go-helios/utils/cachescale"
+	"github.com/sesanetwork/go-vassalo/gossip/dagprocessor"
+	"github.com/sesanetwork/go-vassalo/gossip/itemsfetcher"
+	"github.com/sesanetwork/go-vassalo/native/dag"
+	"github.com/sesanetwork/go-vassalo/native/idx"
+	"github.com/sesanetwork/go-vassalo/utils/cachescale"
 
 	"github.com/sesanetwork/go-sesa/eventcheck/heavycheck"
 	"github.com/sesanetwork/go-sesa/gossip/evmstore"

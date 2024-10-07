@@ -5,10 +5,10 @@ import (
 	"os"
 	"testing"
 
-	"github.com/sesanetwork/go-helios/consensus"
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/native/idx"
-	"github.com/sesanetwork/go-helios/utils/cachescale"
+	"github.com/sesanetwork/go-vassalo/consensus"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/native/idx"
+	"github.com/sesanetwork/go-vassalo/utils/cachescale"
 	"github.com/sesanetwork/go-sesa/common"
 
 	"github.com/sesanetwork/go-sesa/gossip"

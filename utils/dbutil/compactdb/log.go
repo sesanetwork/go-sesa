@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/status-im/keycard-go/hexutils"
-	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-vassalo/sesadb"
 	"github.com/sesanetwork/go-sesa/log"
 )
 

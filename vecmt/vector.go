@@ -3,8 +3,8 @@ package vecmt
 import (
 	"encoding/binary"
 
-	"github.com/sesanetwork/go-helios/native/idx"
-	"github.com/sesanetwork/go-helios/vecfc"
+	"github.com/sesanetwork/go-vassalo/native/idx"
+	"github.com/sesanetwork/go-vassalo/vecfc"
 
 	"github.com/sesanetwork/go-sesa/native"
 )

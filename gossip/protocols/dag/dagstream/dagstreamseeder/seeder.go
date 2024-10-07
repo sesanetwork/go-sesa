@@ -5,9 +5,9 @@ import (
 
 	"github.com/sesanetwork/go-sesa/rlp"
 
-	"github.com/sesanetwork/go-helios/gossip/basestream"
-	"github.com/sesanetwork/go-helios/gossip/basestream/basestreamseeder"
-	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-vassalo/gossip/basestream"
+	"github.com/sesanetwork/go-vassalo/gossip/basestream/basestreamseeder"
+	"github.com/sesanetwork/go-vassalo/hash"
 
 	"github.com/sesanetwork/go-sesa/gossip/protocols/dag/dagstream"
 )

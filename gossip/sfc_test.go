@@ -37,7 +37,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-vassalo/native/idx"
 	"github.com/sesanetwork/go-sesa/common/hexutil"
 	"github.com/sesanetwork/go-sesa/core/types"
 	"github.com/sesanetwork/go-sesa/gossip/contract/driver100"

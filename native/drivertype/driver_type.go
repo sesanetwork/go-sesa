@@ -3,7 +3,7 @@ package drivertype
 import (
 	"math/big"
 
-	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-vassalo/native/idx"
 
 	"github.com/sesanetwork/go-sesa/native/validatorpk"
 )

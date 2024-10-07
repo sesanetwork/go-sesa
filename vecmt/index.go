@@ -2,17 +2,17 @@ package vecmt
 
 import (
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/native/dag"
-	"github.com/sesanetwork/go-helios/native/idx"
-	"github.com/sesanetwork/go-helios/native/pos"
-	"github.com/sesanetwork/go-helios/sesadb"
-	"github.com/sesanetwork/go-helios/sesadb/table"
-	"github.com/sesanetwork/go-helios/utils/cachescale"
-	"github.com/sesanetwork/go-helios/utils/wlru"
-	"github.com/sesanetwork/go-helios/vecengine"
-	"github.com/sesanetwork/go-helios/vecengine/vecflushable"
-	"github.com/sesanetwork/go-helios/vecfc"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/native/dag"
+	"github.com/sesanetwork/go-vassalo/native/idx"
+	"github.com/sesanetwork/go-vassalo/native/pos"
+	"github.com/sesanetwork/go-vassalo/sesadb"
+	"github.com/sesanetwork/go-vassalo/sesadb/table"
+	"github.com/sesanetwork/go-vassalo/utils/cachescale"
+	"github.com/sesanetwork/go-vassalo/utils/wlru"
+	"github.com/sesanetwork/go-vassalo/vecengine"
+	"github.com/sesanetwork/go-vassalo/vecengine/vecflushable"
+	"github.com/sesanetwork/go-vassalo/vecfc"
 )
 
 // IndexCacheConfig - config for cache sizes of Engine

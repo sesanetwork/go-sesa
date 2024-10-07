@@ -9,9 +9,9 @@ import (
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"
-	hash "github.com/sesanetwork/go-helios/hash"
-	idx "github.com/sesanetwork/go-helios/native/idx"
-	pos "github.com/sesanetwork/go-helios/native/pos"
+	hash "github.com/sesanetwork/go-vassalo/hash"
+	idx "github.com/sesanetwork/go-vassalo/native/idx"
+	pos "github.com/sesanetwork/go-vassalo/native/pos"
 	common "github.com/sesanetwork/go-sesa/common"
 	state "github.com/sesanetwork/go-sesa/core/state"
 	types "github.com/sesanetwork/go-sesa/core/types"

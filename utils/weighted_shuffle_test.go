@@ -5,9 +5,9 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/sesanetwork/go-helios/common/littleendian"
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/native/pos"
+	"github.com/sesanetwork/go-vassalo/common/littleendian"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/native/pos"
 )
 
 func getTestWeightsIncreasing(num int) []pos.Weight {

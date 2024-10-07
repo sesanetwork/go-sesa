@@ -1,6 +1,6 @@
 package asyncflushproducer
 
-import "github.com/sesanetwork/go-helios/sesadb"
+import "github.com/sesanetwork/go-vassalo/sesadb"
 
 type store struct {
 	sesadb.Store

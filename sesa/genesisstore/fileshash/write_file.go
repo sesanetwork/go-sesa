@@ -6,8 +6,8 @@ import (
 	hasher "hash"
 	"io"
 
-	"github.com/sesanetwork/go-helios/common/bigendian"
-	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-vassalo/common/bigendian"
+	"github.com/sesanetwork/go-vassalo/hash"
 
 	"github.com/sesanetwork/go-sesa/utils/ioread"
 )

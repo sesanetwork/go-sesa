@@ -8,11 +8,11 @@ import (
 	"strings"
 
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/sesanetwork/go-helios/sesadb"
-	"github.com/sesanetwork/go-helios/sesadb/batched"
-	"github.com/sesanetwork/go-helios/sesadb/pebble"
-	"github.com/sesanetwork/go-helios/sesadb/skipkeys"
-	"github.com/sesanetwork/go-helios/sesadb/table"
+	"github.com/sesanetwork/go-vassalo/sesadb"
+	"github.com/sesanetwork/go-vassalo/sesadb/batched"
+	"github.com/sesanetwork/go-vassalo/sesadb/pebble"
+	"github.com/sesanetwork/go-vassalo/sesadb/skipkeys"
+	"github.com/sesanetwork/go-vassalo/sesadb/table"
 
 	"github.com/sesanetwork/go-sesa/cmd/utils"
 	"github.com/sesanetwork/go-sesa/common"

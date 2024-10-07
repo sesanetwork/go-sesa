@@ -23,7 +23,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sesanetwork/go-helios/sesadb/memorydb"
+	"github.com/sesanetwork/go-vassalo/sesadb/memorydb"
 	"github.com/sesanetwork/go-sesa/common"
 	"github.com/sesanetwork/go-sesa/core/rawdb"
 	"github.com/sesanetwork/go-sesa/core/state"

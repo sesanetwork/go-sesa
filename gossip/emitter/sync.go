@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/sesanetwork/go-helios/emitter/doublesign"
-	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-vassalo/emitter/doublesign"
+	"github.com/sesanetwork/go-vassalo/hash"
 
 	"github.com/sesanetwork/go-sesa/native"
 	"github.com/sesanetwork/go-sesa/utils/errlock"

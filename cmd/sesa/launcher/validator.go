@@ -4,7 +4,7 @@ import (
 	"github.com/pkg/errors"
 	cli "gopkg.in/urfave/cli.v1"
 
-	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-vassalo/native/idx"
 
 	"github.com/sesanetwork/go-sesa/gossip/emitter"
 	"github.com/sesanetwork/go-sesa/integration/makefakegenesis"

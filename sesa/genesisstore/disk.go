@@ -11,8 +11,8 @@ import (
 
 	"github.com/status-im/keycard-go/hexutils"
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/sesanetwork/go-helios/common/bigendian"
-	"github.com/sesanetwork/go-helios/hash"
+	"github.com/sesanetwork/go-vassalo/common/bigendian"
+	"github.com/sesanetwork/go-vassalo/hash"
 	"github.com/sesanetwork/go-sesa/rlp"
 
 	"github.com/sesanetwork/go-sesa/sesa/genesis"

@@ -3,8 +3,8 @@ package gossip
 import (
 	"errors"
 
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/sesadb/batched"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/sesadb/batched"
 
 	"github.com/sesanetwork/go-sesa/native/iblockproc"
 	"github.com/sesanetwork/go-sesa/native/ibr"

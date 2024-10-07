@@ -3,8 +3,8 @@ package gossip
 import (
 	"math"
 
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/native/idx"
 	"github.com/sesanetwork/go-sesa/core/types"
 	"github.com/sesanetwork/go-sesa/log"
 	"github.com/sesanetwork/go-sesa/rlp"

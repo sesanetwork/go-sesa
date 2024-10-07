@@ -26,7 +26,7 @@ import (
 
 	"github.com/syndtr/goleveldb/leveldb/opt"
 
-	"github.com/sesanetwork/go-helios/sesadb/leveldb"
+	"github.com/sesanetwork/go-vassalo/sesadb/leveldb"
 	"github.com/sesanetwork/go-sesa/common"
 	"github.com/sesanetwork/go-sesa/core"
 	"github.com/sesanetwork/go-sesa/core/rawdb"

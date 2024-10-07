@@ -9,10 +9,10 @@ import (
 	"fmt"
 	"sync/atomic"
 
-	"github.com/sesanetwork/go-helios/native/idx"
-	"github.com/sesanetwork/go-helios/sesadb"
-	"github.com/sesanetwork/go-helios/sesadb/skiperrors"
-	"github.com/sesanetwork/go-helios/sesadb/table"
+	"github.com/sesanetwork/go-vassalo/native/idx"
+	"github.com/sesanetwork/go-vassalo/sesadb"
+	"github.com/sesanetwork/go-vassalo/sesadb/skiperrors"
+	"github.com/sesanetwork/go-vassalo/sesadb/table"
 
 	"github.com/sesanetwork/go-sesa/logger"
 )

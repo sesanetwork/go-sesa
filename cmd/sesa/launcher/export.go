@@ -18,10 +18,10 @@ import (
 	"github.com/sesanetwork/go-sesa/log"
 	"github.com/sesanetwork/go-sesa/rlp"
 
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/native/idx"
-	"github.com/sesanetwork/go-helios/sesadb/batched"
-	"github.com/sesanetwork/go-helios/sesadb/pebble"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/native/idx"
+	"github.com/sesanetwork/go-vassalo/sesadb/batched"
+	"github.com/sesanetwork/go-vassalo/sesadb/pebble"
 
 	"github.com/sesanetwork/go-sesa/gossip"
 	"github.com/sesanetwork/go-sesa/utils/dbutil/autocompact"

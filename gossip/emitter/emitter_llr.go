@@ -3,9 +3,9 @@ package emitter
 import (
 	"math/rand"
 
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/native/idx"
-	"github.com/sesanetwork/go-helios/utils/piecefunc"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/native/idx"
+	"github.com/sesanetwork/go-vassalo/utils/piecefunc"
 
 	"github.com/sesanetwork/go-sesa/eventcheck/basiccheck"
 	"github.com/sesanetwork/go-sesa/native"

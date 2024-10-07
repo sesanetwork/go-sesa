@@ -7,11 +7,11 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"
 
-	"github.com/sesanetwork/go-helios/emitter/ancestor"
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/native/idx"
-	"github.com/sesanetwork/go-helios/native/pos"
-	"github.com/sesanetwork/go-helios/sesadb/memorydb"
+	"github.com/sesanetwork/go-vassalo/emitter/ancestor"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/native/idx"
+	"github.com/sesanetwork/go-vassalo/native/pos"
+	"github.com/sesanetwork/go-vassalo/sesadb/memorydb"
 
 	"github.com/sesanetwork/go-sesa/gossip/emitter/mock"
 	"github.com/sesanetwork/go-sesa/integration/makefakegenesis"

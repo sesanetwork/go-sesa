@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/sesanetwork/go-helios/sesadb/memorydb"
+	"github.com/sesanetwork/go-vassalo/sesadb/memorydb"
 	"github.com/sesanetwork/go-sesa/core/types"
 )
 

@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"sort"
 
-	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-vassalo/native/idx"
 
 	"github.com/sesanetwork/go-sesa/utils/concurrent"
 )

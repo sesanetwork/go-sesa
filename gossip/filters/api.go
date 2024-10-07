@@ -25,7 +25,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-vassalo/native/idx"
 	sesa "github.com/sesanetwork/go-sesa"
 	"github.com/sesanetwork/go-sesa/common"
 	"github.com/sesanetwork/go-sesa/common/hexutil"

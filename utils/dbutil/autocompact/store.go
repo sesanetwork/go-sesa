@@ -7,7 +7,7 @@ import (
 
 	"github.com/sesanetwork/go-sesa/log"
 
-	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-vassalo/sesadb"
 )
 
 // Store implements automatic compacting of recently inserted/erased data according to provided strategy

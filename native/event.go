@@ -3,10 +3,10 @@ package native
 import (
 	"crypto/sha256"
 
-	"github.com/sesanetwork/go-helios/common/bigendian"
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/native/dag"
-	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-vassalo/common/bigendian"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/native/dag"
+	"github.com/sesanetwork/go-vassalo/native/idx"
 	"github.com/sesanetwork/go-sesa/core/types"
 	"github.com/sesanetwork/go-sesa/rlp"
 	"github.com/sesanetwork/go-sesa/trie"

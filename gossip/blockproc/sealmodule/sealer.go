@@ -3,9 +3,9 @@ package sealmodule
 import (
 	"math/big"
 
-	"github.com/sesanetwork/go-helios/native/idx"
-	"github.com/sesanetwork/go-helios/native/pos"
-	"github.com/sesanetwork/go-helios/types"
+	"github.com/sesanetwork/go-vassalo/native/idx"
+	"github.com/sesanetwork/go-vassalo/native/pos"
+	"github.com/sesanetwork/go-vassalo/types"
 	"github.com/sesanetwork/go-sesa/gossip/blockproc"
 	"github.com/sesanetwork/go-sesa/native/iblockproc"
 )

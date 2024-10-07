@@ -4,10 +4,10 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/sesanetwork/go-helios/native/dag"
-	"github.com/sesanetwork/go-helios/native/idx"
-	"github.com/sesanetwork/go-helios/utils/datasemaphore"
-	"github.com/sesanetwork/go-helios/utils/workers"
+	"github.com/sesanetwork/go-vassalo/native/dag"
+	"github.com/sesanetwork/go-vassalo/native/idx"
+	"github.com/sesanetwork/go-vassalo/utils/datasemaphore"
+	"github.com/sesanetwork/go-vassalo/utils/workers"
 
 	"github.com/sesanetwork/go-sesa/native"
 	"github.com/sesanetwork/go-sesa/native/iep"

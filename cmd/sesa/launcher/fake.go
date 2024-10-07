@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-vassalo/native/idx"
 	cli "gopkg.in/urfave/cli.v1"
 
 	"github.com/sesanetwork/go-sesa/integration/makefakegenesis"

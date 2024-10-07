@@ -1,8 +1,8 @@
 package gossip
 
 import (
-	"github.com/sesanetwork/go-helios/native/idx"
-	"github.com/sesanetwork/go-helios/native/pos"
+	"github.com/sesanetwork/go-vassalo/native/idx"
+	"github.com/sesanetwork/go-vassalo/native/pos"
 	"github.com/sesanetwork/go-sesa/log"
 	ethparams "github.com/sesanetwork/go-sesa/params"
 	"github.com/sesanetwork/go-sesa/rlp"

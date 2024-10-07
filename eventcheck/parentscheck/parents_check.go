@@ -3,7 +3,7 @@ package parentscheck
 import (
 	"errors"
 
-	base "github.com/sesanetwork/go-helios/eventcheck/parentscheck"
+	base "github.com/sesanetwork/go-vassalo/eventcheck/parentscheck"
 
 	"github.com/sesanetwork/go-sesa/native"
 )

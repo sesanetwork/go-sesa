@@ -4,7 +4,7 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/sesanetwork/go-helios/native/idx"
+	"github.com/sesanetwork/go-vassalo/native/idx"
 	"github.com/sesanetwork/go-sesa/params"
 
 	"github.com/sesanetwork/go-sesa/native/validatorpk"

@@ -1,11 +1,11 @@
 package vecmt2dagidx
 
 import (
-	"github.com/sesanetwork/go-helios/consensus"
-	"github.com/sesanetwork/go-helios/consensus/dagidx"
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/native/idx"
-	"github.com/sesanetwork/go-helios/vecfc"
+	"github.com/sesanetwork/go-vassalo/consensus"
+	"github.com/sesanetwork/go-vassalo/consensus/dagidx"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/native/idx"
+	"github.com/sesanetwork/go-vassalo/vecfc"
 
 	"github.com/sesanetwork/go-sesa/vecmt"
 )

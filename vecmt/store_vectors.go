@@ -1,8 +1,8 @@
 package vecmt
 
 import (
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/sesadb"
 )
 
 func (vi *Index) getBytes(table sesadb.Store, id hash.Event) []byte {

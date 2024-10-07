@@ -1,7 +1,7 @@
 package ethdb2udb
 
 import (
-	"github.com/sesanetwork/go-helios/sesadb"
+	"github.com/sesanetwork/go-vassalo/sesadb"
 	"github.com/sesanetwork/go-sesa/ethdb"
 )
 

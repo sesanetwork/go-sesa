@@ -5,10 +5,10 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/sesanetwork/go-helios/eventcheck/epochcheck"
-	"github.com/sesanetwork/go-helios/hash"
-	"github.com/sesanetwork/go-helios/native/idx"
-	"github.com/sesanetwork/go-helios/native/pos"
+	"github.com/sesanetwork/go-vassalo/eventcheck/epochcheck"
+	"github.com/sesanetwork/go-vassalo/hash"
+	"github.com/sesanetwork/go-vassalo/native/idx"
+	"github.com/sesanetwork/go-vassalo/native/pos"
 
 	"github.com/sesanetwork/go-sesa/native"
 	"github.com/sesanetwork/go-sesa/native/iblockproc"

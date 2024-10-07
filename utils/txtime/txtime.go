@@ -5,7 +5,7 @@ import (
 
 	"github.com/sesanetwork/go-sesa/common"
 
-	"github.com/sesanetwork/go-helios/utils/wlru"
+	"github.com/sesanetwork/go-vassalo/utils/wlru"
 )
 
 var (
